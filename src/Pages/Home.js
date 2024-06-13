@@ -1,0 +1,302 @@
+import React from "react";
+import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/App.css";
+import Button from "@mui/material/Button";
+import { Navigate } from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
+import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
+import homei2 from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/homei2.jpeg";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import home1 from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/stem-t4l--PnSpCHYKsw-unsplash.jpg";
+import Divider from "@mui/material/Divider";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import Fab from "@mui/material/Fab";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import Fade from "@mui/material/Fade";
+
+const theme = createTheme({
+  palette: {
+    seaGreen: {
+      main: "#6bffc6",
+      light: "#6bffc6",
+      dark: "#008552",
+      contrastText: "#0d3023",
+    },
+    black: {
+      main: "#000000",
+      contrastText: "#00ff9d",
+    },
+  },
+});
+
+function ScrollTop(props) {
+  const { children, window } = props;
+
+  const trigger = useScrollTrigger();
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      "#back-to-top-anchor"
+    );
+
+    if (anchor) {
+      anchor.scrollIntoView({
+        block: "center",
+      });
+    }
+  };
+
+  return (
+    <Fade in={trigger}>
+      <Box
+        onClick={handleClick}
+        role="presentation"
+        sx={{ position: "fixed", bottom: 16, right: 16 }}
+      >
+        {children}
+      </Box>
+    </Fade>
+  );
+}
+
+export default function Home(props) {
+  const [backToLogin, setBackToLogin] = React.useState(false);
+  const [toHome, setToHome] = React.useState(false);
+  const [toInfo, setToInfo] = React.useState(false);
+  const [toSPG, setToSPG] = React.useState(false);
+  const [toContact, setToContact] = React.useState(false);
+
+  const navItems = [
+    "Home",
+    "Info",
+    "Single Player Games",
+    "Contact",
+    "Profile",
+  ];
+
+  if (backToLogin) {
+    return <Navigate to="/" />;
+  }
+
+  if (toHome) {
+    return <Navigate to="/home" />;
+  }
+
+  if (toInfo) {
+    return <Navigate to="/info" />;
+  }
+
+  if (toSPG) {
+    return <Navigate to="/single-player-games" />;
+  }
+
+  if (toContact) {
+    return <Navigate to="/contact" />;
+  }
+
+  return (
+    <ThemeProvider theme={theme}>
+      <div className="home">
+        <AppBar component="nav" color="seaGreen">
+          <Toolbar>
+            <img src={logo} className="navLogo" alt="LearnCuliaLogo" />
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                flexGrow: 1,
+                fontWeight: "bold",
+                display: { xs: "none", sm: "block" },
+              }}
+            >
+              LearnCulia
+            </Typography>
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              {navItems.map((item) => (
+                <Button
+                  key={item}
+                  sx={{ color: "#000" }}
+                  onClick={() => {
+                    if (item === "Home") {
+                      setToHome(true);
+                    } else if (item === "Info") {
+                      setToInfo(true);
+                    } else if (item === "Single Player Games") {
+                      setToSPG(true);
+                    } else if (item === "Contact") {
+                      setToContact(true);
+                    }
+                  }}
+                >
+                  {item}
+                </Button>
+              ))}
+            </Box>
+          </Toolbar>
+        </AppBar>
+        <Toolbar id="back-to-top-anchor" />
+        <Box
+          className="home2"
+          style={{
+            backgroundImage: `url(${home1})`,
+            backgroundSize: "cover",
+            height: "100vh",
+            width: "210vh",
+            color: "white",
+          }}
+        >
+          <h1 style={{ fontSize: 50 }}>
+            Let LearnCulia guide you to conquer your math hurdles!
+          </h1>
+          <Button onClick={() => setBackToLogin(true)}>Back</Button>
+        </Box>
+        <Box className="home3">
+          <img src={homei2} className="home3i" alt="Home Image 2" />
+          <Box className="box3">
+            <h1
+              style={{
+                fontSize: 50,
+                marginTop: -30,
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              About LearnCulia
+            </h1>
+            <Typography style={{ marginLeft: -30 }}>
+              Lorem ipsum delum hi there my name is sathvik malla andi like to
+              eat bugattis and ferraris so please consider subscribing to my
+              cahnel ha ha weay to go bruttha i love cars. Lorem ipsum delum hi
+              there my name is sathvik malla andi like to eat bugattis and
+              ferraris so please consider subscribing to my cahnel ha ha weay to
+              go bruttha i love cars. Lorem ipsum delum hi there my name is
+              sathvik malla andi like to eat bugattis and ferraris so please
+              consider subscribing to my cahnel ha ha weay to go bruttha i love
+              cars. Lorem ipsum delum hi there my name is sathvik malla andi
+              like to eat bugattis and ferraris so please consider subscribing
+              to my cahnel ha ha weay to go bruttha i love cars. Lorem ipsum
+              delum hi there my name is sathvik malla andi like to eat bugattis
+              and ferraris so please consider subscribing to my cahnel ha ha
+              weay to go bruttha i love cars.
+            </Typography>
+            <Button
+              variant="contained"
+              color="black"
+              size="large"
+              style={{ marginTop: 50 }}
+              onClick={() => setToInfo(true)}
+            >
+              Learn More About LearnCulia
+            </Button>
+          </Box>
+        </Box>
+        <Box className="home4">
+          <Box className="box4">
+            <h1
+              style={{
+                fontSize: 50,
+                marginTop: -30,
+                textAlign: "center",
+              }}
+            >
+              Single Player Games
+            </h1>
+            <Typography style={{ marginLeft: -30 }}>
+              Lorem ipsum delum hi there my name is sathvik malla andi like to
+              eat bugattis and ferraris so please consider subscribing to my
+              cahnel ha ha weay to go bruttha i love cars. Lorem ipsum delum hi
+              there my name is sathvik malla andi like to eat bugattis and
+              ferraris so please consider subscribing to my cahnel ha ha weay to
+              go bruttha i love cars. Lorem ipsum delum hi there my name is
+              sathvik malla andi like to eat bugattis and ferraris so please
+              consider subscribing to my cahnel ha ha weay to go bruttha i love
+              cars. Lorem ipsum delum hi there my name is sathvik malla andi
+              like to eat bugattis and ferraris so please consider subscribing
+              to my cahnel ha ha weay to go bruttha i love cars. Lorem ipsum
+              delum hi there my name is sathvik malla andi like to eat bugattis
+              and ferraris so please consider subscribing to my cahnel ha ha
+              weay to go bruttha i love cars.
+            </Typography>
+            <Button
+              variant="contained"
+              color="black"
+              size="large"
+              style={{ marginTop: 50 }}
+            >
+              Play
+            </Button>
+          </Box>
+          <img src={homei2} className="home4i" alt="Home Image 2" />
+        </Box>
+        <Box className="home5">
+          <img src={homei2} className="home3i" alt="Home Image 2" />
+          <Box className="box5">
+            <h1
+              style={{
+                fontSize: 50,
+                marginTop: -30,
+                textAlign: "center",
+              }}
+            >
+              Contact
+            </h1>
+            <Typography style={{ marginLeft: -30 }}>
+              Lorem ipsum delum hi there my name is sathvik malla andi like to
+              eat bugattis and ferraris so please consider subscribing to my
+              cahnel ha ha weay to go bruttha i love cars. Lorem ipsum delum hi
+              there my name is sathvik malla andi like to eat bugattis and
+              ferraris so please consider subscribing to my cahnel ha ha weay to
+              go bruttha i love cars. Lorem ipsum delum hi there my name is
+              sathvik malla andi like to eat bugattis and ferraris so please
+              consider subscribing to my cahnel ha ha weay to go bruttha i love
+              cars. Lorem ipsum delum hi there my name is sathvik malla andi
+              like to eat bugattis and ferraris so please consider subscribing
+              to my cahnel ha ha weay to go bruttha i love cars. Lorem ipsum
+              delum hi there my name is sathvik malla andi like to eat bugattis
+              and ferraris so please consider subscribing to my cahnel ha ha
+              weay to go bruttha i love cars.
+            </Typography>
+            <Button
+              variant="contained"
+              color="black"
+              size="large"
+              style={{ marginTop: 50 }}
+            >
+              Contact
+            </Button>
+          </Box>
+        </Box>
+        <Divider variant="fullWidth" flexItem />
+        <Box className="home6">
+          <Box style={{ display: "flex", flexDirection: "row" }}>
+            <img
+              src={icon}
+              className="footerLogo"
+              alt="Footer LearnCulia Icon"
+            />
+            <h1>LearnCulia</h1>
+          </Box>
+          <Box style={{ display: "flex", flexDirection: "row" }}>
+            <Button>Info</Button>
+            <Button>Single Player Games</Button>
+            <Button>Contact</Button>
+            <Button>Profile</Button>
+          </Box>
+          <p>© 2024 LearnCulia. All rights reserved.</p>
+        </Box>
+        <ScrollTop {...props}>
+          <Fab
+            size="small"
+            aria-label="scroll back to top"
+            style={{ backgroundColor: "#6bffc6", color: "black" }}
+          >
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </ScrollTop>
+      </div>
+    </ThemeProvider>
+  );
+}

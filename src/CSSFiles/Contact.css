@@ -1,0 +1,38 @@
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  background-color: #6bffc6;
+  border-radius: 4vh;
+  height: 60vh;
+  width: 80vh;
+}
+
+.footerLogo {
+  width: 5vh;
+  height: 5vh;
+  border-radius: 1vh;
+  margin-top: 2vh;
+  margin-right: 2vh;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 40vh;
+  height: 25vh;
+  width: 200vh;
+}
