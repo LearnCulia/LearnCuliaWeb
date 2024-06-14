@@ -11,6 +11,8 @@ import Game3 from "./Pages/GamePages/Game3";
 import Game4 from "./Pages/GamePages/Game4";
 import Game5 from "./Pages/GamePages/Game5";
 import Game6 from "./Pages/GamePages/Game6";
+import GamePage1 from "./Pages/GamePages/GamePage1";
+import GamePageChallenge1 from "./Pages/GamePages/GamePageChallenge1";
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
         <Route path="/single-player-games" element={<SinglePlayerGames />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/game1" element={<Game1 />} />
+        <Route path="/gamepage1" element={<GamePage1 />} />
+        <Route path="/gamepagechallenge1" element={<GamePageChallenge1 />} />
         <Route path="/game2" element={<Game2 />} />
         <Route path="/game3" element={<Game3 />} />
         <Route path="/game4" element={<Game4 />} />
