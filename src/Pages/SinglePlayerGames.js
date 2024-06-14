@@ -162,7 +162,7 @@ const SinglePlayerGames = () => {
         marginBottom: 160,
       },
       modal: modalGame4,
-      modalDesc: "Reversing Math Equations is for even awesomest people",
+      modalDesc: "Reversing Math Equations is for awesomest people",
       openModal: () => openModalGame4(true),
       closeModal: () => openModalGame4(false),
       startGame: () => setToGame4(true),
@@ -179,7 +179,7 @@ const SinglePlayerGames = () => {
         marginBottom: 120,
       },
       modal: modalGame5,
-      modalDesc: "Comparisons is for even even awesomest people",
+      modalDesc: "Comparisons is for awesomest people",
       openModal: () => openModalGame5(true),
       closeModal: () => openModalGame5(false),
       startGame: () => setToGame5(true),
@@ -196,7 +196,7 @@ const SinglePlayerGames = () => {
         marginBottom: 120,
       },
       modal: modalGame6,
-      modalDesc: "Arranging Numbers is for even even even awesomest people",
+      modalDesc: "Arranging Numbers is for awesomest people",
       openModal: () => openModalGame6(true),
       closeModal: () => openModalGame6(false),
       startGame: () => setToGame6(true),
@@ -404,20 +404,19 @@ const SinglePlayerGames = () => {
                     sx={{
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "center",
+                      justifyContent: "space-evenly",
                       alignItems: "center",
-                      textAlign: "center",
                       position: "absolute",
                       top: "50%",
                       left: "50%",
                       transform: "translate(-50%, -50%)",
-                      height: 500,
+                      height: 200,
                       width: 400,
                       backgroundColor: "#c3fae5",
                       border: "2px solid #000",
                       borderRadius: 4,
                       boxShadow: 24,
-                      p: 10,
+                      p: 4,
                     }}
                   >
                     <Typography
@@ -427,12 +426,29 @@ const SinglePlayerGames = () => {
                     >
                       {item.name}
                     </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                    <Typography
+                      id="modal-modal-title"
+                      variant="h6"
+                      component="h2"
+                    >
+                      Game Information:
+                    </Typography>
+                    <Typography
+                      id="modal-modal-description"
+                      sx={{ mt: 2, mb: 2 }}
+                    >
                       {item.modalDesc}
                     </Typography>
-                    <Button variant="contained" color="black" size="large">
+                    <Button
+                      variant="contained"
+                      color="black"
+                      size="large"
+                      sx={{ mb: 2 }}
+                      onClick={item.startGame}
+                    >
                       Start Game
                     </Button>
+                    <Button onClick={item.closeModal}>Close</Button>
                   </Box>
                 </Modal>
               </CardContent>
