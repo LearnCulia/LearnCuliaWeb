@@ -12,7 +12,9 @@ import Game4 from "./Pages/GamePages/Game4";
 import Game5 from "./Pages/GamePages/Game5";
 import Game6 from "./Pages/GamePages/Game6";
 import GamePage1 from "./Pages/GamePages/GamePage1";
+import GamePage2 from "./Pages/GamePages/GamePage2";
 import GamePageChallenge1 from "./Pages/GamePages/GamePageChallenge1";
+import GamePageChallenge2 from "./Pages/GamePages/GamePageChallenge2";
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
         <Route path="/gamepage1" element={<GamePage1 />} />
         <Route path="/gamepagechallenge1" element={<GamePageChallenge1 />} />
         <Route path="/game2" element={<Game2 />} />
+        <Route path="/gamepage2" element={<GamePage2 />} />
+        <Route path="/gamepagechallenge2" element={<GamePageChallenge2 />} />
         <Route path="/game3" element={<Game3 />} />
         <Route path="/game4" element={<Game4 />} />
         <Route path="/game5" element={<Game5 />} />

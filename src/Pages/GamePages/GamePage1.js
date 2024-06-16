@@ -185,7 +185,7 @@ const GamePage1 = () => {
         >
           Quit Game
         </Button>
-        <h1>Let's apply the skills we leaned for the following problems!</h1>
+        <h1>Let's apply the skills we learned for the following problems!</h1>
         {ready ? (
           <div style={{ justifyContent: "center", alignItems: "center" }}>
             <Button

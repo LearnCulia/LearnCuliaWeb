@@ -13,3 +13,11 @@
   justify-content: center;
   margin-top: 10vh;
 }
+
+.game1-gamepagechallenge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+}
