@@ -173,11 +173,7 @@ const GamePageChallenge2 = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className="game1-gamepagechallenge">
-      <Confetti
-          width={width}
-          height={height}
-          run={finishModal}
-        />
+        <Confetti width={width} height={height} run={finishModal} />
         <Button
           variant="contained"
           color="black"

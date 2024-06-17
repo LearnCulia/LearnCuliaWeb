@@ -13,8 +13,10 @@ import Game5 from "./Pages/GamePages/Game5";
 import Game6 from "./Pages/GamePages/Game6";
 import GamePage1 from "./Pages/GamePages/GamePage1";
 import GamePage2 from "./Pages/GamePages/GamePage2";
+import GamePage3 from "./Pages/GamePages/GamePage3";
 import GamePageChallenge1 from "./Pages/GamePages/GamePageChallenge1";
 import GamePageChallenge2 from "./Pages/GamePages/GamePageChallenge2";
+import GamePageChallenge3 from "./Pages/GamePages/GamePageChallenge3";
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 
 function App() {
@@ -27,15 +29,17 @@ function App() {
         <Route path="/single-player-games" element={<SinglePlayerGames />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/game1" element={<Game1 />} />
-        <Route path="/gamepage1" element={<GamePage1 />} />
-        <Route path="/gamepagechallenge1" element={<GamePageChallenge1 />} />
         <Route path="/game2" element={<Game2 />} />
-        <Route path="/gamepage2" element={<GamePage2 />} />
-        <Route path="/gamepagechallenge2" element={<GamePageChallenge2 />} />
         <Route path="/game3" element={<Game3 />} />
         <Route path="/game4" element={<Game4 />} />
         <Route path="/game5" element={<Game5 />} />
         <Route path="/game6" element={<Game6 />} />
+        <Route path="/gamepage1" element={<GamePage1 />} />
+        <Route path="/gamepage2" element={<GamePage2 />} />
+        <Route path="/gamepage3" element={<GamePage3 />} />
+        <Route path="/gamepagechallenge1" element={<GamePageChallenge1 />} />
+        <Route path="/gamepagechallenge2" element={<GamePageChallenge2 />} />
+        <Route path="/gamepagechallenge3" element={<GamePageChallenge3 />} />
       </Routes>
     </BrowserRouter>
   );

@@ -32,6 +32,7 @@ const Game3 = () => {
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
+  const [toGamePage3, setToGamePage3] = React.useState(false);
 
   if (toHome) {
     return <Navigate to="/home" />;
@@ -47,6 +48,10 @@ const Game3 = () => {
 
   if (toContact) {
     return <Navigate to="/contact" />;
+  }
+
+  if (toGamePage3) {
+    return <Navigate to="/gamepage3" />;
   }
 
   const navItems = [
@@ -122,7 +127,7 @@ const Game3 = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerpolicy="strict-origin-when-cross-origin"
         ></iframe>
-        <p style={{ color: "red", marginTop: 15 }}>Note: Any number multiplied by 0 gives o!</p>
+        <p style={{ color: "red", marginTop: 15 }}>Note: Any number multiplied by 0 gives 0!</p>
         <Typography sx={{ mt: 5 }}>
           Now, let's try some multiplication problems by clicking the button
           below!
@@ -131,7 +136,7 @@ const Game3 = () => {
           *Note: You can access the multiplication table on the top right corner
           if needed.
         </Typography>
-        <Button sx={{ mt: 5, mb: 10 }}>Click when you are ready!</Button>
+        <Button sx={{ mt: 5, mb: 10 }}  onClick={() => setToGamePage3(true)}>Click when you are ready!</Button>
       </div>
     </ThemeProvider>
   );
