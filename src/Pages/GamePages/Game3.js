@@ -136,7 +136,7 @@ const Game3 = () => {
           *Note: You can access the multiplication table on the top right corner
           if needed.
         </Typography>
-        <Button sx={{ mt: 5, mb: 10 }}  onClick={() => setToGamePage3(true)}>Click when you are ready!</Button>
+        <Button sx={{ mt: 5, mb: 10 }} onClick={() => setToGamePage3(true)}>Click when you are ready!</Button>
       </div>
     </ThemeProvider>
   );
