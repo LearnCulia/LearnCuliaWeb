@@ -27,12 +27,12 @@ const theme = createTheme({
   },
 });
 
-const Game5 = () => {
+const GamePageMid5 = () => {
   const [toHome, setToHome] = React.useState(false);
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
-  const [toGamePage5, setToGamePage5] = React.useState(false);
+  const [toGamePageChallenge5, setToGamePageChallenge5] = React.useState(false);
 
   if (toHome) {
     return <Navigate to="/home" />;
@@ -50,8 +50,8 @@ const Game5 = () => {
     return <Navigate to="/contact" />;
   }
 
-  if (toGamePage5) {
-    return <Navigate to="/gamepage5" />;
+  if (toGamePageChallenge5) {
+    return <Navigate to="/gamepagechallenge5" />;
   }
 
   const navItems = [
@@ -64,43 +64,6 @@ const Game5 = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar component="nav" color="seaGreen">
-        <Toolbar>
-          <img src={logo} className="navLogo" alt="LearnCuliaLogo" />
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              fontWeight: "bold",
-              display: { xs: "none", sm: "block" },
-            }}
-          >
-            LearnCulia
-          </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                sx={{ color: "#000" }}
-                onClick={() => {
-                  if (item === "Home") {
-                    setToHome(true);
-                  } else if (item === "Info") {
-                    setToInfo(true);
-                  } else if (item === "Single Player Games") {
-                    setToSPG(true);
-                  } else if (item === "Contact") {
-                    setToContact(true);
-                  }
-                }}
-              >
-                {item}
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </AppBar>
       <div className="game5-page">
         <Button
           variant="contained"
@@ -109,11 +72,14 @@ const Game5 = () => {
           sx={{ position: "absolute", top: 110, left: 50 }}
           onClick={() => setToSPG(true)}
         >
-          Go Back
+          Quit Game
         </Button>
-        <h1>Welcome to Comparisons!</h1>
+        <h1>Before we move on to the challenge...</h1>
         <Typography>
-          Let's refresh our memory or learn about comparisons!
+          Let's talk about MORE comparisons!
+        </Typography>
+        <Typography>
+          Also, this next challenge will involve a different game!
         </Typography>
         <Typography sx={{ mt: 5, mb: 5 }}>
           Click the video below to watch!
@@ -122,7 +88,7 @@ const Game5 = () => {
           width="560"
           height="315"
           style={{ borderRadius: 20 }}
-          src="https://www.youtube.com/embed/d43D-o6Bzac?si=oaKlS--PLhzC4e7_"
+          src="https://www.youtube.com/embed/crTjlicH_lQ?si=6RUbWTAKeSOeC0W9"
           title="LearnCulia Youtube Choosing Comparison Signs Instruction Video"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -131,10 +97,10 @@ const Game5 = () => {
         <Typography sx={{ mt: 5 }}>
           Now, let's try some problems by clicking the button below!
         </Typography>
-        <Button sx={{ mt: 5, mb: 10 }} onClick={() => setToGamePage5(true)}>Click when you are ready!</Button>
+        <Button sx={{ mt: 5, mb: 10 }} onClick={() => setToGamePageChallenge5(true)}>Click when you are ready!</Button>
       </div>
     </ThemeProvider>
   );
 };
 
-export default Game5;
+export default GamePageMid5;

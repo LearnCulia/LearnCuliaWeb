@@ -5,3 +5,21 @@
   justify-content: center;
   margin-top: 10vh;
 }
+
+.game5-gamepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+.game5-gamepagechallenge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+
