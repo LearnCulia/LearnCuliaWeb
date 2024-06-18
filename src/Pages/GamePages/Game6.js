@@ -32,6 +32,7 @@ const Game6 = () => {
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
+  const [toGamePage6, setToGamePage6] = React.useState(false);
 
   if (toHome) {
     return <Navigate to="/home" />;
@@ -47,6 +48,10 @@ const Game6 = () => {
 
   if (toContact) {
     return <Navigate to="/contact" />;
+  }
+
+  if (toGamePage6) {
+    return <Navigate to="/gamepage6" />;
   }
 
   const navItems = [
@@ -127,7 +132,9 @@ const Game6 = () => {
         <Typography sx={{ mt: 5 }}>
           Now, let's try some problems by clicking the button below!
         </Typography>
-        <Button sx={{ mt: 5, mb: 10 }}>Click when you are ready!</Button>
+        <Button sx={{ mt: 5, mb: 10 }} onClick={() => setToGamePage6(true)}>
+          Click when you are ready!
+        </Button>
       </div>
     </ThemeProvider>
   );

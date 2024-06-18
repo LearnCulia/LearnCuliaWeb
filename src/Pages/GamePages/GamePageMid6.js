@@ -1,5 +1,5 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/Game5.css";
+import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/Game6.css";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
@@ -13,26 +13,34 @@ import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-we
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
-  palette: {
-    seaGreen: {
-      main: "#6bffc6",
-      light: "#6bffc6",
-      dark: "#008552",
-      contrastText: "#0d3023",
+    palette: {
+      seaGreen: {
+        main: "#6bffc6",
+        light: "#6bffc6",
+        dark: "#008552",
+        contrastText: "#0d3023",
+      },
+      black: {
+        main: "#000000",
+        contrastText: "#00ff9d",
+      },
+      red: {
+        main: "#ff1212",
+        contrastText: "#0fff93",
+      },
+      white: {
+        main: "#ffffff",
+        contrastText: "#000000",
+      },
     },
-    black: {
-      main: "#000000",
-      contrastText: "#00ff9d",
-    },
-  },
-});
+  });
 
-const GamePageMid5 = () => {
+const GamePageMid6 = () => {
   const [toHome, setToHome] = React.useState(false);
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
-  const [toGamePageChallenge5, setToGamePageChallenge5] = React.useState(false);
+  const [toGamePageChallenge6, setToGamePageChallenge6] = React.useState(false);
 
   if (toHome) {
     return <Navigate to="/home" />;
@@ -50,21 +58,13 @@ const GamePageMid5 = () => {
     return <Navigate to="/contact" />;
   }
 
-  if (toGamePageChallenge5) {
-    return <Navigate to="/gamepagechallenge5" />;
+  if (toGamePageChallenge6) {
+    return <Navigate to="/gamepagechallenge6" />;
   }
-
-  const navItems = [
-    "Home",
-    "Info",
-    "Single Player Games",
-    "Contact",
-    "Profile",
-  ];
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="game5-page">
+      <div className="game6-page">
         <Button
           variant="contained"
           color="black"
@@ -76,10 +76,7 @@ const GamePageMid5 = () => {
         </Button>
         <h1>Before we move on to the challenge...</h1>
         <Typography>
-          Let's talk about MORE comparisons!
-        </Typography>
-        <Typography>
-          Also, this next challenge will involve a different game!
+          Let's talk about organizing fractions and decimals!
         </Typography>
         <Typography sx={{ mt: 5, mb: 5 }}>
           Click the video below to watch!
@@ -88,8 +85,8 @@ const GamePageMid5 = () => {
           width="560"
           height="315"
           style={{ borderRadius: 20 }}
-          src="https://www.youtube.com/embed/crTjlicH_lQ?si=6RUbWTAKeSOeC0W9"
-          title="LearnCulia Youtube Verifying Comparisons Instruction Video"
+          src="https://www.youtube.com/embed/YtdJtlZphkA?si=mkmoKBSyf5bWaNf_"
+          title="LearnCulia Youtube Organizing Decimals Instruction Video"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerpolicy="strict-origin-when-cross-origin"
@@ -97,10 +94,10 @@ const GamePageMid5 = () => {
         <Typography sx={{ mt: 5 }}>
           Now, let's try some problems by clicking the button below!
         </Typography>
-        <Button sx={{ mt: 5, mb: 10 }} onClick={() => setToGamePageChallenge5(true)}>Click when you are ready!</Button>
+        <Button sx={{ mt: 5, mb: 10 }} onClick={() => setToGamePageChallenge6(true)}>Click when you are ready!</Button>
       </div>
     </ThemeProvider>
   );
 };
 
-export default GamePageMid5;
+export default GamePageMid6;
