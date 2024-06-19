@@ -33,6 +33,7 @@ const Info = () => {
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
+  const [toProfile, setToProfile] = React.useState(false);
 
   if (toHome) {
     return <Navigate to="/home" />;
@@ -48,6 +49,10 @@ const Info = () => {
 
   if (toContact) {
     return <Navigate to="/contact" />;
+  }
+
+  if (toProfile) {
+    return <Navigate to="/profile" />;
   }
 
   const navItems = [
@@ -89,6 +94,8 @@ const Info = () => {
                       setToSPG(true);
                     } else if (item === "Contact") {
                       setToContact(true);
+                    } else if (item === "Profile") {
+                      setToProfile(true);
                     }
                   }}
                 >

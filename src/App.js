@@ -1,10 +1,12 @@
 import React from "react";
 import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/App.css";
 import Login from "./Pages/Login";
+import CreateAccount from "./Pages/CreateAccount";
 import Home from "./Pages/Home";
 import Info from "./Pages/Info";
 import SinglePlayerGames from "./Pages/SinglePlayerGames";
 import Contact from "./Pages/Contact";
+import Profile from "./Pages/Profile";
 import Game1 from "./Pages/GamePages/Game1";
 import Game2 from "./Pages/GamePages/Game2";
 import Game3 from "./Pages/GamePages/Game3";
@@ -32,10 +34,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/home" element={<Home />} />
         <Route path="/info" element={<Info />} />
         <Route path="/single-player-games" element={<SinglePlayerGames />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/game1" element={<Game1 />} />
         <Route path="/game2" element={<Game2 />} />
         <Route path="/game3" element={<Game3 />} />

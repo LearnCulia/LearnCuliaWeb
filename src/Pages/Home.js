@@ -68,6 +68,7 @@ export default function Home(props) {
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
+  const [toProfile, setToProfile] = React.useState(false);
 
   const navItems = [
     "Home",
@@ -95,6 +96,10 @@ export default function Home(props) {
 
   if (toContact) {
     return <Navigate to="/contact" />;
+  }
+
+  if (toProfile) {
+    return <Navigate to="/profile" />;
   }
 
   return (
@@ -128,6 +133,8 @@ export default function Home(props) {
                       setToSPG(true);
                     } else if (item === "Contact") {
                       setToContact(true);
+                    } else if (item === "Profile") {
+                      setToProfile(true);
                     }
                   }}
                 >

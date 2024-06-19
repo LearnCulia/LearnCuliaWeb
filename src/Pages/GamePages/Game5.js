@@ -64,43 +64,6 @@ const Game5 = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar component="nav" color="seaGreen">
-        <Toolbar>
-          <img src={logo} className="navLogo" alt="LearnCuliaLogo" />
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              fontWeight: "bold",
-              display: { xs: "none", sm: "block" },
-            }}
-          >
-            LearnCulia
-          </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                sx={{ color: "#000" }}
-                onClick={() => {
-                  if (item === "Home") {
-                    setToHome(true);
-                  } else if (item === "Info") {
-                    setToInfo(true);
-                  } else if (item === "Single Player Games") {
-                    setToSPG(true);
-                  } else if (item === "Contact") {
-                    setToContact(true);
-                  }
-                }}
-              >
-                {item}
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </AppBar>
       <div className="game5-page">
         <Button
           variant="contained"

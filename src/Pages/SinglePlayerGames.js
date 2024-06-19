@@ -40,6 +40,7 @@ const SinglePlayerGames = () => {
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
+  const [toProfile, setToProfile] = React.useState(false);
 
   const [modalGame1, openModalGame1] = React.useState(false);
   const [modalGame2, openModalGame2] = React.useState(false);
@@ -70,6 +71,12 @@ const SinglePlayerGames = () => {
   if (toContact) {
     return <Navigate to="/contact" />;
   }
+
+  if (toProfile) {
+    return <Navigate to="/profile" />;
+  }
+
+
 
   if (toGame1) {
     return <Navigate to="/game1" />;
@@ -241,6 +248,8 @@ const SinglePlayerGames = () => {
                     setToSPG(true);
                   } else if (item === "Contact") {
                     setToContact(true);
+                  } else if (item === "Profile") {
+                    setToProfile(true);
                   }
                 }}
               >
