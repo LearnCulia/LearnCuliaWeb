@@ -5,6 +5,19 @@
   align-items: center;
 }
 
+.profile-not-logged {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15vh;
+}
+
+.profile-icon {
+  width: 30vh;
+  height: 30vh;
+}
+
 .footerLogo {
   width: 5vh;
   height: 5vh;

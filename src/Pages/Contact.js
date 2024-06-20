@@ -242,7 +242,7 @@ const Contact = () => {
         </Modal>
         <div className="contact-col1">
           <h1 style={{ marginTop: 20, fontSize: 60 }}>Contact</h1>
-          <Typography sx={{ mt: 4 }} variant="h6">
+          <Typography sx={{ mt: 5 }} variant="h6">
             Any issues or suggestions? Please contact me to get the best out of
             this website and your education!
           </Typography>
@@ -254,9 +254,9 @@ const Contact = () => {
             color="seaGreen.dark"
             sx={{ fontSize: 18 }}
           >
-            learnculiaofficial@gmail.com
+            learnculiaofficial@gmail.com.
           </Link>
-          <Typography sx={{ mt: 5 }} variant="h6">
+          <Typography sx={{ mt: 7 }} variant="h6">
             We will try to respond to you within 5 business days. If we do not
             respond back to your message, please email us through the link
             above. Thanks!

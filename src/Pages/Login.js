@@ -98,6 +98,7 @@ const Login = () => {
   const [registered, isRegistered] = useGlobalState("registered");
   const [toHome, setToHome] = React.useState(false);
   const [toCreateAccount, setToCreateAccount] = React.useState(false);
+  const [toForgotPass, setToForgotPass] = React.useState(false);
 
   const fillAnswerEmail = (e) => {
     setEmail(e.target.value);
@@ -152,6 +153,10 @@ const Login = () => {
 
   if (toCreateAccount) {
     return <Navigate to="/create-account" />;
+  }
+
+  if (toForgotPass) {
+    return <Navigate to="/forgot-password" />;
   }
 
   return (
@@ -213,6 +218,7 @@ const Login = () => {
               <Button
                 color="black"
                 sx={{ mb: 2 }}
+                onClick={() => setToForgotPass(true)}
               >
                 Forgot Password?
               </Button>
