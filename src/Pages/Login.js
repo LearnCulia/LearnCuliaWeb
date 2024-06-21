@@ -12,7 +12,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
 import { auth } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/firebase.js";
 import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
 
@@ -111,8 +111,8 @@ const Login = () => {
   const login = async () => {
     try {
       await auth
-      .signInWithEmailAndPassword(email, password)
-      .then(() => setToHome(true), isRegistered(true))
+        .signInWithEmailAndPassword(email, password)
+        .then(() => isRegistered(true), setToHome(true), console.log(registered));
     } catch (e) {
       isRegistered(false);
       switch (e.code) {
@@ -131,7 +131,9 @@ const Login = () => {
           );
           break;
         default:
-          alert("Incorrect email or password, or user not found. Register below or type again.");
+          alert(
+            "Incorrect email or password, or user not found. Register below or type again."
+          );
           break;
       }
     }
