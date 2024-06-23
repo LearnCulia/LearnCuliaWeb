@@ -11,13 +11,15 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CheckIcon from "@mui/icons-material/Check";
+import Snackbar from "@mui/material/Snackbar";
+import SnackbarContent from "@mui/material/SnackbarContent";
+import CloseIcon from "@mui/icons-material/Close";
 import TextField from "@mui/material/TextField";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
-import ProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/profilePic.png";
+import { styled } from "@mui/material/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   auth,
@@ -25,6 +27,9 @@ import {
 } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/firebase.js";
 import Divider from "@mui/material/Divider";
 import { useGlobalState } from "../GlobalState";
+
+import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
+import ProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/profilePic.png";
 
 import maleProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/maleProfPic.png";
 import malePHProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/malePHProfPic.png";
@@ -72,11 +77,36 @@ const Profile = () => {
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
   const [alignment, setAlignment] = React.useState("male");
+  const [openSave, setOpenSave] = React.useState(false);
 
   const [registered, isRegistered] = useGlobalState("registered");
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [gender, setGender] = React.useState("male");
   const [glasses, setGlasses] = React.useState(false);
   const [partyHat, setPartyHat] = React.useState(false);
+
+  const loadUserData = () => {
+    db.collection("userdata")
+      .get()
+      .then(function (querySnapshot) {
+        try {
+          querySnapshot.forEach(function (doc) {
+            if (doc.data().id == auth.currentUser.uid) {
+              setGender(doc.data().gender == 0 ? "male" : "female");
+              setGlasses(doc.data().glasses);
+              setPartyHat(doc.data().partyHat);
+              //    setStarCount(doc.data().stars);
+              throw new Error("User has been found");
+            }
+          });
+        } catch (e) {
+          console.log("User found");
+        }
+      });
+  };
+
+  React.useEffect(() => {
+    loadUserData();
+  }, []);
 
   if (toLogin) {
     return <Navigate to="/" />;
@@ -114,25 +144,33 @@ const Profile = () => {
     setAlignment(newAlignment);
   };
 
-  const loadUserData = () => {
-    db.collection("userdata")
-      .get()
-      .then(function (querySnapshot) {
-        try {
-          querySnapshot.forEach(function (doc) {
-            if (doc.data().id == auth.currentUser.uid) {
-              setSelectedIndex(doc.data().gender);
-              setGlasses(doc.data().glasses);
-              setPartyHat(doc.data().partyHat);
-              //    setStarCount(doc.data().stars);
-              throw new Error("User has been found");
-            }
-          });
-        } catch (e) {
-          console.log("User found");
-        }
-      });
+  const handleCloseSave = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSave(false);
   };
+
+  const saveSnackbar = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        sx={{ color: "white" }}
+        onClick={handleCloseSave}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+  const MuiToggleButton = styled(ToggleButton)({
+    "&.Mui-selected, &.Mui-selected:hover": {
+      color: "#00ff9d",
+      backgroundColor: "#000000",
+    },
+  });
 
   const saveData = () => {
     db.collection("userdata")
@@ -141,11 +179,13 @@ const Profile = () => {
         try {
           querySnapshot.forEach(function (doc) {
             if (doc.data().id === auth.currentUser.uid) {
-              db.collection("userdata").doc(doc.id).update({
-                gender: selectedIndex,
-                glasses: glasses,
-                partyHat: partyHat,
-              });
+              db.collection("userdata")
+                .doc(doc.id)
+                .update({
+                  gender: gender === "male" ? 0 : 1,
+                  glasses: glasses,
+                  partyHat: partyHat,
+                });
               throw new Error("User is found and is being updated");
             }
           });
@@ -155,29 +195,10 @@ const Profile = () => {
       });
   };
 
-  // const saveButton = () => {
-  //   saveData();
-  //   showMessage({
-  //     message: "Saved!",
-  //     type: "success",
-  //     titleStyle: {
-  //       fontSize: 19,
-  //       marginTop: 20,
-  //       fontWeight: "bold",
-  //       color: "black",
-  //     },
-  //     backgroundColor: "white",
-  //     style: {
-  //       alignItems: "center",
-  //       alignSelf: "center",
-  //       width: 450,
-  //       borderTopStartRadius: 8,
-  //       borderTopEndRadius: 8,
-  //       overflow: "scroll",
-  //     },
-  //     position: "bottom",
-  //   });
-  // };
+  const saveButton = () => {
+    saveData();
+    setOpenSave(true);
+  };
 
   const userLogout = async () => {
     await auth
@@ -188,10 +209,6 @@ const Profile = () => {
       })
       .catch((error) => alert(error));
   };
-
-  // React.useEffect(() => {
-  //   loadUserData();
-  // }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -243,49 +260,56 @@ const Profile = () => {
             </Typography>
             {glasses && partyHat ? (
               <img
-                src={selectedIndex == 0 ? maleProfilePic : femaleProfilePic}
+                src={
+                  gender === "male" ? maleGPHProfilePic : femaleGPHProfilePic
+                }
                 alt="Profile Picture"
                 style={{ width: 400, height: 400 }}
               />
             ) : glasses ? (
               <img
-                src={selectedIndex == 0 ? malePHProfilePic : femalePHProfilePic}
-                alt="Profile Picture"
-                style={{ width: 400, height: 400 }}
-              />
-            ) : partyHat ? (
-              <img
                 src={
-                  selectedIndex == 0
+                  gender === "male"
                     ? maleGlassesProfilePic
                     : femaleGlassesProfilePic
                 }
                 alt="Profile Picture"
                 style={{ width: 400, height: 400 }}
               />
+            ) : partyHat ? (
+              <img
+                src={gender === "male" ? malePHProfilePic : femalePHProfilePic}
+                alt="Profile Picture"
+                style={{ width: 400, height: 400 }}
+              />
             ) : (
               <img
-                src={
-                  selectedIndex == 0 ? maleGPHProfilePic : femaleGPHProfilePic
-                }
+                src={gender === "male" ? maleProfilePic : femaleProfilePic}
                 alt="Profile Picture"
                 style={{ width: 400, height: 400 }}
               />
             )}
             <ToggleButtonGroup
-              color="black"
               value={alignment}
               exclusive
               onChange={handleChange}
               aria-label="Platform"
-              sx={{ width: 400 }}
+              sx={{ width: 400, color: "#000000" }}
             >
-              <ToggleButton value="male" sx={{ width: 200, color: "#000000" }}>
+              <MuiToggleButton
+                value="male"
+                sx={{ width: 200 }}
+                onClick={() => setGender("male")}
+              >
                 Male
-              </ToggleButton>
-              <ToggleButton color="black" value="female" sx={{ width: 200 }}>
+              </MuiToggleButton>
+              <MuiToggleButton
+                value="female"
+                sx={{ width: 200 }}
+                onClick={() => setGender("female")}
+              >
                 Female
-              </ToggleButton>
+              </MuiToggleButton>
             </ToggleButtonGroup>
             {glasses ? (
               <div style={{ display: "flex", flexDirection: "row" }}>
@@ -369,12 +393,19 @@ const Profile = () => {
             ) : (
               <p></p>
             )}
-            <div style={{ display: "flex", flexDirection: "row", marginTop: 10, marginBottom: 35 }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                marginTop: 10,
+                marginBottom: 35,
+              }}
+            >
               <Button
                 variant="contained"
                 color="black"
                 size="large"
-                //     onClick={() => setPartyHat(!partyHat)}
+                onClick={saveButton}
               >
                 Save
               </Button>
@@ -383,11 +414,18 @@ const Profile = () => {
                 color="blackRed"
                 size="large"
                 sx={{ ml: 5 }}
-                //     onClick={() => setPartyHat(!partyHat)}
+                onClick={userLogout}
               >
                 Logout
               </Button>
             </div>
+            <Snackbar
+              open={openSave}
+              autoHideDuration={6000}
+              onClose={handleCloseSave}
+              message="Saved!"
+              action={saveSnackbar}
+            />
           </div>
         ) : (
           <div className="profile-not-logged">
