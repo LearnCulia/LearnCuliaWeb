@@ -253,179 +253,192 @@ const Profile = () => {
           </Toolbar>
         </AppBar>
         {registered ? (
-          <div className="profile-not-logged">
-            <h1>Welcome to Your Profile!</h1>
-            <Typography sx={{ fontSize: 20 }}>
-              Make your desired changes, and hit save below!
-            </Typography>
-            {glasses && partyHat ? (
-              <img
-                src={
-                  gender === "male" ? maleGPHProfilePic : femaleGPHProfilePic
-                }
-                alt="Profile Picture"
-                style={{ width: 400, height: 400 }}
-              />
-            ) : glasses ? (
-              <img
-                src={
-                  gender === "male"
-                    ? maleGlassesProfilePic
-                    : femaleGlassesProfilePic
-                }
-                alt="Profile Picture"
-                style={{ width: 400, height: 400 }}
-              />
-            ) : partyHat ? (
-              <img
-                src={gender === "male" ? malePHProfilePic : femalePHProfilePic}
-                alt="Profile Picture"
-                style={{ width: 400, height: 400 }}
-              />
-            ) : (
-              <img
-                src={gender === "male" ? maleProfilePic : femaleProfilePic}
-                alt="Profile Picture"
-                style={{ width: 400, height: 400 }}
-              />
-            )}
-            <ToggleButtonGroup
-              value={alignment}
-              exclusive
-              onChange={handleChange}
-              aria-label="Platform"
-              sx={{ width: 400, color: "#000000" }}
-            >
-              <MuiToggleButton
-                value="male"
-                sx={{ width: 200 }}
-                onClick={() => setGender("male")}
-              >
-                Male
-              </MuiToggleButton>
-              <MuiToggleButton
-                value="female"
-                sx={{ width: 200 }}
-                onClick={() => setGender("female")}
-              >
-                Female
-              </MuiToggleButton>
-            </ToggleButtonGroup>
-            {glasses ? (
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <IconButton
-                  aria-label="toggle glasses"
-                  color="black"
-                  onClick={() => setGlasses(!glasses)}
-                  edge="end"
-                  sx={{
-                    height: 40,
-                    width: 140,
-                    mt: 5,
-                    borderRadius: 1,
-                    fontSize: 15,
-                    backgroundColor: "#000000",
-                    color: "#00ff9d",
-                  }}
-                >
-                  ADDED!
-                  <CheckIcon />
-                </IconButton>
-              </div>
-            ) : (
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <Button
-                  variant="contained"
-                  color="black"
-                  size="large"
-                  sx={{ mt: 5 }}
-                  onClick={() => setGlasses(!glasses)}
-                >
-                  Add Glasses
-                </Button>
-              </div>
-            )}
-            {glasses ? (
-              <Typography sx={{ fontSize: 20, mt: 1, mb: 5 }}>
-                Click to remove glasses
+          <div className="profile-logged">
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+              <h1>Welcome to Your Profile!</h1>
+              <Typography sx={{ fontSize: 20 }}>
+                Make your desired changes, and hit save below!
               </Typography>
-            ) : (
-              <p></p>
-            )}
-            {partyHat ? (
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <IconButton
-                  aria-label="toggle party hat"
-                  color="black"
-                  onClick={() => setPartyHat(!partyHat)}
-                  edge="end"
-                  sx={{
-                    height: 40,
-                    width: 140,
-                    mt: 2,
-                    borderRadius: 1,
-                    fontSize: 15,
-                    backgroundColor: "#000000",
-                    color: "#00ff9d",
-                  }}
-                >
-                  ADDED!
-                  <CheckIcon />
-                </IconButton>
-              </div>
-            ) : (
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <Button
-                  variant="contained"
-                  color="black"
-                  size="large"
-                  sx={{ mt: 2 }}
-                  onClick={() => setPartyHat(!partyHat)}
-                >
-                  Add Party Hat
-                </Button>
-              </div>
-            )}
-            {partyHat ? (
-              <Typography sx={{ fontSize: 20, mt: 1, mb: 5 }}>
-                Click to remove party hat
-              </Typography>
-            ) : (
-              <p></p>
-            )}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                marginTop: 10,
-                marginBottom: 35,
-              }}
-            >
-              <Button
-                variant="contained"
-                color="black"
-                size="large"
-                onClick={saveButton}
-              >
-                Save
-              </Button>
-              <Button
-                variant="contained"
-                color="blackRed"
-                size="large"
-                sx={{ ml: 5 }}
-                onClick={userLogout}
-              >
-                Logout
-              </Button>
             </div>
-            <Snackbar
-              open={openSave}
-              autoHideDuration={6000}
-              onClose={handleCloseSave}
-              message="Saved!"
-              action={saveSnackbar}
-            />
+            <div className="profile-col1">
+              <div style={{ marginTop: 100 }}/>
+              {glasses && partyHat ? (
+                <img
+                  src={
+                    gender === "male" ? maleGPHProfilePic : femaleGPHProfilePic
+                  }
+                  alt="Profile Picture"
+                  style={{ width: 600, height: 600 }}
+                />
+              ) : glasses ? (
+                <img
+                  src={
+                    gender === "male"
+                      ? maleGlassesProfilePic
+                      : femaleGlassesProfilePic
+                  }
+                  alt="Profile Picture"
+                  style={{ width: 600, height: 600 }}
+                />
+              ) : partyHat ? (
+                <img
+                  src={
+                    gender === "male" ? malePHProfilePic : femalePHProfilePic
+                  }
+                  alt="Profile Picture"
+                  style={{ width: 600, height: 600 }}
+                />
+              ) : (
+                <img
+                  src={gender === "male" ? maleProfilePic : femaleProfilePic}
+                  alt="Profile Picture"
+                  style={{ width: 600, height: 600 }}
+                />
+              )}
+            </div>
+            <div className="profile-col2">
+              <Card className="profile-card" elevation={6}>
+                <CardContent className="profile-cardcontent">
+                  <ToggleButtonGroup
+                    value={alignment}
+                    exclusive
+                    onChange={handleChange}
+                    aria-label="Platform"
+                    sx={{ width: 400, color: "#000000", mt: 10 }}
+                  >
+                    <MuiToggleButton
+                      value="male"
+                      sx={{ width: 200 }}
+                      onClick={() => setGender("male")}
+                    >
+                      Male
+                    </MuiToggleButton>
+                    <MuiToggleButton
+                      value="female"
+                      sx={{ width: 200 }}
+                      onClick={() => setGender("female")}
+                    >
+                      Female
+                    </MuiToggleButton>
+                  </ToggleButtonGroup>
+                  {glasses ? (
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <IconButton
+                        aria-label="toggle glasses"
+                        color="black"
+                        onClick={() => setGlasses(!glasses)}
+                        edge="end"
+                        sx={{
+                          height: 40,
+                          width: 140,
+                          mt: 5,
+                          borderRadius: 1,
+                          fontSize: 15,
+                          backgroundColor: "#000000",
+                          color: "#00ff9d",
+                        }}
+                      >
+                        ADDED!
+                        <CheckIcon />
+                      </IconButton>
+                    </div>
+                  ) : (
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <Button
+                        variant="contained"
+                        color="black"
+                        size="large"
+                        sx={{ mt: 5 }}
+                        onClick={() => setGlasses(!glasses)}
+                      >
+                        Add Glasses
+                      </Button>
+                    </div>
+                  )}
+                  {glasses ? (
+                    <Typography sx={{ fontSize: 20, mt: 1, mb: 5 }}>
+                      Click to remove glasses
+                    </Typography>
+                  ) : (
+                    <p></p>
+                  )}
+                  {partyHat ? (
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <IconButton
+                        aria-label="toggle party hat"
+                        color="black"
+                        onClick={() => setPartyHat(!partyHat)}
+                        edge="end"
+                        sx={{
+                          height: 40,
+                          width: 140,
+                          mt: 2,
+                          borderRadius: 1,
+                          fontSize: 15,
+                          backgroundColor: "#000000",
+                          color: "#00ff9d",
+                        }}
+                      >
+                        ADDED!
+                        <CheckIcon />
+                      </IconButton>
+                    </div>
+                  ) : (
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <Button
+                        variant="contained"
+                        color="black"
+                        size="large"
+                        sx={{ mt: 2 }}
+                        onClick={() => setPartyHat(!partyHat)}
+                      >
+                        Add Party Hat
+                      </Button>
+                    </div>
+                  )}
+                  {partyHat ? (
+                    <Typography sx={{ fontSize: 20, mt: 1, mb: 5 }}>
+                      Click to remove party hat
+                    </Typography>
+                  ) : (
+                    <p></p>
+                  )}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      marginTop: 10,
+                      marginBottom: 35,
+                    }}
+                  >
+                    <Button
+                      variant="contained"
+                      color="black"
+                      size="large"
+                      onClick={saveButton}
+                    >
+                      Save
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="blackRed"
+                      size="large"
+                      sx={{ ml: 5 }}
+                      onClick={userLogout}
+                    >
+                      Logout
+                    </Button>
+                  </div>
+                  <Snackbar
+                    open={openSave}
+                    autoHideDuration={6000}
+                    onClose={handleCloseSave}
+                    message="Saved!"
+                    action={saveSnackbar}
+                  />
+                </CardContent>
+              </Card>
+            </div>
           </div>
         ) : (
           <div className="profile-not-logged">

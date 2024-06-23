@@ -10,6 +10,7 @@ import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-we
 import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
 import homei2 from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/homei2.jpeg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useGlobalState } from "../GlobalState";
 import home1 from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/stem-t4l--PnSpCHYKsw-unsplash.jpg";
 import Divider from "@mui/material/Divider";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
@@ -63,12 +64,14 @@ function ScrollTop(props) {
 }
 
 export default function Home(props) {
-  const [backToLogin, setBackToLogin] = React.useState(false);
+  const [toLogin, setToLogin] = React.useState(false);
   const [toHome, setToHome] = React.useState(false);
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
+
+  const [registered, isRegistered] = useGlobalState("registered");
 
   const navItems = [
     "Home",
@@ -78,7 +81,7 @@ export default function Home(props) {
     "Profile",
   ];
 
-  if (backToLogin) {
+  if (toLogin) {
     return <Navigate to="/" />;
   }
 
@@ -158,8 +161,47 @@ export default function Home(props) {
           <h1 style={{ fontSize: 50 }}>
             Let LearnCulia guide you to conquer your math hurdles!
           </h1>
-          <Button onClick={() => setBackToLogin(true)}>Back</Button>
         </Box>
+        {registered ? (
+          <Box></Box>
+        ) : (
+          <Box className="home-no-reg">
+            <div className="first"></div>
+            <div className="second"></div>
+            <div className="third"></div>
+            <h1
+              style={{
+                fontSize: 50,
+                display: "flex",
+                flexDirection: "row",
+                zIndex: 1000,
+              }}
+            >
+              Your Not Logged In!
+            </h1>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                zIndex: 1000,
+              }}
+            >
+              <Typography style={{ }}>
+                If you want to have custom profile pictures and more blah blah
+                blah, click the button below to login!
+              </Typography>
+              <Button
+                variant="contained"
+                color="black"
+                size="large"
+                style={{ marginTop: 50 }}
+                onClick={() => setToLogin(true)}
+              >
+                Login Today!
+              </Button>
+            </div>
+          </Box>
+        )}
         <Box className="home3">
           <img src={homei2} className="home3i" alt="Home Image 2" />
           <Box className="box3">
