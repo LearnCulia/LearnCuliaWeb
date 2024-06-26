@@ -4,12 +4,14 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Alert from "@mui/material/Alert";
@@ -90,6 +92,8 @@ const theme = createTheme({
   },
 });
 
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [guestAgree, setGuestAgree] = React.useState(false);
@@ -99,6 +103,7 @@ const Login = () => {
   const [toHome, setToHome] = React.useState(false);
   const [toCreateAccount, setToCreateAccount] = React.useState(false);
   const [toForgotPass, setToForgotPass] = React.useState(false);
+  const [mode, setMode] = React.useState("light");
 
   const fillAnswerEmail = (e) => {
     setEmail(e.target.value);
@@ -112,7 +117,11 @@ const Login = () => {
     try {
       await auth
         .signInWithEmailAndPassword(email, password)
-        .then(() => isRegistered(true), setToHome(true), console.log(registered));
+        .then(
+          () => isRegistered(true),
+          setToHome(true),
+          console.log(registered)
+        );
     } catch (e) {
       isRegistered(false);
       switch (e.code) {
@@ -170,8 +179,24 @@ const Login = () => {
           <p style={{ fontSize: 20 }}>
             Login today to have custom profile pictures, achievements, and more!
           </p>
+          <IconButton
+            sx={{ ml: 1 }}
+            onClick={() =>
+              setMode((prevMode) => (prevMode === "light" ? "dark" : "light"))
+            }
+            color="black"
+          >
+            {mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+          </IconButton>
         </div>
-        <div className="login-col2">
+        <div
+          className="login-col2"
+          style={
+            mode === "dark"
+              ? { backgroundColor: "#121212" }
+              : { backgroundColor: "#ffffff" }
+          }
+        >
           <Card className="login-card" elevation={6}>
             <CardContent className="login-cardcontent">
               <h1 style={{ marginTop: 50 }}>Login Today!</h1>
