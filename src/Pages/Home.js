@@ -17,6 +17,10 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Fade from "@mui/material/Fade";
+import IconButton from "@mui/material/IconButton";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { makeStyles } from "@mui/styles";
 
 const theme = createTheme({
   palette: {
@@ -70,6 +74,7 @@ export default function Home(props) {
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
+  const [mode, setMode] = React.useState("light");
 
   const [registered, isRegistered] = useGlobalState("registered");
 
@@ -144,6 +149,17 @@ export default function Home(props) {
                   {item}
                 </Button>
               ))}
+              <IconButton
+                sx={{ ml: 1 }}
+                onClick={() =>
+                  setMode((prevMode) =>
+                    prevMode === "light" ? "dark" : "light"
+                  )
+                }
+                color="black"
+              >
+                {mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+              </IconButton>
             </Box>
           </Toolbar>
         </AppBar>
@@ -186,7 +202,7 @@ export default function Home(props) {
                 zIndex: 1000,
               }}
             >
-              <Typography style={{ }}>
+              <Typography style={{}}>
                 If you want to have custom profile pictures and more blah blah
                 blah, click the button below to login!
               </Typography>
@@ -202,7 +218,14 @@ export default function Home(props) {
             </div>
           </Box>
         )}
-        <Box className="home3">
+        <Box
+          className="home3"
+          style={
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff" }
+              : { backgroundColor: "#ffffff", color: "#000000" }
+          }
+        >
           <img src={homei2} className="home3i" alt="Home Image 2" />
           <Box className="box3">
             <h1
@@ -233,16 +256,32 @@ export default function Home(props) {
             </Typography>
             <Button
               variant="contained"
-              color="black"
               size="large"
-              style={{ marginTop: 50 }}
+              sx={[
+                {
+                  marginTop: 5,
+                  "&.MuiButtonBase-root:hover": {
+                     bgcolor: mode === "dark" ? "#00ff9d" : "#000000" ,
+                  },
+                },
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" },
+              ]}
               onClick={() => setToInfo(true)}
             >
               Learn More About LearnCulia
             </Button>
           </Box>
         </Box>
-        <Box className="home4">
+        <Box
+          className="home4"
+          style={
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d" }
+              : { backgroundColor: "#c3fae5" }
+          }
+        >
           <Box className="box4">
             <h1
               style={{
@@ -280,7 +319,14 @@ export default function Home(props) {
           </Box>
           <img src={homei2} className="home4i" alt="Home Image 2" />
         </Box>
-        <Box className="home5">
+        <Box
+          className="home5"
+          style={
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff" }
+              : { backgroundColor: "#ffffff", color: "#000000" }
+          }
+        >
           <img src={homei2} className="home3i" alt="Home Image 2" />
           <Box className="box5">
             <h1
@@ -310,16 +356,32 @@ export default function Home(props) {
             </Typography>
             <Button
               variant="contained"
-              color="black"
               size="large"
-              style={{ marginTop: 50 }}
+              sx={[
+                {
+                  marginTop: 5,
+                  "&.MuiButtonBase-root:hover": {
+                     bgcolor: mode === "dark" ? "#00ff9d" : "#000000" ,
+                  },
+                },
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" },
+              ]}
             >
               Contact
             </Button>
           </Box>
         </Box>
         <Divider variant="fullWidth" flexItem />
-        <Box className="home6">
+        <Box
+          className="home6"
+          style={
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff" }
+              : { backgroundColor: "#ffffff", color: "#000000" }
+          }
+        >
           <Box style={{ display: "flex", flexDirection: "row" }}>
             <img
               src={icon}

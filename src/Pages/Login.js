@@ -92,8 +92,6 @@ const theme = createTheme({
   },
 });
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
-
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [guestAgree, setGuestAgree] = React.useState(false);
