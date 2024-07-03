@@ -11,6 +11,9 @@ import TextField from "@mui/material/TextField";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
 import Modal from "@mui/material/Modal";
+import IconButton from "@mui/material/IconButton";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
@@ -99,6 +102,7 @@ const Contact = () => {
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
   const [sentModal, setSentModal] = React.useState(false);
+  const [mode, setMode] = React.useState("light");
 
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -196,10 +200,26 @@ const Contact = () => {
                 {item}
               </Button>
             ))}
+            <IconButton
+              sx={{ ml: 1 }}
+              onClick={() =>
+                setMode((prevMode) => (prevMode === "light" ? "dark" : "light"))
+              }
+              color="black"
+            >
+              {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+            </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
-      <div className="contact-page">
+      <div
+        className="contact-page"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <Modal
           open={sentModal}
           aria-labelledby="modal-modal-title"
@@ -313,9 +333,16 @@ const Contact = () => {
       <Divider
         variant="fullWidth"
         flexItem
-        sx={{ marginTop: 7, marginBottom: -47 }}
+        sx={[mode === "dark" ? { borderColor: "#ffffff" } : { borderColor: "#E0E0E0" }]}
       />
-      <Box className="footer">
+      <Box
+        className="footer"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <Box style={{ display: "flex", flexDirection: "row" }}>
           <img src={icon} className="footerLogo" alt="Footer LearnCulia Icon" />
           <h1>LearnCulia</h1>

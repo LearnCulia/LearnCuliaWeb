@@ -20,7 +20,6 @@ import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { makeStyles } from "@mui/styles";
 
 const theme = createTheme({
   palette: {
@@ -158,7 +157,7 @@ export default function Home(props) {
                 }
                 color="black"
               >
-                {mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+                {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
             </Box>
           </Toolbar>
@@ -170,7 +169,7 @@ export default function Home(props) {
             backgroundImage: `url(${home1})`,
             backgroundSize: "cover",
             height: "100vh",
-            width: "210vh",
+            width: "102.5%",
             color: "white",
           }}
         >
@@ -261,7 +260,7 @@ export default function Home(props) {
                 {
                   marginTop: 5,
                   "&.MuiButtonBase-root:hover": {
-                     bgcolor: mode === "dark" ? "#00ff9d" : "#000000" ,
+                    bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
                   },
                 },
                 mode === "dark"
@@ -361,7 +360,7 @@ export default function Home(props) {
                 {
                   marginTop: 5,
                   "&.MuiButtonBase-root:hover": {
-                     bgcolor: mode === "dark" ? "#00ff9d" : "#000000" ,
+                    bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
                   },
                 },
                 mode === "dark"
@@ -391,10 +390,38 @@ export default function Home(props) {
             <h1>LearnCulia</h1>
           </Box>
           <Box style={{ display: "flex", flexDirection: "row" }}>
-            <Button>Info</Button>
-            <Button>Single Player Games</Button>
-            <Button>Contact</Button>
-            <Button>Profile</Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToInfo(true)}
+            >
+              Info
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToSPG(true)}
+            >
+              Single Player Games
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToContact(true)}
+            >
+              Contact
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToProfile(true)}
+            >
+              Profile
+            </Button>
           </Box>
           <p>© 2024 LearnCulia. All rights reserved.</p>
         </Box>

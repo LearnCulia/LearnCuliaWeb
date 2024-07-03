@@ -9,6 +9,9 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
 import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
+import IconButton from "@mui/material/IconButton";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
@@ -34,6 +37,7 @@ const Info = () => {
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
+  const [mode, setMode] = React.useState("light");
 
   if (toHome) {
     return <Navigate to="/home" />;
@@ -65,7 +69,14 @@ const Info = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="info-page">
+      <div
+        className="info-page"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <AppBar component="nav" color="seaGreen">
           <Toolbar>
             <img src={logo} className="navLogo" alt="LearnCuliaLogo" />
@@ -102,17 +113,33 @@ const Info = () => {
                   {item}
                 </Button>
               ))}
+              <IconButton
+                sx={{ ml: 1 }}
+                onClick={() =>
+                  setMode((prevMode) =>
+                    prevMode === "light" ? "dark" : "light"
+                  )
+                }
+                color="black"
+              >
+                {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+              </IconButton>
             </Box>
           </Toolbar>
         </AppBar>
         <Card
-          sx={{
-            marginTop: 15,
-            marginBottom: 15,
-            height: 300,
-            width: 1300,
-            textAlign: "center",
-          }}
+          sx={[
+            {
+              marginTop: 15,
+              marginBottom: 15,
+              height: 300,
+              width: 1300,
+              textAlign: "center",
+            },
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff" }
+              : { backgroundColor: "#ffffff", color: "#000000" },
+          ]}
         >
           <CardContent>
             <Typography sx={{ fontSize: 25, fontWeight: "bold" }} color="black">
@@ -149,8 +176,19 @@ const Info = () => {
             </Typography>
           </CardContent>
         </Card>
-        <Divider variant="fullWidth" flexItem />
-        <Box className="home6">
+        <Divider
+          variant="fullWidth"
+          flexItem
+          sx={[mode === "dark" ? { borderColor: "#ffffff" } : { borderColor: "#E0E0E0" }, { marginBottom: -45, marginTop: 25 }]}
+        />
+        <Box
+          className="footer"
+          style={
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff" }
+              : { backgroundColor: "#ffffff", color: "#000000" }
+          }
+        >
           <Box style={{ display: "flex", flexDirection: "row" }}>
             <img
               src={icon}

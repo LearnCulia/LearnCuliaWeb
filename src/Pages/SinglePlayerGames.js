@@ -13,6 +13,9 @@ import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-we
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import Modal from "@mui/material/Modal";
+import IconButton from "@mui/material/IconButton";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import Game1Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/Game1Image.png";
 import Game2Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/Game2Image.png";
 import Game3Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/Game3Image.png";
@@ -41,6 +44,7 @@ const SinglePlayerGames = () => {
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
+  const [mode, setMode] = React.useState("light");
 
   const [modalGame1, openModalGame1] = React.useState(false);
   const [modalGame2, openModalGame2] = React.useState(false);
@@ -75,8 +79,6 @@ const SinglePlayerGames = () => {
   if (toProfile) {
     return <Navigate to="/profile" />;
   }
-
-
 
   if (toGame1) {
     return <Navigate to="/game1" />;
@@ -256,24 +258,44 @@ const SinglePlayerGames = () => {
                 {item}
               </Button>
             ))}
+            <IconButton
+              sx={{ ml: 1 }}
+              onClick={() =>
+                setMode((prevMode) => (prevMode === "light" ? "dark" : "light"))
+              }
+              color="black"
+            >
+              {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+            </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
-      <div className="spg-page">
+      <div
+        className="spg-page"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <h1 style={{ marginTop: 100 }}>Single Player Games</h1>
         <Typography>What do you want to work on today?</Typography>
         <Box className="spgRow1">
           {gamesRow1.map((item) => (
             <Card
-              sx={{
-                marginTop: 70,
-                marginRight: 15,
-                marginBottom: 15,
-                height: 500,
-                width: 500,
-                backgroundColor: "#c3fae5",
-                borderRadius: 8,
-              }}
+              sx={[
+                {
+                  marginTop: 70,
+                  marginRight: 15,
+                  marginBottom: 15,
+                  height: 500,
+                  width: 500,
+                  borderRadius: 8,
+                },
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d" }
+                  : { backgroundColor: "#c3fae5" },
+              ]}
             >
               <CardContent
                 sx={{
@@ -363,18 +385,29 @@ const SinglePlayerGames = () => {
             </Card>
           ))}
         </Box>
-        <Box className="spgRow2">
+        <Box
+          className="spgRow2"
+          style={
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff" }
+              : { backgroundColor: "#ffffff", color: "#000000" }
+          }
+        >
           {gamesRow2.map((item) => (
             <Card
-              sx={{
-                marginTop: 70,
-                marginRight: 15,
-                marginBottom: 15,
-                height: 500,
-                width: 500,
-                backgroundColor: "#c3fae5",
-                borderRadius: 8,
-              }}
+              sx={[
+                {
+                  marginTop: 70,
+                  marginRight: 15,
+                  marginBottom: 15,
+                  height: 500,
+                  width: 500,
+                  borderRadius: 8,
+                },
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d" }
+                  : { backgroundColor: "#c3fae5" },
+              ]}
             >
               <CardContent
                 sx={{
@@ -465,12 +498,34 @@ const SinglePlayerGames = () => {
           ))}
         </Box>
       </div>
+      <Box
+        sx={[
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" },
+          { height: 455 },
+        ]}
+      >
+        {" "}
+      </Box>
       <Divider
         variant="fullWidth"
         flexItem
-        sx={{ marginTop: 55, marginBottom: -47 }}
+        sx={[
+          mode === "dark"
+            ? { borderColor: "#ffffff" }
+            : { borderColor: "#E0E0E0" },
+          { marginTop: 1 },
+        ]}
       />
-      <Box className="footer">
+      <Box
+        className="footer"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <Box style={{ display: "flex", flexDirection: "row" }}>
           <img src={icon} className="footerLogo" alt="Footer LearnCulia Icon" />
           <h1>LearnCulia</h1>
