@@ -115,6 +115,7 @@ const GamePage6 = () => {
   const [answerCorrect, isAnswerCorrect] = React.useState(false);
   const [challengeModal, setChallengeModal] = React.useState(false);
   const [buttonClicked, isButtonClicked] = React.useState(false);
+  const [mode, setMode] = useGlobalState("darkMode");
 
   const [toSPG, setToSPG] = React.useState(false);
   const [toGamePageChallenge6, setToGamePageChallenge6] = React.useState(false);
@@ -168,24 +169,56 @@ const GamePage6 = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="game6-gamepage">
+      <Box
+        sx={[
+          { height: 50 },
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" },
+        ]}
+      />
+      <div
+        className="game6-gamepage"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <Button
           variant="contained"
           color="black"
           size="large"
-          sx={{ position: "absolute", top: 110, left: 50 }}
+          sx={[
+            { position: "absolute", top: 110, left: 50 },
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d", color: "#000000" }
+              : { backgroundColor: "#000000", color: "#00ff9d" },
+          ]}
           onClick={() => setToSPG(true)}
         >
           Quit Game
         </Button>
         <h1>Let's apply the skills we learned for the following problems!</h1>
         {ready ? (
-          <div style={{ justifyContent: "center", alignItems: "center" }}>
+          <div
+            className="press-to-play"
+            style={
+              mode === "dark"
+                ? { backgroundColor: "#242430", color: "#ffffff" }
+                : { backgroundColor: "#ffffff", color: "#000000" }
+            }
+          >
             <Button
               variant="contained"
               color="black"
               size="large"
               onClick={startGame}
+              sx={
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" }
+              }
             >
               Press to Play
             </Button>
@@ -205,24 +238,28 @@ const GamePage6 = () => {
               aria-describedby="modal-modal-description"
             >
               <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-evenly",
-                  textAlign: "center",
-                  alignItems: "center",
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  height: 350,
-                  width: 450,
-                  backgroundColor: "#c3fae5",
-                  border: "2px solid #000",
-                  borderRadius: 4,
-                  boxShadow: 24,
-                  p: 4,
-                }}
+                sx={[
+                  {
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-evenly",
+                    textAlign: "center",
+                    alignItems: "center",
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    height: 350,
+                    width: 450,
+                    border: "2px solid #000",
+                    borderRadius: 4,
+                    boxShadow: 24,
+                    p: 4,
+                  },
+                  mode === "dark"
+                    ? { backgroundColor: "#00ff9d" }
+                    : { backgroundColor: "#c3fae5" },
+                ]}
               >
                 <h1>Well Done!</h1>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -249,13 +286,21 @@ const GamePage6 = () => {
               type="text"
               value={answer}
               onChange={fillAnswer}
-              sx={{ width: 350, mt: 5 }}
+              sx={[
+                { width: 350, mt: 5 },
+                mode === "dark" ? { color: "#ffffff" } : { color: "#000000" },
+              ]}
             />
             <Button
               variant="contained"
               color="black"
               size="large"
-              sx={{ mt: 10 }}
+              sx={[
+                { mt: 10 },
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" },
+              ]}
               disabled={!answer}
               onClick={verify}
             >

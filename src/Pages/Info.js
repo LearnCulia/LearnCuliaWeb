@@ -15,6 +15,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
+import { useGlobalState } from "../GlobalState";
 
 const theme = createTheme({
   palette: {
@@ -37,7 +38,7 @@ const Info = () => {
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
-  const [mode, setMode] = React.useState("light");
+  const [mode, setMode] = useGlobalState("darkMode");
 
   if (toHome) {
     return <Navigate to="/home" />;

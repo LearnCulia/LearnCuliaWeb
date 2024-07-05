@@ -11,6 +11,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
 
 const theme = createTheme({
   palette: {
@@ -33,6 +34,7 @@ const Game3 = () => {
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toGamePage3, setToGamePage3] = React.useState(false);
+  const [mode, setMode] = useGlobalState("darkMode");
 
   if (toHome) {
     return <Navigate to="/home" />;
@@ -64,12 +66,32 @@ const Game3 = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="game3-page">
+      <Box
+        sx={[
+          { height: 50 },
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" },
+        ]}
+      />
+      <div
+        className="game3-page"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <Button
           variant="contained"
           color="black"
           size="large"
-          sx={{ position: "absolute", top: 110, left: 50 }}
+          sx={[
+            { position: "absolute", top: 110, left: 50 },
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d", color: "#000000" }
+              : { backgroundColor: "#000000", color: "#00ff9d" },
+          ]}
           onClick={() => setToSPG(true)}
         >
           Go Back
@@ -79,7 +101,9 @@ const Game3 = () => {
           Let's refresh our memory or learn how to read multiplication tables to
           multiply any two numbers from 1-12!
         </Typography>
-        <Typography sx={{ mt: 5, mb: 5 }}>Click the video below to watch!</Typography>
+        <Typography sx={{ mt: 5, mb: 5 }}>
+          Click the video below to watch!
+        </Typography>
         <iframe
           width="560"
           height="315"
@@ -90,7 +114,9 @@ const Game3 = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerpolicy="strict-origin-when-cross-origin"
         ></iframe>
-        <p style={{ color: "red", marginTop: 15 }}>Note: Any number multiplied by 0 gives 0!</p>
+        <p style={{ color: "red", marginTop: 15 }}>
+          Note: Any number multiplied by 0 gives 0!
+        </p>
         <Typography sx={{ mt: 5 }}>
           Now, let's try some multiplication problems by clicking the button
           below!
@@ -99,7 +125,25 @@ const Game3 = () => {
           *Note: You can access the multiplication table on the top right corner
           if needed.
         </Typography>
-        <Button sx={{ mt: 5, mb: 10 }} onClick={() => setToGamePage3(true)}>Click when you are ready!</Button>
+        <Button
+          sx={[
+            { mt: 5 },
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d", color: "#000000" }
+              : { backgroundColor: "#000000", color: "#00ff9d" },
+          ]}
+          onClick={() => setToGamePage3(true)}
+        >
+          Click when you are ready!
+        </Button>
+        <Box
+          sx={[
+            { height: 110 },
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff" }
+              : { backgroundColor: "#ffffff", color: "#000000" },
+          ]}
+        />
       </div>
     </ThemeProvider>
   );

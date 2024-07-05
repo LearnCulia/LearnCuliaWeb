@@ -11,6 +11,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
 
 const theme = createTheme({
   palette: {
@@ -33,6 +34,7 @@ const Game6 = () => {
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toGamePage6, setToGamePage6] = React.useState(false);
+  const [mode, setMode] = useGlobalState("darkMode");
 
   if (toHome) {
     return <Navigate to="/home" />;
@@ -64,12 +66,32 @@ const Game6 = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="game6-page">
+      <Box
+        sx={[
+          { height: 50 },
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" },
+        ]}
+      />
+      <div
+        className="game6-page"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <Button
           variant="contained"
           color="black"
           size="large"
-          sx={{ position: "absolute", top: 110, left: 50 }}
+          sx={[
+            { position: "absolute", top: 110, left: 50 },
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d", color: "#000000" }
+              : { backgroundColor: "#000000", color: "#00ff9d" },
+          ]}
           onClick={() => setToSPG(true)}
         >
           Go Back
@@ -95,9 +117,25 @@ const Game6 = () => {
         <Typography sx={{ mt: 5 }}>
           Now, let's try some problems by clicking the button below!
         </Typography>
-        <Button sx={{ mt: 5, mb: 10 }} onClick={() => setToGamePage6(true)}>
+        <Button
+          sx={[
+            { mt: 5, mb: 10 },
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d", color: "#000000" }
+              : { backgroundColor: "#000000", color: "#00ff9d" },
+          ]}
+          onClick={() => setToGamePage6(true)}
+        >
           Click when you are ready!
         </Button>
+        <Box
+          sx={[
+            { height: 153 },
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff" }
+              : { backgroundColor: "#ffffff", color: "#000000" },
+          ]}
+        />
       </div>
     </ThemeProvider>
   );

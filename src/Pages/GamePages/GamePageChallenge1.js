@@ -80,6 +80,7 @@ const GamePageChallenge1 = () => {
   const [buttonClicked, isButtonClicked] = React.useState(false);
   const [userFruit, setUserFruit] = useGlobalState("game1Fruit");
   const [finishModal, setFinishModal] = React.useState(false);
+  const [mode, setMode] = useGlobalState("darkMode");
 
   const [toSPG, setToSPG] = React.useState(false);
 

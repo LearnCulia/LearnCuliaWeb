@@ -72,7 +72,7 @@ const Profile = () => {
   const [alignment, setAlignment] = React.useState("male");
   const [openSave, setOpenSave] = React.useState(false);
 
-  const [mode, setMode] = React.useState("light");
+  const [mode, setMode] = useGlobalState("darkMode");
 
   const [registered, isRegistered] = useGlobalState("registered");
   const [gender, setGender] = React.useState("male");
@@ -330,14 +330,14 @@ const Profile = () => {
                     >
                       <MuiToggleButton
                         value="male"
-                        sx={{ width: 200 }}
+                        sx={{ width: 200, fontSize: 15 }}
                         onClick={() => setGender("male")}
                       >
                         Male
                       </MuiToggleButton>
                       <MuiToggleButton
                         value="female"
-                        sx={{ width: 200 }}
+                        sx={{ width: 200, fontSize: 15  }}
                         onClick={() => setGender("female")}
                       >
                         Female

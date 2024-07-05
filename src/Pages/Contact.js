@@ -16,6 +16,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import { useGlobalState } from "../GlobalState";
 import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
@@ -102,7 +103,7 @@ const Contact = () => {
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
   const [sentModal, setSentModal] = React.useState(false);
-  const [mode, setMode] = React.useState("light");
+  const [mode, setMode] = useGlobalState("darkMode");
 
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -285,14 +286,19 @@ const Contact = () => {
         <div className="contact-col2">
           <Box
             component="form"
-            sx={{
-              "& .MuiTextField-root": { m: 2, width: "50vh" },
-            }}
+            sx={[
+              {
+                "& .MuiTextField-root": { m: 2, width: "50vh" },
+              },
+              mode === "dark"
+                ? { backgroundColor: "#00ff9d" }
+                : { backgroundColor: "#c3fae5" },
+            ]}
             noValidate
             autoComplete="off"
             className="contact-form"
           >
-            <h1>Enter your Information Here</h1>
+            <h1 style={{ color: "black" }}>Enter your Information Here</h1>
             <TextField
               required
               id="outlined-required"
@@ -318,22 +324,27 @@ const Contact = () => {
               multiline
               rows={8}
             />
+            <Button
+              disabled={!name || !email || !message}
+              variant="contained"
+              color="black"
+              size="large"
+              onClick={sendMessage}
+              sx={{ marginTop: 3 }}
+            >
+              Send Message
+            </Button>
           </Box>
-          <Button
-            disabled={!name || !email || !message}
-            variant="contained"
-            color="black"
-            size="large"
-            onClick={sendMessage}
-          >
-            Send Message
-          </Button>
         </div>
       </div>
       <Divider
         variant="fullWidth"
         flexItem
-        sx={[mode === "dark" ? { borderColor: "#ffffff" } : { borderColor: "#E0E0E0" }]}
+        sx={[
+          mode === "dark"
+            ? { borderColor: "#ffffff" }
+            : { borderColor: "#E0E0E0" },
+        ]}
       />
       <Box
         className="footer"

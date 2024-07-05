@@ -10,6 +10,7 @@ import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-we
 import Carousel from "react-material-ui-carousel";
 import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
 
 import FingerOne from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerOneSlide.png";
 import FingerTwo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerTwoSlide.png";
@@ -46,6 +47,7 @@ const Game1 = () => {
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
+  const [mode, setMode] = useGlobalState("darkMode");
 
   const [toGamePage1, setToGamePage1] = React.useState(false);
 
@@ -92,12 +94,32 @@ const Game1 = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="game1-page">
+      <Box
+        sx={[
+          { height: 50 },
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" },
+        ]}
+      />
+      <div
+        className="game1-page"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <Button
           variant="contained"
           color="black"
           size="large"
-          sx={{ position: "absolute", top: 110, left: 50 }}
+          sx={[
+            { position: "absolute", top: 110, left: 50 },
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d", color: "#000000" }
+              : { backgroundColor: "#000000", color: "#00ff9d" },
+          ]}
           onClick={() => setToSPG(true)}
         >
           Go Back
@@ -126,7 +148,17 @@ const Game1 = () => {
         <Typography sx={{ mt: 5 }}>
           Now, let's try some problems by clicking the button below!
         </Typography>
-        <Button sx={{ mt: 5, mb: 10 }} onClick={() => setToGamePage1(true)} >Click when you are ready!</Button>
+        <Button
+          sx={[
+            { mt: 5, mb: 10 },
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d", color: "#000000" }
+              : { backgroundColor: "#000000", color: "#00ff9d" },
+          ]}
+          onClick={() => setToGamePage1(true)}
+        >
+          Click when you are ready!
+        </Button>
       </div>
     </ThemeProvider>
   );

@@ -73,8 +73,8 @@ export default function Home(props) {
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
-  const [mode, setMode] = React.useState("light");
 
+  const [mode, setMode] = useGlobalState("darkMode");
   const [registered, isRegistered] = useGlobalState("registered");
 
   const navItems = [
@@ -192,7 +192,7 @@ export default function Home(props) {
                 zIndex: 1000,
               }}
             >
-              Your Not Logged In!
+              You're Not Logged In!
             </h1>
             <div
               style={{
@@ -275,7 +275,7 @@ export default function Home(props) {
         </Box>
         <Box
           className="home4"
-          style={
+          sx={
             mode === "dark"
               ? { backgroundColor: "#00ff9d" }
               : { backgroundColor: "#c3fae5" }

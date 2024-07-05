@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10vh;
 }
 
 .game6-gamepage {
@@ -20,6 +19,11 @@
   align-items: center;
   justify-content: center;
   margin-top: 10vh;
+}
+
+.press-to-play {
+  justify-content: center;
+  align-items: center;
 }
 
 

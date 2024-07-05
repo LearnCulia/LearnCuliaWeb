@@ -11,6 +11,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useGlobalState } from "../GlobalState";
 import Divider from "@mui/material/Divider";
 import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
@@ -44,7 +45,7 @@ const SinglePlayerGames = () => {
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
-  const [mode, setMode] = React.useState("light");
+  const [mode, setMode] = useGlobalState("darkMode");
 
   const [modalGame1, openModalGame1] = React.useState(false);
   const [modalGame2, openModalGame2] = React.useState(false);
@@ -278,7 +279,7 @@ const SinglePlayerGames = () => {
             : { backgroundColor: "#ffffff", color: "#000000" }
         }
       >
-        <h1 style={{ marginTop: 100 }}>Single Player Games</h1>
+        <h1 style={{ marginTop: 140 }}>Single Player Games</h1>
         <Typography>What do you want to work on today?</Typography>
         <Box className="spgRow1">
           {gamesRow1.map((item) => (
@@ -331,23 +332,27 @@ const SinglePlayerGames = () => {
                   aria-describedby="modal-modal-description"
                 >
                   <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-evenly",
-                      alignItems: "center",
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      height: 200,
-                      width: 400,
-                      backgroundColor: "#c3fae5",
-                      border: "2px solid #000",
-                      borderRadius: 4,
-                      boxShadow: 24,
-                      p: 4,
-                    }}
+                    sx={[
+                      {
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        height: 200,
+                        width: 400,
+                        border: "2px solid #000",
+                        borderRadius: 4,
+                        boxShadow: 24,
+                        p: 4,
+                      },
+                      mode === "dark"
+                        ? { backgroundColor: "#00ff9d" }
+                        : { backgroundColor: "#c3fae5" },
+                    ]}
                   >
                     <Typography
                       id="modal-modal-title"
@@ -443,23 +448,27 @@ const SinglePlayerGames = () => {
                   aria-describedby="modal-modal-description"
                 >
                   <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-evenly",
-                      alignItems: "center",
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      height: 200,
-                      width: 400,
-                      backgroundColor: "#c3fae5",
-                      border: "2px solid #000",
-                      borderRadius: 4,
-                      boxShadow: 24,
-                      p: 4,
-                    }}
+                    sx={[
+                      {
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        height: 200,
+                        width: 400,
+                        border: "2px solid #000",
+                        borderRadius: 4,
+                        boxShadow: 24,
+                        p: 4,
+                      },
+                      mode === "dark"
+                        ? { backgroundColor: "#00ff9d" }
+                        : { backgroundColor: "#c3fae5" },
+                    ]}
                   >
                     <Typography
                       id="modal-modal-title"
