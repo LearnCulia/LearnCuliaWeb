@@ -185,11 +185,11 @@ const GamePageChallenge1 = () => {
   const randomNumGen = () => {
     const randomNum = Math.floor(Math.random() * 10) + 1;
     setNum(randomNum);
-    if (userFruit == "apple") {
+    if (userFruit === "apple") {
       setImg(AppleImages[randomNum - 1]);
-    } else if (userFruit == "orange") {
+    } else if (userFruit === "orange") {
       setImg(OrangeImages[randomNum - 1]);
-    } else if (userFruit == "banana") {
+    } else if (userFruit === "banana") {
       setImg(BananaImages[randomNum - 1]);
     }
   };
@@ -198,11 +198,11 @@ const GamePageChallenge1 = () => {
     isButtonClicked(true);
     let correctAns = num;
     if (count < 10) {
-      if (correctAns == buttonId) {
+      if (correctAns === buttonId) {
         randomNumGen();
         isAnswerCorrect(true);
         setCount(count + 1);
-      } else if (correctAns != buttonId) {
+      } else if (correctAns !== buttonId) {
         isAnswerCorrect(false);
       }
     } else if (count == 10) {
@@ -212,17 +212,33 @@ const GamePageChallenge1 = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="game1-gamepagechallenge">
-        <Confetti
-          width={width}
-          height={height}
-          run={finishModal}
-        />
+      <Box
+        sx={[
+          { height: 50 },
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" },
+        ]}
+      />
+      <div
+        className="game1-gamepagechallenge"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
+        <Confetti width={width} height={height} run={finishModal} />
         <Button
           variant="contained"
           color="black"
           size="large"
-          sx={{ position: "absolute", top: 110, left: 50 }}
+          sx={[
+            { position: "absolute", top: 110, left: 50 },
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d", color: "#000000" }
+              : { backgroundColor: "#000000", color: "#00ff9d" },
+          ]}
           onClick={() => setToSPG(true)}
         >
           Quit Game
@@ -235,6 +251,11 @@ const GamePageChallenge1 = () => {
               color="black"
               size="large"
               onClick={startGame}
+              sx={
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" }
+              }
             >
               Press to Play
             </Button>
@@ -259,7 +280,12 @@ const GamePageChallenge1 = () => {
                   variant="contained"
                   color="black"
                   size="large"
-                  sx={{ mr: 5, fontSize: 22 }}
+                  sx={[
+                    { mr: 5, fontSize: 22 },
+                    mode === "dark"
+                      ? { backgroundColor: "#00ff9d", color: "#000000" }
+                      : { backgroundColor: "#000000", color: "#00ff9d" },
+                  ]}
                   onClick={() => verify(item.id)}
                 >
                   {item.number}
@@ -286,24 +312,29 @@ const GamePageChallenge1 = () => {
         aria-describedby="modal-modal-description"
       >
         <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-evenly",
-            textAlign: "center",
-            alignItems: "center",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            height: 250,
-            width: 400,
-            backgroundColor: "#c3fae5",
-            border: "2px solid #000",
-            borderRadius: 4,
-            boxShadow: 24,
-            p: 4,
-          }}
+          sx={[
+            {
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-evenly",
+              textAlign: "center",
+              alignItems: "center",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              height: 250,
+              width: 400,
+              backgroundColor: "#c3fae5",
+              border: "2px solid #000",
+              borderRadius: 4,
+              boxShadow: 24,
+              p: 4,
+            },
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d" }
+              : { backgroundColor: "#c3fae5" },
+          ]}
         >
           <h1>Congratulations!</h1>
           <Typography id="modal-modal-title" variant="h6" component="h2">

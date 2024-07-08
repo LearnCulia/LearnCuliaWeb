@@ -52,6 +52,7 @@ const GamePageChallenge2 = () => {
   const [finishModal, setFinishModal] = React.useState(false);
   const [marks, setMarks] = React.useState([]);
   const [marks2, setMarks2] = React.useState([]);
+  const [mode, setMode] = useGlobalState("darkMode");
   const markAdd = 1;
   const markAdd2 = 1;
 
@@ -172,13 +173,33 @@ const GamePageChallenge2 = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="game1-gamepagechallenge">
+      <Box
+        sx={[
+          { height: 50 },
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" },
+        ]}
+      />
+      <div
+        className="game1-gamepagechallenge"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <Confetti width={width} height={height} run={finishModal} />
         <Button
           variant="contained"
           color="black"
           size="large"
-          sx={{ position: "absolute", top: 110, left: 50 }}
+          sx={[
+            { position: "absolute", top: 110, left: 50 },
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d", color: "#000000" }
+              : { backgroundColor: "#000000", color: "#00ff9d" },
+          ]}
           onClick={() => setToSPG(true)}
         >
           Quit Game
@@ -191,6 +212,11 @@ const GamePageChallenge2 = () => {
               color="black"
               size="large"
               onClick={startGame}
+              sx={
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" }
+              }
             >
               Press to Play
             </Button>
@@ -208,7 +234,12 @@ const GamePageChallenge2 = () => {
               variant="contained"
               color="black"
               size="large"
-              sx={{ position: "absolute", top: 110, right: 50 }}
+              sx={[
+                { position: "absolute", top: 110, right: 50 },
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" },
+              ]}
               onClick={() => setTickMarkModal(true)}
             >
               Open Tick Mark Notes
@@ -219,24 +250,29 @@ const GamePageChallenge2 = () => {
               aria-describedby="modal-modal-description"
             >
               <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-evenly",
-                  textAlign: "center",
-                  alignItems: "center",
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  height: 500,
-                  width: 500,
-                  backgroundColor: "#c3fae5",
-                  border: "2px solid #000",
-                  borderRadius: 4,
-                  boxShadow: 24,
-                  p: 4,
-                }}
+                sx={[
+                  {
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-evenly",
+                    textAlign: "center",
+                    alignItems: "center",
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    height: 500,
+                    width: 500,
+                    backgroundColor: "#c3fae5",
+                    border: "2px solid #000",
+                    borderRadius: 4,
+                    boxShadow: 24,
+                    p: 4,
+                  },
+                  mode === "dark"
+                    ? { backgroundColor: "#00ff9d" }
+                    : { backgroundColor: "#c3fae5" },
+                ]}
               >
                 <h1>
                   Press the plus and minus buttons to add and remove tick marks!
@@ -419,13 +455,21 @@ const GamePageChallenge2 = () => {
               type="number"
               value={answer}
               onChange={fillAnswer}
-              sx={{ width: 350 }}
+              sx={[
+                { width: 350 },
+                mode === "dark" ? { color: "#ffffff" } : { color: "#000000" },
+              ]}
             />
             <Button
               variant="contained"
               color="black"
               size="large"
-              sx={{ mt: 5 }}
+              sx={[
+                { mt: 5 },
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" },
+              ]}
               disabled={!answer}
               onClick={verify}
             >
@@ -451,24 +495,29 @@ const GamePageChallenge2 = () => {
         aria-describedby="modal-modal-description"
       >
         <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-evenly",
-            textAlign: "center",
-            alignItems: "center",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            height: 250,
-            width: 400,
-            backgroundColor: "#c3fae5",
-            border: "2px solid #000",
-            borderRadius: 4,
-            boxShadow: 24,
-            p: 4,
-          }}
+          sx={[
+            {
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-evenly",
+              textAlign: "center",
+              alignItems: "center",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              height: 250,
+              width: 400,
+              backgroundColor: "#c3fae5",
+              border: "2px solid #000",
+              borderRadius: 4,
+              boxShadow: 24,
+              p: 4,
+            },
+            mode === "dark"
+              ? { backgroundColor: "#00ff9d" }
+              : { backgroundColor: "#c3fae5" },
+          ]}
         >
           <h1>Congratulations!</h1>
           <Typography id="modal-modal-title" variant="h6" component="h2">

@@ -213,11 +213,11 @@ const GamePage1 = () => {
               variant="contained"
               color="black"
               size="large"
-              sx={[
+              sx={
                 mode === "dark"
                   ? { backgroundColor: "#00ff9d", color: "#000000" }
-                  : { backgroundColor: "#000000", color: "#00ff9d" },
-              ]}
+                  : { backgroundColor: "#000000", color: "#00ff9d" }
+              }
               onClick={startGame}
             >
               Press to Play
