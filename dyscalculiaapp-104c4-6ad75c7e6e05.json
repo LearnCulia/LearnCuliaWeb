@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "dyscalculiaapp-104c4",
+  "private_key_id": "6ad75c7e6e050f7e904e973c57cc05738b633d47",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC699ag7/y8EzlU\nuwreEvi/kWTkTKsDePx5FqnodSlmLt9JU3I4PfQanNADkliNw0jWgU2vUNuMrpBm\n6YXujDYQQtpDJnx4EVR0GoF233qY74B+btgMTtyO5Q0L4U3DiZh6DYiHnqmVcdb6\n/MyTjYjeGvjWR1A2PRbKBG9BRS7Jrlxtdzc+Z2Lh9rpJeUGx3JhPcMORwKVznbg0\n6IkvhcNcZ2O7YlkdCQ3DJtXLSB3MM9eeTeluwWCh6tkJTAi74Xb570Cvucq+Aw+x\nRxuK449Uk9RMSlV7I87Kj7JHaNMolr3J3yHrI+GwEAgdwsRt91pKTIy2cFJJHF83\na/maIEsjAgMBAAECggEASMYQ94GR6Q6+gPlwyHGv+ri4AZjJ88cS1nr41W9NFuXl\nqV/elH+g1P72hH1hFITPhBa+Sx/45PBJapU4uVo/7OJonDyNtBpiufJbNA7WZFLM\nu+mfFGNZvBDxnA8tOpADFnbQDqG2NmIiIH1nj4NGo9TxyE3nrcTnauiA+XHZPUyB\nsEkEmhj1E8ev27/naA1oFcbM0Xz07EuNeFppgGh9z6kBnREavhLH5E7umHuHx6Pm\nrbP1NhD0C9ZhY+dBfRa7OAekZ+9bBjHyGusV0JRRfspWf+Sd8y77h4hfqoPTH6d5\nhgq1wfwbVCFJ3SrHzNXTRh1OCyg9E8hqVrAeh7n2SQKBgQD9Or6AAuTwX4X1Qro9\nkyfL7cNaoqL3r8Afq5dVVKoOR2W2//GiftY9/p1OIju+UZaLqXFlcMqjequ6ITgH\nBBTnvnOcXySW6+YtP8QCC/0VzZKk739vAi80jB8IBRxAxdYEUD3XtDRybdO6QGt7\nSAb2NErIr6mDWp1FFVPIr5mJrwKBgQC9A4GzicWsrc6YxlHL2bFa0OdmbBepzGlG\nUznhkG8J88UtTGiOZzpUIypVHdULLXagRSkUH8hK61lxJ/Vxs9zk/VVchhht5tY4\naQzU9JZZYctFPOh3ikcZQA6LVxaNrJlu3V9MHUkUg4gQQtXV/iGa1Md8qw7IJbU0\nA58g6SgWzQKBgQCI6AGmY+oyqvJZr0HRmIWjk2BS2CsTjklo1fRzhdqK7b7oOWgC\nWmCqE8YoQAnc0295Apr0JQ7pY6EEeIE6CdLjl+wZVrcJgXBodlkaYjDqYMIvuexD\nsAKlfjwosdqcilky688Dl8HjO82EnN9/P2nEInFsHsye35a3ithJX+a6sQKBgGUq\n6VM1nM5uQTRYghOAM4OOaSzTEl9Z/8caaNKowiYrihBS42vFKN077T6dtxhCf0oN\neo1A7a3cBoWgg6kWQld2mSfqxkycz3BmGe4p9AdnZqtqjGrfYmrLdH10Yaf3CDDk\n4EsXKbSHKl65x0bAvS/oT9YUoNbUCAcNITE2WrTJAoGAUBNwTMAi4d4wVyliDV/2\n0Gj53n8OWSGIJc48/a7O1R4eGokGPcLB5xME5oMkKiunc0zMhLwjaY0qXg7U3oyz\nGJmDMw7hmxs97cGLg0dAKVSDyt+vT5IZ0nASocTSrtm+CAPr3OIMZ7rEBowJUAku\nFCwbAd7XNIvYaFBm8koZj08=\n-----END PRIVATE KEY-----\n",
+  "client_email": "chatbotservice@dyscalculiaapp-104c4.iam.gserviceaccount.com",
+  "client_id": "110089592602614585535",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/chatbotservice%40dyscalculiaapp-104c4.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
