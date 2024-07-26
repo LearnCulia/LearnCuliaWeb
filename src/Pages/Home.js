@@ -1,5 +1,6 @@
 import React from "react";
 import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/App.css";
+import ChatBot from "./ChatBot";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
@@ -20,6 +21,7 @@ import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 
 const theme = createTheme({
   palette: {
@@ -35,6 +37,31 @@ const theme = createTheme({
     },
   },
 });
+
+// function ChatbotBubble(props) {
+//   const { children } = props;
+//   const [clicked, setClicked] = React.useState(false);
+
+//   if (clicked) {
+//     return (
+//       <iframe
+//         src="https://www.chatbase.co/chatbot-iframe/Drmst_AXfeMAJszhQxAU1"
+//         style={{ height: "20%", width: "30%", zIndex: 1 }}
+//         frameborder="1"
+//       ></iframe>
+//     );
+//   }
+
+//   return (
+//     <Box
+//       onClick={() => setClicked(true)}
+//       role="presentation"
+//       sx={{ position: "fixed", bottom: 16, left: 16, width: 50, height: 50  }}
+//     >
+//       {children}
+//     </Box>
+//   );
+// }
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -434,7 +461,17 @@ export default function Home(props) {
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>
+        <ChatBot />
       </div>
+      {/* <ChatbotBubble {...props}>
+        <Fab
+          size="small"
+          aria-label="open chatbot"
+          style={{ backgroundColor: "#6bffc6", color: "black"}}
+        >
+          <ChatBubbleIcon />
+        </Fab>
+      </ChatbotBubble> */}
     </ThemeProvider>
   );
 }
