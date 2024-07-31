@@ -463,15 +463,6 @@ export default function Home(props) {
         </ScrollTop>
         <ChatBot />
       </div>
-      {/* <ChatbotBubble {...props}>
-        <Fab
-          size="small"
-          aria-label="open chatbot"
-          style={{ backgroundColor: "#6bffc6", color: "black"}}
-        >
-          <ChatBubbleIcon />
-        </Fab>
-      </ChatbotBubble> */}
     </ThemeProvider>
   );
 }

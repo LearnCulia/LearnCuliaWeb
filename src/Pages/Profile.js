@@ -1,5 +1,6 @@
 import React from "react";
 import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/Profile.css";
+import ChatBot from "./ChatBot";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
@@ -475,6 +476,7 @@ const Profile = () => {
             </div>
           )}
         </div>
+        <ChatBot />
       </div>
     </ThemeProvider>
   );

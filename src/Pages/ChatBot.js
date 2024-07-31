@@ -32,7 +32,7 @@ const ChatBot = () => {
   return (
     <div className="chatbot-container">
       <div className="chatbot-bubble" onClick={toggleChatbot}>
-        <ChatBubbleIcon />
+        <ChatBubbleIcon style={{ marginTop: 5 }}/>
       </div>
       {isOpen && (
         <div className="chatbot-overlay">

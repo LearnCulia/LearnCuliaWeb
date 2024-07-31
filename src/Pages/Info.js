@@ -1,5 +1,6 @@
 import React from "react";
 import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/App.css";
+import ChatBot from "./ChatBot";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Navigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
@@ -199,13 +200,42 @@ const Info = () => {
             <h1>LearnCulia</h1>
           </Box>
           <Box style={{ display: "flex", flexDirection: "row" }}>
-            <Button>Info</Button>
-            <Button>Single Player Games</Button>
-            <Button>Contact</Button>
-            <Button>Profile</Button>
+          <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToHome(true)}
+            >
+              Home
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToSPG(true)}
+            >
+              Single Player Games
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToContact(true)}
+            >
+              Contact
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToProfile(true)}
+            >
+              Profile
+            </Button>
           </Box>
           <p>© 2024 LearnCulia. All rights reserved.</p>
         </Box>
+        <ChatBot />
       </div>
     </ThemeProvider>
   );
