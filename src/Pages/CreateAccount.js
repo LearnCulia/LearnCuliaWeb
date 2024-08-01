@@ -14,10 +14,78 @@ import IconButton from "@mui/material/IconButton";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Checkbox from "@mui/material/Checkbox";
-import { auth, db } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/firebase.js";
+import {
+  auth,
+  db,
+} from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/firebase.js";
 import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
 
 import RegisterPic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/registerPic.png";
+
+const TextFieldTheme = createTheme({
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "--TextField-brandBorderColor": "#ffffff",
+          "--TextField-brandBorderHoverColor": "#ffffff",
+          "--TextField-brandBorderFocusedColor": "#ffffff",
+          "& label.Mui-focused": {
+            color: "var(--TextField-brandBorderFocusedColor)",
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        notchedOutline: {
+          borderColor: "var(--TextField-brandBorderColor)",
+          color: "#ffffff",
+        },
+        root: {
+          [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor: "var(--TextField-brandBorderHoverColor)",
+            color: "#ffffff",
+          },
+          [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor: "var(--TextField-brandBorderFocusedColor)",
+            color: "#ffffff",
+          },
+        },
+      },
+    },
+    MuiFilledInput: {
+      styleOverrides: {
+        root: {
+          "&::before, &::after": {
+            borderBottom: "2px solid var(--TextField-brandBorderColor)",
+          },
+          "&:hover:not(.Mui-disabled, .Mui-error):before": {
+            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
+          },
+          "&.Mui-focused:after": {
+            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
+          },
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          "&::before": {
+            borderBottom: "2px solid var(--TextField-brandBorderColor)",
+          },
+          "&:hover:not(.Mui-disabled, .Mui-error):before": {
+            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
+          },
+          "&.Mui-focused:after": {
+            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
+          },
+        },
+      },
+    },
+  },
+});
 
 const theme = createTheme({
   palette: {
@@ -29,6 +97,10 @@ const theme = createTheme({
     },
     black: {
       main: "#000000",
+      contrastText: "#00ff9d",
+    },
+    white: {
+      main: "#ffffff",
       contrastText: "#00ff9d",
     },
   },
@@ -105,6 +177,7 @@ const CreateAccount = () => {
   const [toHome, setToHome] = React.useState(false);
   const [toCreateAccount, setToCreateAccount] = React.useState(false);
   const [toLogin, setToLogin] = React.useState(false);
+  const [mode, setMode] = useGlobalState("darkMode");
 
   const label = { inputProps: { "aria-label": "TOC Checkbox" } };
 
@@ -146,10 +219,7 @@ const CreateAccount = () => {
   const register = async () => {
     await auth
       .createUserWithEmailAndPassword(email, password)
-      .then(
-         setToHome(true),
-         isRegistered(true),
-      )
+      .then(setToHome(true), isRegistered(true))
       .catch((error) => alert(error));
     setUserId(auth.currentUser.uid);
     addUserData();
@@ -157,11 +227,42 @@ const CreateAccount = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="createaccount-page">
+      <div
+        className="createaccount-page"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <h1 style={{ marginTop: 100 }}>Create a New Account Today!</h1>
-        <Card className="CA-card" elevation={6}>
+        <Card
+          className="CA-card"
+          elevation={6}
+          sx={
+            mode === "dark"
+              ? {
+                  border: "2px solid white",
+                  backgroundColor: "#121212",
+                  zIndex: 1,
+                  boxShadow: "2px 2px 20px 20px white",
+                }
+              : {}
+          }
+        >
           <CardContent className="CA-cardcontent">
-            <Typography sx={{ fontSize: 20, mt: 5 }}>
+            <Typography
+              sx={[
+                { fontSize: 20, mt: 5 },
+                mode === "dark"
+                  ? {
+                      color: "#ffffff",
+                    }
+                  : {
+                      color: "#000000",
+                    },
+              ]}
+            >
               Register for customized profile pictures, achievements, and more!
             </Typography>
             <img
@@ -169,41 +270,129 @@ const CreateAccount = () => {
               alt="Register Picture"
               className="registericon"
             />
-            <TextField
-              required
-              label="Email"
-              variant="filled"
-              value={email}
-              onChange={fillAnswerEmail}
-              sx={{ mt: 5, mb: 5, width: 350 }}
-            />
-            <div style={{ display: "flex", flexDirection: "row" }}>
-              <TextField
-                required
-                label="Password"
-                type={showPassword ? "text" : "password"}
-                autoComplete="current-password"
-                variant="filled"
-                value={password}
-                onChange={fillAnswerPassword}
-                sx={{ width: 350, marginLeft: 3 }}
+            {mode === "dark" ? (
+              <ThemeProvider theme={TextFieldTheme}>
+                <TextField
+                  required
+                  label="Email"
+                  variant="outlined"
+                  value={email}
+                  onChange={fillAnswerEmail}
+                  sx={{
+                    mt: 5,
+                    mb: 5,
+                    width: 350,
+                    input: {
+                      color: "#ffffff",
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: "#adadad",
+                    },
+                  }}
+                />
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <TextField
+                    required
+                    label="Password"
+                    type={showPassword ? "text" : "password"}
+                    autoComplete="current-password"
+                    variant="outlined"
+                    value={password}
+                    onChange={fillAnswerPassword}
+                    sx={{
+                      width: 350,
+                      marginLeft: 3.5,
+                      input: {
+                        color: "#ffffff",
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        color: "#adadad",
+                      },
+                    }}
+                  />
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                    sx={{
+                      height: 40,
+                      marginTop: 1,
+                      color: "#ffffff",
+                    }}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </div>
+              </ThemeProvider>
+            ) : (
+              <>
+                <TextField
+                  required
+                  label="Email"
+                  variant="filled"
+                  value={email}
+                  onChange={fillAnswerEmail}
+                  sx={{ mt: 5, mb: 5, width: 350 }}
+                />
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <TextField
+                    required
+                    label="Password"
+                    type={showPassword ? "text" : "password"}
+                    autoComplete="current-password"
+                    variant="filled"
+                    value={password}
+                    onChange={fillAnswerPassword}
+                    sx={{ width: 350, marginLeft: 3.5 }}
+                  />
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                    sx={{
+                      height: 40,
+                      marginTop: 1,
+                    }}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </div>
+              </>
+            )}
+            <div
+              style={{ display: "flex", flexDirection: "row", marginTop: 20 }}
+            >
+              <Checkbox
+                {...label}
+                color={mode === "dark" ? "white" : "black"}
+                checked={termsCO}
+                onChange={() => setTermsCO(!termsCO)}
+                sx={
+                  mode === "dark"
+                    ? {
+                        color: "#ffffff",
+                      }
+                    : {}
+                }
               />
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-                sx={{
-                  height: 40,
-                  marginTop: 2,
-                }}
+              <Typography
+                sx={[
+                  { mt: 1.1 },
+                  mode === "dark"
+                    ? {
+                        color: "#ffffff",
+                      }
+                    : {
+                        color: "#000000",
+                      },
+                ]}
               >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </div>
-            <div style={{ display: "flex", flexDirection: "row", marginTop: 20 }}>
-              <Checkbox {...label} color="black" checked={termsCO} onChange={() => setTermsCO(!termsCO)}/>
-              <Typography sx={{ mt: 1.1 }}>
                 By registering, you confirm that you accept our Terms &
                 Conditions
               </Typography>
@@ -213,7 +402,22 @@ const CreateAccount = () => {
               variant="contained"
               color="black"
               size="large"
-              sx={{ mt: 5, mb: 5 }}
+              sx={[
+                {
+                  mt: 5,
+                  mb: 5,
+                  "&.Mui-disabled": {
+                    backgroundColor: "#d4d4d4",
+                    color: "#737373",
+                  },
+                  "&.MuiButtonBase-root:hover": {
+                    bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
+                  },
+                },
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" },
+              ]}
               onClick={register}
             >
               Register
@@ -222,7 +426,17 @@ const CreateAccount = () => {
               variant="contained"
               color="black"
               size="large"
-              sx={{ mb: 3 }}
+              sx={[
+                {
+                  mb: 3,
+                  "&.MuiButtonBase-root:hover": {
+                    bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
+                  },
+                },
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" },
+              ]}
               onClick={() => setToLogin(true)}
             >
               Back to Login

@@ -18,6 +18,71 @@ import Alert from "@mui/material/Alert";
 import { auth } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/firebase.js";
 import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
 
+const TextFieldTheme = createTheme({
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "--TextField-brandBorderColor": "#ffffff",
+          "--TextField-brandBorderHoverColor": "#ffffff",
+          "--TextField-brandBorderFocusedColor": "#ffffff",
+          "& label.Mui-focused": {
+            color: "var(--TextField-brandBorderFocusedColor)",
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        notchedOutline: {
+          borderColor: "var(--TextField-brandBorderColor)",
+          color: "#ffffff",
+        },
+        root: {
+          [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor: "var(--TextField-brandBorderHoverColor)",
+            color: "#ffffff",
+          },
+          [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor: "var(--TextField-brandBorderFocusedColor)",
+            color: "#ffffff",
+          },
+        },
+      },
+    },
+    MuiFilledInput: {
+      styleOverrides: {
+        root: {
+          "&::before, &::after": {
+            borderBottom: "2px solid var(--TextField-brandBorderColor)",
+          },
+          "&:hover:not(.Mui-disabled, .Mui-error):before": {
+            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
+          },
+          "&.Mui-focused:after": {
+            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
+          },
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          "&::before": {
+            borderBottom: "2px solid var(--TextField-brandBorderColor)",
+          },
+          "&:hover:not(.Mui-disabled, .Mui-error):before": {
+            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
+          },
+          "&.Mui-focused:after": {
+            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
+          },
+        },
+      },
+    },
+  },
+});
+
 const theme = createTheme({
   palette: {
     seaGreen: {
@@ -96,6 +161,7 @@ const ForgotPassword = () => {
   const [email, setEmail] = React.useState("");
   const [toLogin, setToLogin] = React.useState(false);
   const [sentModal, setSentModal] = React.useState(false);
+  const [mode, setMode] = useGlobalState("darkMode");
 
   if (toLogin) {
     return <Navigate to="/" />;
@@ -124,7 +190,14 @@ const ForgotPassword = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="forgotpassword-page">
+      <div
+        className="forgotpassword-page"
+        style={
+          mode === "dark"
+            ? { backgroundColor: "#242430", color: "#ffffff" }
+            : { backgroundColor: "#ffffff", color: "#000000" }
+        }
+      >
         <Modal
           open={sentModal}
           aria-labelledby="modal-modal-title"
@@ -165,27 +238,92 @@ const ForgotPassword = () => {
             </Button>
           </Box>
         </Modal>
-        <h1 style={{ marginTop: 100 }}>Forgot Your Password?</h1>
-        <Card className="FP-card" elevation={6}>
+        <h1 style={{ marginTop: "2vh" }}>Forgot Your Password?</h1>
+        <Card
+          className="FP-card"
+          elevation={6}
+          sx={[
+            { mt: 7 },
+            mode === "dark"
+              ? {
+                  border: "2px solid white",
+                  backgroundColor: "#121212",
+                  zIndex: 1,
+                  boxShadow: "2px 2px 20px 20px white",
+                }
+              : {},
+          ]}
+        >
           <CardContent className="FP-cardcontent">
-            <Typography sx={{ fontSize: 20, mt: 5 }}>
+            <Typography
+              sx={[
+                { fontSize: 20, mt: 5 },
+                mode === "dark"
+                  ? {
+                      color: "#ffffff",
+                    }
+                  : {
+                      color: "#000000",
+                    },
+              ]}
+            >
               Type in your email address so we can send you a confirmation
               email.
             </Typography>
-            <TextField
-              required
-              label="Email"
-              variant="filled"
-              value={email}
-              onChange={fillAnswerEmail}
-              sx={{ mt: 5, mb: 5, width: 350 }}
-            />
+            {mode === "dark" ? (
+              <ThemeProvider theme={TextFieldTheme}>
+                <TextField
+                  required
+                  label="Email"
+                  variant="outlined"
+                  value={email}
+                  onChange={fillAnswerEmail}
+                  sx={{
+                    mt: 5,
+                    mb: 5,
+                    width: 350,
+                    input: {
+                      color: "#ffffff",
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: "#adadad",
+                    },
+                  }}
+                />
+              </ThemeProvider>
+            ) : (
+              <TextField
+                required
+                label="Email"
+                variant="filled"
+                value={email}
+                onChange={fillAnswerEmail}
+                sx={{ mt: 5, mb: 5, width: 350 }}
+              />
+            )}
             <Button
               disabled={!email}
               variant="contained"
               color="black"
               size="large"
-              sx={{ mt: 2, mb: 5 }}
+              sx={[
+                {
+                  mt: 2,
+                  mb: 5,
+                  "&.Mui-disabled": {
+                    backgroundColor: "#d4d4d4",
+                    color: "#737373",
+                  },
+                  "&.MuiButtonBase-root:hover": {
+                    bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
+                  },
+                },
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" },
+              ]}
               onClick={forgotPass}
             >
               Send
@@ -194,7 +332,17 @@ const ForgotPassword = () => {
               variant="contained"
               color="black"
               size="large"
-              sx={{ mb: 3 }}
+              sx={[
+                {
+                  mb: 3,
+                  "&.MuiButtonBase-root:hover": {
+                    bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
+                  },
+                },
+                mode === "dark"
+                  ? { backgroundColor: "#00ff9d", color: "#000000" }
+                  : { backgroundColor: "#000000", color: "#00ff9d" },
+              ]}
               onClick={() => setToLogin(true)}
             >
               Back to Login
