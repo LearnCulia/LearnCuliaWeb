@@ -18,12 +18,12 @@ import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import Game1Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/Game1Image.png";
-import Game2Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/Game2Image.png";
-import Game3Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/Game3Image.png";
-import Game4Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/Game4Image.png";
-import Game5Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/Game5Image.png";
-import Game6Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/Game6Image.png";
+import Game1Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game1PicSPG.jpg";
+import Game2Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game2PicSPG.png";
+import Game3Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game3PicSPG.jpg";
+import Game4Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game4PicSPG.jpg";
+import Game5Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game5PicSPG.jpg";
+import Game6Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game6PicSPG.jpg";
 
 const theme = createTheme({
   palette: {
@@ -112,11 +112,11 @@ const SinglePlayerGames = () => {
       description: "Start with the basics",
       image: Game1Img,
       style: {
-        width: 230,
-        height: 300,
-        marginTop: 15,
+        width: 350,
+        height: 230,
+        marginTop: 30,
         borderRadius: 10,
-        marginBottom: 50,
+        marginBottom: 90,
       },
       modal: modalGame1,
       modalDesc: "Counting is for awesome people",
@@ -129,11 +129,11 @@ const SinglePlayerGames = () => {
       description: "Let's start doing some math!",
       image: Game2Img,
       style: {
-        width: 280,
-        height: 260,
-        marginTop: 15,
+        width: 350,
+        height: 230,
+        marginTop: 30,
         borderRadius: 10,
-        marginBottom: 80,
+        marginBottom: 90,
       },
       modal: modalGame2,
       modalDesc: "Additional & Subtraction is for awesomer people",
@@ -146,11 +146,11 @@ const SinglePlayerGames = () => {
       description: "Getting more complex, but you got this!",
       image: Game3Img,
       style: {
-        width: 370,
-        height: 220,
-        marginTop: 15,
+        width: 350,
+        height: 230,
+        marginTop: 30,
         borderRadius: 10,
-        marginBottom: 120,
+        marginBottom: 90,
       },
       modal: modalGame3,
       modalDesc: "Multiplication is for awesomest people",
@@ -167,10 +167,10 @@ const SinglePlayerGames = () => {
       image: Game4Img,
       style: {
         width: 370,
-        height: 180,
-        marginTop: 15,
+        height: 230,
+        marginTop: 30,
         borderRadius: 10,
-        marginBottom: 160,
+        marginBottom: 90,
       },
       modal: modalGame4,
       modalDesc: "Reversing Math Equations is for awesomest people",
@@ -183,11 +183,11 @@ const SinglePlayerGames = () => {
       description: "Some thinking with this one",
       image: Game5Img,
       style: {
-        width: 300,
-        height: 220,
-        marginTop: 15,
+        width: 370,
+        height: 230,
+        marginTop: 30,
         borderRadius: 10,
-        marginBottom: 120,
+        marginBottom: 90,
       },
       modal: modalGame5,
       modalDesc: "Comparisons is for awesomest people",
@@ -201,10 +201,10 @@ const SinglePlayerGames = () => {
       image: Game6Img,
       style: {
         width: 370,
-        height: 220,
-        marginTop: 15,
+        height: 230,
+        marginTop: 30,
         borderRadius: 10,
-        marginBottom: 120,
+        marginBottom: 90,
       },
       modal: modalGame6,
       modalDesc: "Arranging Numbers is for awesomest people",

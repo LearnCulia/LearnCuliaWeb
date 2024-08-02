@@ -292,7 +292,7 @@ const Login = () => {
           className="login-col2"
           style={
             mode === "dark"
-              ? { backgroundColor: "#121212" }
+              ? { backgroundColor: "#242430" }
               : { backgroundColor: "#ffffff" }
           }
         >
@@ -303,7 +303,7 @@ const Login = () => {
               mode === "dark"
                 ? {
                     border: "2px solid white",
-                    backgroundColor: "#121212",
+                    backgroundColor: "#242430",
                     zIndex: 1, 
                     boxShadow: "2px 2px 20px 20px white"
                   }
@@ -353,7 +353,7 @@ const Login = () => {
                       onChange={fillAnswerPassword}
                       sx={{
                         width: 350,
-                        marginLeft: 3,
+                        marginLeft: 3.5,
                         input: {
                           color: "#ffffff",
                         },
@@ -399,7 +399,7 @@ const Login = () => {
                       variant="filled"
                       value={password}
                       onChange={fillAnswerPassword}
-                      sx={{ width: 350, marginLeft: 3 }}
+                      sx={{ width: 350, marginLeft: 3.5 }}
                     />
                     <IconButton
                       aria-label="toggle password visibility"

@@ -129,18 +129,18 @@ const Info = () => {
             </Box>
           </Toolbar>
         </AppBar>
+        <h1 style={{ marginTop: 140 }}>Learn All About LearnCulia!</h1>
         <Card
           sx={[
             {
-              marginTop: 15,
-              marginBottom: 15,
-              height: 300,
-              width: 1300,
+              mt: 5,
+              height: 200,
+              width: 1000,
               textAlign: "center",
             },
             mode === "dark"
-              ? { backgroundColor: "#242430", color: "#ffffff" }
-              : { backgroundColor: "#ffffff", color: "#000000" },
+              ? { backgroundColor: "#242430", color: "#ffffff", border: "2px solid white", }
+              : { backgroundColor: "#ffffff", color: "#000000", border: "2px solid black" },
           ]}
         >
           <CardContent>
@@ -148,40 +148,123 @@ const Info = () => {
               About LearnCulia
             </Typography>
             <Typography sx={{ fontSize: 15 }} component="div">
-              Lorem ipsum delum hi there my name is sathvik malla andi like to
-              eat bugattis and ferraris so please consider subscribing to my
-              cahnel ha ha weay to go bruttha i love cars. Lorem ipsum delum hi
-              there my name is sathvik malla andi like to eat bugattis and
-              ferraris so please consider subscribing to my cahnel ha ha weay to
-              go bruttha i love cars. Lorem ipsum delum hi there my name is
-              sathvik malla andi like to eat bugattis and ferraris so please
-              consider subscribing to my cahnel ha ha weay to go bruttha i love
-              cars. Lorem ipsum delum hi there my name is sathvik malla andi
-              like to eat bugattis and ferraris so please consider subscribing
-              to my cahnel ha ha weay to go bruttha i love cars. Lorem ipsum
-              delum hi there my name is sathvik malla andi like to eat bugattis
-              and ferraris so please consider subscribing to my cahnel ha ha
-              weay to go bruttha i love cars. Lorem ipsum delum hi there my name
-              is sathvik malla andi like to eat bugattis and ferraris so please
-              consider subscribing to my cahnel ha ha weay to go bruttha i love
-              cars. Lorem ipsum delum hi there my name is sathvik malla andi
-              like to eat bugattis and ferraris so please consider subscribing
-              to my cahnel ha ha weay to go bruttha i love cars. Lorem ipsum
-              delum hi there my name is sathvik malla andi like to eat bugattis
-              and ferraris so please consider subscribing to my cahnel ha ha
-              weay to go bruttha i love cars. Lorem ipsum delum hi there my name
-              is sathvik malla andi like to eat bugattis and ferraris so please
-              consider subscribing to my cahnel ha ha weay to go bruttha i love
-              cars. Lorem ipsum delum hi there my name is sathvik malla andi
-              like to eat bugattis and ferraris so please consider subscribing
-              to my cahnel ha ha weay to go bruttha i love cars.
+              Welcome to LearnCulia™ – an exciting app designed to empower young
+              kids who struggle with dyscalculia on their journey to conquer
+              math challenges with confidence and joy. Through a collection of
+              interactive games, tutorials, and challenge puzzles, LearnCulia™
+              turns learning into an exciting adventure. Unlike traditional
+              learning environments, this app provides small tutorial videos
+              before each game to not just learn how to play the game, but also
+              learn the mathematical concept. To enjoy this app even more, you
+              can create an account to have your own custom profile picture!
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card
+          sx={[
+            {
+              mt: 3,
+              height: 200,
+              width: 1000,
+              textAlign: "center",
+            },
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff", border: "2px solid white", }
+              : { backgroundColor: "#ffffff", color: "#000000", border: "2px solid black" },
+          ]}
+        >
+          <CardContent>
+            <Typography sx={{ fontSize: 25, fontWeight: "bold" }} color="black">
+              Purpose
+            </Typography>
+            <Typography sx={{ fontSize: 15 }} component="div">
+              I want to make sure that every single student, who struggles to
+              achieve success because of dyscalculia, will earn an opportunity
+              in LearnCulia™ to sharpen mathematical skills for their benefit. I
+              want to make sure that everyone can work on what they want to work
+              on, with helpful and short tutorial videos to stay successful. I
+              also strive to make this app even better, so if you have any
+              advice or ideas, please contact me above!
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card
+          sx={[
+            {
+              mt: 3,
+              height: 300,
+              width: 1000,
+              textAlign: "center",
+            },
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff", border: "2px solid white", }
+              : { backgroundColor: "#ffffff", color: "#000000", border: "2px solid black" },
+          ]}
+        >
+          <CardContent>
+            <Typography sx={{ fontSize: 25, fontWeight: "bold" }} color="black">
+              Single Player Games
+            </Typography>
+            <Typography sx={{ fontSize: 15 }} component="div">
+              Currently, there are six fun and exciting challenge games with
+              different levels of difficulty. There is no need to go through all
+              the games in order, or complete every single game. If you find
+              yourself struggling with a mathematical concept, simply click the
+              respective game, and start the challenge! Every single player game
+              has an information/tutorial page and two different game pages: the
+              normal level and the challenge. You first start on the information
+              page where you can watch the necessary tutorial videos for the
+              game. After you correctly answer 10 problems, you may move on to
+              the challenge problems. If you correctly answer 10 challenge
+              problems, you have completed the game. If you feel stuck anywhere,
+              there will be comforting messages and extra guidance to keep up
+              that positive attitude! You may also complete the game however
+              many times you would like. In the future, there will be
+              multiplayer games, and way more single player games based on
+              difficulty and age level!
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card
+          sx={[
+            {
+              mt: 3,
+              height: 200,
+              width: 1000,
+              textAlign: "center",
+            },
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff", border: "2px solid white", }
+              : { backgroundColor: "#ffffff", color: "#000000", border: "2px solid black" },
+          ]}
+        >
+          <CardContent>
+            <Typography sx={{ fontSize: 25, fontWeight: "bold" }} color="black">
+              About the Developer
+            </Typography>
+            <Typography sx={{ fontSize: 15 }} component="div">
+              Hey there! I am a high school student residing in California. App
+              and web development is one of my passions, and I love to spend my
+              free time working on some small app projects for fun. However, my
+              biggest passion is my community. I wanted to build LearnCulia
+              because there aren’t many great tools out there that really
+              support and encourage young students who struggle with dyscalculia
+              to solve math problems with the development of necessary skills.
+              In this app, I want to make sure that everyone gets an opportunity
+              to access a fun environment to hone their skills. You are welcome
+              to contact me below if you have any questions!
             </Typography>
           </CardContent>
         </Card>
         <Divider
           variant="fullWidth"
           flexItem
-          sx={[mode === "dark" ? { borderColor: "#ffffff" } : { borderColor: "#E0E0E0" }, { marginBottom: -45, marginTop: 25 }]}
+          sx={[
+            mode === "dark"
+              ? { borderColor: "#ffffff" }
+              : { borderColor: "#E0E0E0" },
+            { marginBottom: -45, marginTop: 25 },
+          ]}
         />
         <Box
           className="footer"
@@ -200,7 +283,7 @@ const Info = () => {
             <h1>LearnCulia</h1>
           </Box>
           <Box style={{ display: "flex", flexDirection: "row" }}>
-          <Button
+            <Button
               sx={[
                 mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
               ]}

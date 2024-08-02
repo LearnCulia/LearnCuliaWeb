@@ -10,6 +10,8 @@ import Typography from "@mui/material/Typography";
 import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
 import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
 import homei2 from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/homei2.jpeg";
+import homei3 from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/homei2.jpg";
+import contactPic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/contactPic.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useGlobalState } from "../GlobalState";
 import home1 from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/stem-t4l--PnSpCHYKsw-unsplash.jpg";
@@ -197,7 +199,7 @@ export default function Home(props) {
             backgroundSize: "cover",
             height: "100vh",
             width: "102.5%",
-            color: "white",
+            color: "black",
           }}
         >
           <h1 style={{ fontSize: 50 }}>
@@ -257,35 +259,38 @@ export default function Home(props) {
             <h1
               style={{
                 fontSize: 50,
-                marginTop: -30,
+                marginTop: 10,
                 display: "flex",
                 flexDirection: "row",
               }}
             >
               About LearnCulia
             </h1>
-            <Typography style={{ marginLeft: -30 }}>
-              Lorem ipsum delum hi there my name is sathvik malla andi like to
-              eat bugattis and ferraris so please consider subscribing to my
-              cahnel ha ha weay to go bruttha i love cars. Lorem ipsum delum hi
-              there my name is sathvik malla andi like to eat bugattis and
-              ferraris so please consider subscribing to my cahnel ha ha weay to
-              go bruttha i love cars. Lorem ipsum delum hi there my name is
-              sathvik malla andi like to eat bugattis and ferraris so please
-              consider subscribing to my cahnel ha ha weay to go bruttha i love
-              cars. Lorem ipsum delum hi there my name is sathvik malla andi
-              like to eat bugattis and ferraris so please consider subscribing
-              to my cahnel ha ha weay to go bruttha i love cars. Lorem ipsum
-              delum hi there my name is sathvik malla andi like to eat bugattis
-              and ferraris so please consider subscribing to my cahnel ha ha
-              weay to go bruttha i love cars.
+            <Typography
+              style={{
+                marginLeft: -30,
+                fontSize: 20,
+                textAlign: "center",
+                marginTop: 20,
+                marginBottom: 20,
+              }}
+            >
+              Welcome to LearnCulia – an exciting app designed to empower young
+              kids who struggle with dyscalculia on their journey to conquer
+              math challenges with confidence and joy. Through a collection of
+              interactive games, tutorials, and challenge puzzles, LearnCulia
+              turns learning into an exciting adventure. Unlike traditional
+              learning environments, this app provides small tutorial videos
+              before each game to not just learn how to play the game, but also
+              learn the mathematical concept. To enjoy this app even more, you
+              can create an account to have your own custom profile picture!
             </Typography>
             <Button
               variant="contained"
               size="large"
               sx={[
                 {
-                  marginTop: 5,
+                  mt: 5,
                   "&.MuiButtonBase-root:hover": {
                     bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
                   },
@@ -318,21 +323,24 @@ export default function Home(props) {
             >
               Single Player Games
             </h1>
-            <Typography style={{ marginLeft: -30 }}>
-              Lorem ipsum delum hi there my name is sathvik malla andi like to
-              eat bugattis and ferraris so please consider subscribing to my
-              cahnel ha ha weay to go bruttha i love cars. Lorem ipsum delum hi
-              there my name is sathvik malla andi like to eat bugattis and
-              ferraris so please consider subscribing to my cahnel ha ha weay to
-              go bruttha i love cars. Lorem ipsum delum hi there my name is
-              sathvik malla andi like to eat bugattis and ferraris so please
-              consider subscribing to my cahnel ha ha weay to go bruttha i love
-              cars. Lorem ipsum delum hi there my name is sathvik malla andi
-              like to eat bugattis and ferraris so please consider subscribing
-              to my cahnel ha ha weay to go bruttha i love cars. Lorem ipsum
-              delum hi there my name is sathvik malla andi like to eat bugattis
-              and ferraris so please consider subscribing to my cahnel ha ha
-              weay to go bruttha i love cars.
+            <Typography
+              style={{
+                marginLeft: -30,
+                fontSize: 20,
+                textAlign: "center",
+                marginTop: 20,
+              }}
+            >
+              Currently, there are six fun and exciting challenge games with
+              different levels of difficulty. There is no need to go through all
+              the games in order, or complete every single game. If you find
+              yourself struggling with a mathematical concept, simply click the
+              respective game, and start the challenge! Every single player game
+              has an information/tutorial page and two different game pages: the
+              normal level and the challenge. You may also complete the game
+              however many times you would like. In the future, there will be
+              multiplayer games, and way more single player games based on
+              difficulty and age level!
             </Typography>
             <Button
               variant="contained"
@@ -340,10 +348,10 @@ export default function Home(props) {
               size="large"
               style={{ marginTop: 50 }}
             >
-              Play
+              Single Player Games
             </Button>
           </Box>
-          <img src={homei2} className="home4i" alt="Home Image 2" />
+          <img src={homei3} className="home4i" alt="Home Image 2" />
         </Box>
         <Box
           className="home5"
@@ -353,32 +361,19 @@ export default function Home(props) {
               : { backgroundColor: "#ffffff", color: "#000000" }
           }
         >
-          <img src={homei2} className="home3i" alt="Home Image 2" />
+          <h1
+            style={{
+              fontSize: 50,
+              textAlign: "center",
+              marginLeft: 130
+            }}
+          >
+            Contact
+          </h1>
           <Box className="box5">
-            <h1
-              style={{
-                fontSize: 50,
-                marginTop: -30,
-                textAlign: "center",
-              }}
-            >
-              Contact
-            </h1>
-            <Typography style={{ marginLeft: -30 }}>
-              Lorem ipsum delum hi there my name is sathvik malla andi like to
-              eat bugattis and ferraris so please consider subscribing to my
-              cahnel ha ha weay to go bruttha i love cars. Lorem ipsum delum hi
-              there my name is sathvik malla andi like to eat bugattis and
-              ferraris so please consider subscribing to my cahnel ha ha weay to
-              go bruttha i love cars. Lorem ipsum delum hi there my name is
-              sathvik malla andi like to eat bugattis and ferraris so please
-              consider subscribing to my cahnel ha ha weay to go bruttha i love
-              cars. Lorem ipsum delum hi there my name is sathvik malla andi
-              like to eat bugattis and ferraris so please consider subscribing
-              to my cahnel ha ha weay to go bruttha i love cars. Lorem ipsum
-              delum hi there my name is sathvik malla andi like to eat bugattis
-              and ferraris so please consider subscribing to my cahnel ha ha
-              weay to go bruttha i love cars.
+            <Typography style={{ marginLeft: 30, textAlign: "center", fontSize: 20 }}>
+              Any issues, concerns, or suggestions? Please contact me from the
+              button below or in the navigation bar above!
             </Typography>
             <Button
               variant="contained"
@@ -398,6 +393,7 @@ export default function Home(props) {
               Contact
             </Button>
           </Box>
+          <img src={contactPic} alt="Contact Pic" className="contactPic"/>
         </Box>
         <Divider variant="fullWidth" flexItem />
         <Box
