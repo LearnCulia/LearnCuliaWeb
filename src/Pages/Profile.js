@@ -56,10 +56,6 @@ const theme = createTheme({
       main: "#000000",
       contrastText: "#00ff9d",
     },
-    blackRed: {
-      main: "#000000",
-      contrastText: "#fc0303",
-    },
   },
 });
 
@@ -163,8 +159,8 @@ const Profile = () => {
 
   const MuiToggleButton = styled(ToggleButton)({
     "&.Mui-selected, &.Mui-selected:hover": {
-      color: "#00ff9d",
-      backgroundColor: "#000000",
+      backgroundColor: mode === "dark" ? "#00ff9d" : "#000000",
+      color: mode === "dark" ? "#000000" : "#00ff9d",
     },
   });
 
@@ -276,191 +272,316 @@ const Profile = () => {
                   alignItems: "center",
                 }}
               >
-                <h1>Welcome to Your Profile!</h1>
+                <h1 style={{ marginTop: 140 }}>Welcome to Your Profile!</h1>
                 <Typography sx={{ fontSize: 20 }}>
                   Make your desired changes, and hit save below!
                 </Typography>
               </div>
-              <div className="profile-col1">
-                <div style={{ marginTop: 100 }} />
-                {glasses && partyHat ? (
-                  <img
-                    src={
-                      gender === "male"
-                        ? maleGPHProfilePic
-                        : femaleGPHProfilePic
-                    }
-                    alt="Profile Picture"
-                    style={{ width: 600, height: 600 }}
-                  />
-                ) : glasses ? (
-                  <img
-                    src={
-                      gender === "male"
-                        ? maleGlassesProfilePic
-                        : femaleGlassesProfilePic
-                    }
-                    alt="Profile Picture"
-                    style={{ width: 600, height: 600 }}
-                  />
-                ) : partyHat ? (
-                  <img
-                    src={
-                      gender === "male" ? malePHProfilePic : femalePHProfilePic
-                    }
-                    alt="Profile Picture"
-                    style={{ width: 600, height: 600 }}
-                  />
-                ) : (
-                  <img
-                    src={gender === "male" ? maleProfilePic : femaleProfilePic}
-                    alt="Profile Picture"
-                    style={{ width: 600, height: 600 }}
-                  />
-                )}
-              </div>
-              <div className="profile-col2">
-                <Card className="profile-card" elevation={6}>
-                  <CardContent className="profile-cardcontent">
-                    <ToggleButtonGroup
-                      value={alignment}
-                      exclusive
-                      onChange={handleChange}
-                      aria-label="Platform"
-                      sx={{ width: 400, color: "#000000", mt: 10 }}
-                    >
-                      <MuiToggleButton
-                        value="male"
-                        sx={{ width: 200, fontSize: 15 }}
-                        onClick={() => setGender("male")}
-                      >
-                        Male
-                      </MuiToggleButton>
-                      <MuiToggleButton
-                        value="female"
-                        sx={{ width: 200, fontSize: 15  }}
-                        onClick={() => setGender("female")}
-                      >
-                        Female
-                      </MuiToggleButton>
-                    </ToggleButtonGroup>
-                    {glasses ? (
-                      <div style={{ display: "flex", flexDirection: "row" }}>
-                        <IconButton
-                          aria-label="toggle glasses"
-                          color="black"
-                          onClick={() => setGlasses(!glasses)}
-                          edge="end"
-                          sx={{
-                            height: 40,
-                            width: 140,
-                            mt: 5,
-                            borderRadius: 1,
-                            fontSize: 15,
-                            backgroundColor: "#000000",
-                            color: "#00ff9d",
-                          }}
-                        >
-                          ADDED!
-                          <CheckIcon />
-                        </IconButton>
-                      </div>
-                    ) : (
-                      <div style={{ display: "flex", flexDirection: "row" }}>
-                        <Button
-                          variant="contained"
-                          color="black"
-                          size="large"
-                          sx={{ mt: 5 }}
-                          onClick={() => setGlasses(!glasses)}
-                        >
-                          Add Glasses
-                        </Button>
-                      </div>
-                    )}
-                    {glasses ? (
-                      <Typography sx={{ fontSize: 20, mt: 1, mb: 5 }}>
-                        Click to remove glasses
-                      </Typography>
-                    ) : (
-                      <p></p>
-                    )}
-                    {partyHat ? (
-                      <div style={{ display: "flex", flexDirection: "row" }}>
-                        <IconButton
-                          aria-label="toggle party hat"
-                          color="black"
-                          onClick={() => setPartyHat(!partyHat)}
-                          edge="end"
-                          sx={{
-                            height: 40,
-                            width: 140,
-                            mt: 2,
-                            borderRadius: 1,
-                            fontSize: 15,
-                            backgroundColor: "#000000",
-                            color: "#00ff9d",
-                          }}
-                        >
-                          ADDED!
-                          <CheckIcon />
-                        </IconButton>
-                      </div>
-                    ) : (
-                      <div style={{ display: "flex", flexDirection: "row" }}>
-                        <Button
-                          variant="contained"
-                          color="black"
-                          size="large"
-                          sx={{ mt: 2 }}
-                          onClick={() => setPartyHat(!partyHat)}
-                        >
-                          Add Party Hat
-                        </Button>
-                      </div>
-                    )}
-                    {partyHat ? (
-                      <Typography sx={{ fontSize: 20, mt: 1, mb: 5 }}>
-                        Click to remove party hat
-                      </Typography>
-                    ) : (
-                      <p></p>
-                    )}
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        marginTop: 10,
-                        marginBottom: 35,
-                      }}
-                    >
-                      <Button
-                        variant="contained"
-                        color="black"
-                        size="large"
-                        onClick={saveButton}
-                      >
-                        Save
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="blackRed"
-                        size="large"
-                        sx={{ ml: 5 }}
-                        onClick={userLogout}
-                      >
-                        Logout
-                      </Button>
-                    </div>
-                    <Snackbar
-                      open={openSave}
-                      autoHideDuration={6000}
-                      onClose={handleCloseSave}
-                      message="Saved!"
-                      action={saveSnackbar}
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <div className="profile-col1">
+                  <div style={{ marginTop: 100 }} />
+                  {glasses && partyHat ? (
+                    <img
+                      src={
+                        gender === "male"
+                          ? maleGPHProfilePic
+                          : femaleGPHProfilePic
+                      }
+                      alt="Profile Picture"
+                      style={{ width: 600, height: 600 }}
                     />
-                  </CardContent>
-                </Card>
+                  ) : glasses ? (
+                    <img
+                      src={
+                        gender === "male"
+                          ? maleGlassesProfilePic
+                          : femaleGlassesProfilePic
+                      }
+                      alt="Profile Picture"
+                      style={{ width: 600, height: 600 }}
+                    />
+                  ) : partyHat ? (
+                    <img
+                      src={
+                        gender === "male"
+                          ? malePHProfilePic
+                          : femalePHProfilePic
+                      }
+                      alt="Profile Picture"
+                      style={{ width: 600, height: 600 }}
+                    />
+                  ) : (
+                    <img
+                      src={
+                        gender === "male" ? maleProfilePic : femaleProfilePic
+                      }
+                      alt="Profile Picture"
+                      style={{ width: 600, height: 600 }}
+                    />
+                  )}
+                </div>
+                <div className="profile-col2">
+                  <Card
+                    className="profile-card"
+                    style={
+                      mode === "dark"
+                        ? {
+                            backgroundColor: "#242430",
+                            border: "2px solid white",
+                            backgroundColor: "#242430",
+                            zIndex: 1,
+                            boxShadow: "2px 2px 20px 20px white",
+                          }
+                        : { backgroundColor: "#ffffff" }
+                    }
+                  >
+                    <CardContent className="profile-cardcontent">
+                      <ToggleButtonGroup
+                        value={alignment}
+                        exclusive
+                        onChange={handleChange}
+                        aria-label="Platform"
+                        sx={[{ width: 400, mt: 10 }]}
+                      >
+                        <MuiToggleButton
+                          value="male"
+                          sx={[
+                            { width: 200, fontSize: 15, outlineWidth: '10px', outlineColor: "#000000" },
+                            mode === "dark"
+                              ? { color: "#ffffff" }
+                              : { color: "#000000" },
+                          ]}
+                          onClick={() => setGender("male")}
+                        >
+                          Male
+                        </MuiToggleButton>
+                        <MuiToggleButton
+                          value="female"
+                          sx={[
+                            { width: 200, fontSize: 15, outlineWidth: '10px', outlineColor: "#000000" },
+                            mode === "dark"
+                              ? { color: "#ffffff" }
+                              : { color: "#000000" },
+                          ]}
+                          onClick={() => setGender("female")}
+                        >
+                          Female
+                        </MuiToggleButton>
+                      </ToggleButtonGroup>
+                      {glasses ? (
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                          <IconButton
+                            aria-label="toggle glasses"
+                            color="black"
+                            onClick={() => setGlasses(!glasses)}
+                            edge="end"
+                            sx={[
+                              {
+                                height: 40,
+                                width: 140,
+                                mt: 5,
+                                borderRadius: 1,
+                                fontSize: 15,
+                                "&.MuiButtonBase-root:hover": {
+                                  color:
+                                    mode === "dark" ? "#ffffff" : "#000000",
+                                },
+                              },
+                              mode === "dark"
+                                ? {
+                                    backgroundColor: "#00ff9d",
+                                    color: "#000000",
+                                  }
+                                : {
+                                    backgroundColor: "#000000",
+                                    color: "#00ff9d",
+                                  },
+                            ]}
+                          >
+                            ADDED!
+                            <CheckIcon />
+                          </IconButton>
+                        </div>
+                      ) : (
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                          <Button
+                            variant="contained"
+                            color="black"
+                            size="large"
+                            sx={[
+                              { mt: 5 },
+                              mode === "dark"
+                                ? {
+                                    backgroundColor: "#00ff9d",
+                                    color: "#000000",
+                                  }
+                                : {
+                                    backgroundColor: "#000000",
+                                    color: "#00ff9d",
+                                  },
+                            ]}
+                            onClick={() => setGlasses(!glasses)}
+                          >
+                            Add Glasses
+                          </Button>
+                        </div>
+                      )}
+                      {glasses ? (
+                        <Typography
+                          sx={[
+                            { fontSize: 20, mt: 1, mb: 5 },
+                            mode === "dark"
+                              ? {
+                                  color: "#ffffff",
+                                }
+                              : {
+                                  color: "#000000",
+                                },
+                          ]}
+                        >
+                          Click to remove glasses
+                        </Typography>
+                      ) : (
+                        <p></p>
+                      )}
+                      {partyHat ? (
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                          <IconButton
+                            aria-label="toggle party hat"
+                            color="black"
+                            onClick={() => setPartyHat(!partyHat)}
+                            edge="end"
+                            sx={[
+                              {
+                                height: 40,
+                                width: 140,
+                                mt: 5,
+                                borderRadius: 1,
+                                fontSize: 15,
+                                "&.MuiButtonBase-root:hover": {
+                                  color:
+                                    mode === "dark" ? "#ffffff" : "#000000",
+                                },
+                              },
+                              mode === "dark"
+                                ? {
+                                    backgroundColor: "#00ff9d",
+                                    color: "#000000",
+                                  }
+                                : {
+                                    backgroundColor: "#000000",
+                                    color: "#00ff9d",
+                                  },
+                            ]}
+                          >
+                            ADDED!
+                            <CheckIcon />
+                          </IconButton>
+                        </div>
+                      ) : (
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                          <Button
+                            variant="contained"
+                            color="black"
+                            size="large"
+                            sx={[
+                              { mt: 5 },
+                              mode === "dark"
+                                ? {
+                                    backgroundColor: "#00ff9d",
+                                    color: "#000000",
+                                  }
+                                : {
+                                    backgroundColor: "#000000",
+                                    color: "#00ff9d",
+                                  },
+                            ]}
+                            onClick={() => setPartyHat(!partyHat)}
+                          >
+                            Add Party Hat
+                          </Button>
+                        </div>
+                      )}
+                      {partyHat ? (
+                        <Typography
+                          sx={[
+                            { fontSize: 20, mt: 1, mb: 5 },
+                            mode === "dark"
+                              ? {
+                                  color: "#ffffff",
+                                }
+                              : {
+                                  color: "#000000",
+                                },
+                          ]}
+                        >
+                          Click to remove party hat
+                        </Typography>
+                      ) : (
+                        <p></p>
+                      )}
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          marginTop: 10,
+                          marginBottom: 35,
+                        }}
+                      >
+                        <Button
+                          variant="contained"
+                          size="large"
+                          sx={[
+                            {
+                              "&.MuiButtonBase-root:hover": {
+                                bgcolor:
+                                  mode === "dark" ? "#00ff9d" : "#000000",
+                              },
+                            },
+                            mode === "dark"
+                              ? { backgroundColor: "#00ff9d", color: "#000000" }
+                              : {
+                                  backgroundColor: "#000000",
+                                  color: "#00ff9d",
+                                },
+                          ]}
+                          onClick={saveButton}
+                        >
+                          Save
+                        </Button>
+                        <Button
+                          variant="contained"
+                          size="large"
+                          sx={[
+                            {
+                              ml: 5,
+                              "&.MuiButtonBase-root:hover": {
+                                bgcolor:
+                                  mode === "dark" ? "#fc0303" : "#000000",
+                              },
+                            },
+                            mode === "dark"
+                              ? { backgroundColor: "#fc0303", color: "#000000" }
+                              : {
+                                  backgroundColor: "#000000",
+                                  color: "#fc0303",
+                                },
+                          ]}
+                          onClick={userLogout}
+                        >
+                          Logout
+                        </Button>
+                      </div>
+                      <Snackbar
+                        open={openSave}
+                        autoHideDuration={6000}
+                        onClose={handleCloseSave}
+                        message="Saved!"
+                        action={saveSnackbar}
+                      />
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
             </div>
           ) : (
@@ -476,6 +597,68 @@ const Profile = () => {
             </div>
           )}
         </div>
+        <Divider
+          variant="fullWidth"
+          flexItem
+          sx={[
+            mode === "dark"
+              ? { borderColor: "#ffffff" }
+              : { borderColor: "#E0E0E0" },
+            { marginTop: 15 },
+          ]}
+        />
+        <Box
+          className="footerProf"
+          style={
+            mode === "dark"
+              ? { backgroundColor: "#242430", color: "#ffffff" }
+              : { backgroundColor: "#ffffff", color: "#000000" }
+          }
+        >
+          <Box style={{ display: "flex", flexDirection: "row" }}>
+            <img
+              src={icon}
+              className="footerLogo"
+              alt="Footer LearnCulia Icon"
+            />
+            <h1>LearnCulia</h1>
+          </Box>
+          <Box style={{ display: "flex", flexDirection: "row" }}>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToHome(true)}
+            >
+              Home
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToInfo(true)}
+            >
+              Info
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToSPG(true)}
+            >
+              Single Player Games
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToProfile(true)}
+            >
+              Profile
+            </Button>
+          </Box>
+          <p>© 2024 LearnCulia. All rights reserved.</p>
+        </Box>
         <ChatBot />
       </div>
     </ThemeProvider>

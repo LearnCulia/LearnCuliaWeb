@@ -287,7 +287,7 @@ const SinglePlayerGames = () => {
             <Card
               sx={[
                 {
-                  marginTop: 70,
+                  marginTop: 10,
                   marginRight: 15,
                   marginBottom: 15,
                   height: 500,
@@ -393,17 +393,12 @@ const SinglePlayerGames = () => {
         </Box>
         <Box
           className="spgRow2"
-          style={
-            mode === "dark"
-              ? { backgroundColor: "#242430", color: "#ffffff" }
-              : { backgroundColor: "#ffffff", color: "#000000" }
-          }
         >
           {gamesRow2.map((item) => (
             <Card
               sx={[
                 {
-                  marginTop: 70,
+                  marginTop: 20,
                   marginRight: 15,
                   marginBottom: 15,
                   height: 500,
@@ -508,7 +503,7 @@ const SinglePlayerGames = () => {
           ))}
         </Box>
       </div>
-      <Box
+      {/* <Box
         sx={[
           mode === "dark"
             ? { backgroundColor: "#242430", color: "#ffffff" }
@@ -517,7 +512,7 @@ const SinglePlayerGames = () => {
         ]}
       >
         {" "}
-      </Box>
+      </Box> */}
       <Divider
         variant="fullWidth"
         flexItem
@@ -525,18 +520,17 @@ const SinglePlayerGames = () => {
           mode === "dark"
             ? { borderColor: "#ffffff" }
             : { borderColor: "#E0E0E0" },
-          { marginTop: 1 },
         ]}
       />
       <Box
-        className="footer"
+        className="footerSPG"
         style={
           mode === "dark"
             ? { backgroundColor: "#242430", color: "#ffffff" }
             : { backgroundColor: "#ffffff", color: "#000000" }
         }
       >
-        <Box style={{ display: "flex", flexDirection: "row" }}>
+        <Box sx={{ display: "flex", flexDirection: "row" }}>
           <img src={icon} className="footerLogo" alt="Footer LearnCulia Icon" />
           <h1>LearnCulia</h1>
         </Box>

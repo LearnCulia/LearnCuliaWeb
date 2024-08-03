@@ -348,7 +348,7 @@ const Contact = () => {
         ]}
       />
       <Box
-        className="footer"
+        className="footerContact"
         style={
           mode === "dark"
             ? { backgroundColor: "#242430", color: "#ffffff" }

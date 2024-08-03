@@ -347,6 +347,7 @@ export default function Home(props) {
               color="black"
               size="large"
               style={{ marginTop: 50 }}
+              onClick={() => setToSPG(true)}
             >
               Single Player Games
             </Button>
@@ -389,6 +390,7 @@ export default function Home(props) {
                   ? { backgroundColor: "#00ff9d", color: "#000000" }
                   : { backgroundColor: "#000000", color: "#00ff9d" },
               ]}
+              onClick={() => setToContact(true)}
             >
               Contact
             </Button>
