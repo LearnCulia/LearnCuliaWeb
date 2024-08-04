@@ -288,7 +288,12 @@ const Profile = () => {
                           : femaleGPHProfilePic
                       }
                       alt="Profile Picture"
-                      style={{ width: 600, height: 600 }}
+                      className="profile-profPic"
+                      style={
+                        mode === "dark"
+                          ? { borderColor: "#ffffff" }
+                          : { borderColor: "#000000" }
+                      }
                     />
                   ) : glasses ? (
                     <img
@@ -298,7 +303,12 @@ const Profile = () => {
                           : femaleGlassesProfilePic
                       }
                       alt="Profile Picture"
-                      style={{ width: 600, height: 600 }}
+                      className="profile-profPic"
+                      style={
+                        mode === "dark"
+                          ? { borderColor: "#ffffff" }
+                          : { borderColor: "#000000" }
+                      }
                     />
                   ) : partyHat ? (
                     <img
@@ -308,7 +318,12 @@ const Profile = () => {
                           : femalePHProfilePic
                       }
                       alt="Profile Picture"
-                      style={{ width: 600, height: 600 }}
+                      className="profile-profPic"
+                      style={
+                        mode === "dark"
+                          ? { borderColor: "#ffffff" }
+                          : { borderColor: "#000000" }
+                      }
                     />
                   ) : (
                     <img
@@ -316,7 +331,12 @@ const Profile = () => {
                         gender === "male" ? maleProfilePic : femaleProfilePic
                       }
                       alt="Profile Picture"
-                      style={{ width: 600, height: 600 }}
+                      className="profile-profPic"
+                      style={
+                        mode === "dark"
+                          ? { borderColor: "#ffffff" }
+                          : { borderColor: "#000000" }
+                      }
                     />
                   )}
                 </div>
@@ -346,7 +366,12 @@ const Profile = () => {
                         <MuiToggleButton
                           value="male"
                           sx={[
-                            { width: 200, fontSize: 15, outlineWidth: '10px', outlineColor: "#000000" },
+                            {
+                              width: 200,
+                              fontSize: 15,
+                              outlineWidth: "10px",
+                              outlineColor: "#000000",
+                            },
                             mode === "dark"
                               ? { color: "#ffffff" }
                               : { color: "#000000" },
@@ -358,7 +383,12 @@ const Profile = () => {
                         <MuiToggleButton
                           value="female"
                           sx={[
-                            { width: 200, fontSize: 15, outlineWidth: '10px', outlineColor: "#000000" },
+                            {
+                              width: 200,
+                              fontSize: 15,
+                              outlineWidth: "10px",
+                              outlineColor: "#000000",
+                            },
                             mode === "dark"
                               ? { color: "#ffffff" }
                               : { color: "#000000" },

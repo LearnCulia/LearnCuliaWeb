@@ -243,7 +243,7 @@ const CreateAccount = () => {
             mode === "dark"
               ? {
                   border: "2px solid white",
-                  backgroundColor: "#121212",
+                  backgroundColor: "#242430",
                   zIndex: 1,
                   boxShadow: "2px 2px 20px 20px white",
                 }
