@@ -138,10 +138,11 @@ const Game1 = () => {
           correct number again!
         </p>
         <Carousel
-          sx={{ width: 710, alignSelf: "center", mt: 5 }}
+          sx={{ width: 680, alignSelf: "center", mt: 5 }}
           activeIndicatorIconButtonProps={{
             color: "#6bffc6",
           }}
+          autoPlay={false}
         >
           {slideItems.map((item, i) => item)}
         </Carousel>
@@ -150,7 +151,13 @@ const Game1 = () => {
         </Typography>
         <Button
           sx={[
-            { mt: 5, mb: 10 },
+            {
+              mt: 5,
+              mb: 10,
+              "&.MuiButtonBase-root:hover": {
+                bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
+              },
+            },
             mode === "dark"
               ? { backgroundColor: "#00ff9d", color: "#000000" }
               : { backgroundColor: "#000000", color: "#00ff9d" },

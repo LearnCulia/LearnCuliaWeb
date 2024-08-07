@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
+import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
 import Carousel from "react-material-ui-carousel";
 import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
@@ -59,6 +60,73 @@ const GamePageChallenge2 = () => {
   const [toSPG, setToSPG] = React.useState(false);
 
   const { width, height } = useWindowSize();
+
+  const WhiteTheme = createTheme({
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            "--TextField-brandBorderColor": "#ffffff",
+            "--TextField-brandBorderHoverColor": "#ffffff",
+            "--TextField-brandBorderFocusedColor": "#ffffff",
+            "& label.Mui-focused": {
+              color: "var(--TextField-brandBorderFocusedColor)",
+            },
+          },
+        },
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          notchedOutline: {
+            borderColor: "var(--TextField-brandBorderColor)",
+            color: "#ffffff",
+          },
+          root: {
+            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: "var(--TextField-brandBorderHoverColor)",
+              color: "#ffffff",
+            },
+            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: "var(--TextField-brandBorderFocusedColor)",
+              color: "#ffffff",
+            },
+          },
+        },
+      },
+      MuiFilledInput: {
+        styleOverrides: {
+          root: {
+            "&::before, &::after": {
+              borderBottom: "2px solid var(--TextField-brandBorderColor)",
+            },
+            "&:hover:not(.Mui-disabled, .Mui-error):before": {
+              borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
+            },
+            "&.Mui-focused:after": {
+              borderBottom:
+                "2px solid var(--TextField-brandBorderFocusedColor)",
+            },
+          },
+        },
+      },
+      MuiInput: {
+        styleOverrides: {
+          root: {
+            "&::before": {
+              borderBottom: "2px solid var(--TextField-brandBorderColor)",
+            },
+            "&:hover:not(.Mui-disabled, .Mui-error):before": {
+              borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
+            },
+            "&.Mui-focused:after": {
+              borderBottom:
+                "2px solid var(--TextField-brandBorderFocusedColor)",
+            },
+          },
+        },
+      },
+    },
+  });
 
   if (toSPG) {
     return <Navigate to="/single-player-games" />;
@@ -439,33 +507,66 @@ const GamePageChallenge2 = () => {
               </Typography>
             </div>
             <section
-              style={{
-                display: "flex",
-                flexWrap: "nowrap",
-                flexGrow: 1,
-                width: "100%",
-                borderTop: "10px solid black",
-              }}
+              className="game2-bar"
+              style={
+                mode === "dark"
+                  ? {
+                      borderTop: "1vh solid white",
+                    }
+                  : {
+                      borderTop: "1vh solid black",
+                    }
+              }
             ></section>
             <Typography sx={{ fontSize: 100 }}>?</Typography>
-            <TextField
-              label="Enter Answer"
-              className="input"
-              id="outlined-number"
-              type="number"
-              value={answer}
-              onChange={fillAnswer}
-              sx={[
-                { width: 350 },
-                mode === "dark" ? { color: "#ffffff" } : { color: "#000000" },
-              ]}
-            />
+            {mode === "dark" ? (
+              <ThemeProvider theme={WhiteTheme}>
+                <TextField
+                  label="Enter Answer"
+                  className="input"
+                  id="outlined-number"
+                  type="number"
+                  value={answer}
+                  onChange={fillAnswer}
+                  sx={{
+                    width: 350,
+                    input: {
+                      color: "#ffffff",
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: {
+                      color: "#adadad",
+                    },
+                  }}
+                />
+              </ThemeProvider>
+            ) : (
+              <TextField
+                label="Enter Answer"
+                className="input"
+                id="outlined-number"
+                type="number"
+                value={answer}
+                onChange={fillAnswer}
+                sx={{ width: 350 }}
+              />
+            )}
             <Button
               variant="contained"
               color="black"
               size="large"
               sx={[
-                { mt: 5 },
+                {
+                  mt: 5,
+                  "&.Mui-disabled": {
+                    backgroundColor: "#d4d4d4",
+                    color: "#737373",
+                  },
+                  "&.MuiButtonBase-root:hover": {
+                    bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
+                  },
+                },
                 mode === "dark"
                   ? { backgroundColor: "#00ff9d", color: "#000000" }
                   : { backgroundColor: "#000000", color: "#00ff9d" },

@@ -551,7 +551,7 @@ const GamePage5 = () => {
                                 handleMenuItemClick(event, index)
                               }
                               sx={[
-                                { fontSize: 30 },
+                                { fontSize: 30, margin: 0 },
                                 mode === "dark"
                                   ? {
                                       backgroundColor: "#00ff9d",

@@ -273,7 +273,7 @@ const GamePageChallenge1 = () => {
               What is the number of fingers shown by the hand(s)? Press the
               correct button below.
             </Typography>
-            <img src={img} alt="Fruit Number" />
+            <img src={img} alt="Fruit Number" style={{ marginTop: 50, boxShadow: "inset 0 0 0 0", width: 750, height: 300 }} />
             <Box sx={{ mt: 15 }}>
               {numbers.map((item) => (
                 <Button

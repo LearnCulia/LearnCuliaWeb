@@ -118,6 +118,73 @@ const GamePageChallenge3 = () => {
 
   const { width, height } = useWindowSize();
 
+  const WhiteTheme = createTheme({
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            "--TextField-brandBorderColor": "#ffffff",
+            "--TextField-brandBorderHoverColor": "#ffffff",
+            "--TextField-brandBorderFocusedColor": "#ffffff",
+            "& label.Mui-focused": {
+              color: "var(--TextField-brandBorderFocusedColor)",
+            },
+          },
+        },
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          notchedOutline: {
+            borderColor: "var(--TextField-brandBorderColor)",
+            color: "#ffffff",
+          },
+          root: {
+            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: "var(--TextField-brandBorderHoverColor)",
+              color: "#ffffff",
+            },
+            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: "var(--TextField-brandBorderFocusedColor)",
+              color: "#ffffff",
+            },
+          },
+        },
+      },
+      MuiFilledInput: {
+        styleOverrides: {
+          root: {
+            "&::before, &::after": {
+              borderBottom: "2px solid var(--TextField-brandBorderColor)",
+            },
+            "&:hover:not(.Mui-disabled, .Mui-error):before": {
+              borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
+            },
+            "&.Mui-focused:after": {
+              borderBottom:
+                "2px solid var(--TextField-brandBorderFocusedColor)",
+            },
+          },
+        },
+      },
+      MuiInput: {
+        styleOverrides: {
+          root: {
+            "&::before": {
+              borderBottom: "2px solid var(--TextField-brandBorderColor)",
+            },
+            "&:hover:not(.Mui-disabled, .Mui-error):before": {
+              borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
+            },
+            "&.Mui-focused:after": {
+              borderBottom:
+                "2px solid var(--TextField-brandBorderFocusedColor)",
+            },
+          },
+        },
+      },
+    },
+  });
+
   if (toSPG) {
     return <Navigate to="/single-player-games" />;
   }
@@ -289,24 +356,55 @@ const GamePageChallenge3 = () => {
               <Typography sx={{ fontSize: 100 }}>
                 {num1} x {num2} = ?
               </Typography>
-              <TextField
-                label="Enter Answer"
-                className="input"
-                id="outlined-number"
-                type="number"
-                value={answer}
-                onChange={fillAnswer}
-                sx={[
-                  { width: 350, mt: 5 },
-                  mode === "dark" ? { color: "#ffffff" } : { color: "#000000" },
-                ]}
-              />
+              {mode === "dark" ? (
+                <ThemeProvider theme={WhiteTheme}>
+                  <TextField
+                    label="Enter Answer"
+                    className="input"
+                    id="outlined-number"
+                    type="number"
+                    value={answer}
+                    onChange={fillAnswer}
+                    sx={{
+                      width: 350,
+                      mt: 5,
+                      input: {
+                        color: "#ffffff",
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        color: "#adadad",
+                      },
+                    }}
+                  />
+                </ThemeProvider>
+              ) : (
+                <TextField
+                  label="Enter Answer"
+                  className="input"
+                  id="outlined-number"
+                  type="number"
+                  value={answer}
+                  onChange={fillAnswer}
+                  sx={{ width: 350, mt: 5 }}
+                />
+              )}
               <Button
                 variant="contained"
                 color="black"
                 size="large"
                 sx={[
-                  { mt: 10 },
+                  {
+                    mt: 10,
+                    "&.Mui-disabled": {
+                      backgroundColor: "#d4d4d4",
+                      color: "#737373",
+                    },
+                    "&.MuiButtonBase-root:hover": {
+                      bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
+                    },
+                  },
                   mode === "dark"
                     ? { backgroundColor: "#00ff9d", color: "#000000" }
                     : { backgroundColor: "#000000", color: "#00ff9d" },

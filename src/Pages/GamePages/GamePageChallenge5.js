@@ -596,7 +596,7 @@ const GamePageChallenge5 = () => {
                               handleMenuItemClick(event, index)
                             }
                             sx={[
-                              { fontSize: 20 },
+                              { fontSize: 20, height: "6vh" },
                               mode === "dark"
                                 ? {
                                     backgroundColor: "#00ff9d",

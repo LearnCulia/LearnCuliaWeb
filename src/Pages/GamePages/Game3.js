@@ -127,7 +127,12 @@ const Game3 = () => {
         </Typography>
         <Button
           sx={[
-            { mt: 5 },
+            {
+              mt: 5,
+              "&.MuiButtonBase-root:hover": {
+                bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
+              },
+            },
             mode === "dark"
               ? { backgroundColor: "#00ff9d", color: "#000000" }
               : { backgroundColor: "#000000", color: "#00ff9d" },

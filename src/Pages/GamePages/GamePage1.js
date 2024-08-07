@@ -236,7 +236,7 @@ const GamePage1 = () => {
               What is the number of fingers shown by the hand(s)? Press the
               correct button below.
             </Typography>
-            <img src={img} alt="Finger Number" />
+            <img src={img} alt="Finger Number" style={{ marginTop: 50, boxShadow: "inset 0 0 0 0" }} />
             <Box sx={{ mt: 15 }}>
               {numbers.map((item) => (
                 <Button
