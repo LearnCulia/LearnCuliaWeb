@@ -15,8 +15,6 @@ import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import { useGlobalState } from "../GlobalState";
 import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";

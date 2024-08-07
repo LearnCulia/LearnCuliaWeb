@@ -23,7 +23,6 @@ import Fade from "@mui/material/Fade";
 import IconButton from "@mui/material/IconButton";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 
 const theme = createTheme({
   palette: {

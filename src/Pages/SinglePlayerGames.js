@@ -503,16 +503,6 @@ const SinglePlayerGames = () => {
           ))}
         </Box>
       </div>
-      {/* <Box
-        sx={[
-          mode === "dark"
-            ? { backgroundColor: "#242430", color: "#ffffff" }
-            : { backgroundColor: "#ffffff", color: "#000000" },
-          { height: 455 },
-        ]}
-      >
-        {" "}
-      </Box> */}
       <Divider
         variant="fullWidth"
         flexItem

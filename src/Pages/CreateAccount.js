@@ -1,13 +1,11 @@
 import React from "react";
 import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/CreateAccount.css";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
-import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";

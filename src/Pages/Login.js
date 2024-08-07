@@ -1,14 +1,11 @@
 import React from "react";
 import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/App.css";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import {
   createTheme,
   ThemeProvider,
-  useTheme,
-  styled,
 } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
@@ -19,15 +16,8 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Alert from "@mui/material/Alert";
 import { auth } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/firebase.js";
 import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import DarkmodeIcon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/darkmodeicon.png";
-import LightmodeIcon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/lightmodeicon.png";
-
-// SET UP DARK MODE FOR CREATE ACCOUNT AND FORGOT PASSWORD PAGES!!! THEN WORK ON CONTENT AND IMAGES!!!! 👈👈👈 READ!!! 👋👋⬅️⬅️⬅️👈👈
 
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);

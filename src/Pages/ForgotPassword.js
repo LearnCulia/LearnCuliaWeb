@@ -7,14 +7,9 @@ import Typography from "@mui/material/Typography";
 import { Navigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
-import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import IconButton from "@mui/material/IconButton";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Modal from "@mui/material/Modal";
-import Alert from "@mui/material/Alert";
 import { auth } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/firebase.js";
 import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
 
