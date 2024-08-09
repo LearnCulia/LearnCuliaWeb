@@ -109,7 +109,7 @@ const SinglePlayerGames = () => {
   const gamesRow1 = [
     {
       name: "Counting",
-      description: "Start with the basics",
+      description: "Start with the basics!",
       image: Game1Img,
       style: {
         width: 350,
@@ -119,14 +119,14 @@ const SinglePlayerGames = () => {
         marginBottom: 90,
       },
       modal: modalGame1,
-      modalDesc: "Counting is for awesome people",
+      modalDesc: "Learn how to count with fingers, and apply those skills to count everyday objects!",
       openModal: () => openModalGame1(true),
       closeModal: () => openModalGame1(false),
       startGame: () => setToGame1(true),
     },
     {
       name: "Addition & Subtraction",
-      description: "Let's start doing some math!",
+      description: "Elementary math!",
       image: Game2Img,
       style: {
         width: 350,
@@ -136,14 +136,14 @@ const SinglePlayerGames = () => {
         marginBottom: 90,
       },
       modal: modalGame2,
-      modalDesc: "Additional & Subtraction is for awesomer people",
+      modalDesc: "Learn how to add and subtract numbers one and two digit numbers using a special tick marks tool!",
       openModal: () => openModalGame2(true),
       closeModal: () => openModalGame2(false),
       startGame: () => setToGame2(true),
     },
     {
       name: "Multiplication",
-      description: "Getting more complex, but you got this!",
+      description: "Multiplication with the Multiplication table!",
       image: Game3Img,
       style: {
         width: 350,
@@ -153,7 +153,7 @@ const SinglePlayerGames = () => {
         marginBottom: 90,
       },
       modal: modalGame3,
-      modalDesc: "Multiplication is for awesomest people",
+      modalDesc: "Learn how to multiply two numbers with the multiplication table, and without the multiplication table in the challenge!",
       openModal: () => openModalGame3(true),
       closeModal: () => openModalGame3(false),
       startGame: () => setToGame3(true),
@@ -163,7 +163,7 @@ const SinglePlayerGames = () => {
   const gamesRow2 = [
     {
       name: "Reversing Math Equations",
-      description: "Switching it up",
+      description: "Reverse addition and subtraction equations!",
       image: Game4Img,
       style: {
         width: 370,
@@ -173,14 +173,14 @@ const SinglePlayerGames = () => {
         marginBottom: 90,
       },
       modal: modalGame4,
-      modalDesc: "Reversing Math Equations is for awesomest people",
+      modalDesc: "Learn how to reverse math equations, and reverse them back given the reversed equations in the challenge!",
       openModal: () => openModalGame4(true),
       closeModal: () => openModalGame4(false),
       startGame: () => setToGame4(true),
     },
     {
       name: "Comparisons",
-      description: "Some thinking with this one",
+      description: "Compare two numbers with comparison symbols!",
       image: Game5Img,
       style: {
         width: 370,
@@ -190,14 +190,14 @@ const SinglePlayerGames = () => {
         marginBottom: 90,
       },
       modal: modalGame5,
-      modalDesc: "Comparisons is for awesomest people",
+      modalDesc: "Learn how to compare any two numbers with various comparison symbols learned throughout the game!",
       openModal: () => openModalGame5(true),
       closeModal: () => openModalGame5(false),
       startGame: () => setToGame5(true),
     },
     {
       name: "Arranging Numbers",
-      description: "Ooh a little fun here",
+      description: "Arrange large numbers and decimals!",
       image: Game6Img,
       style: {
         width: 370,
@@ -207,7 +207,7 @@ const SinglePlayerGames = () => {
         marginBottom: 90,
       },
       modal: modalGame6,
-      modalDesc: "Arranging Numbers is for awesomest people",
+      modalDesc: "Learn how to arrange 5 large numbers or decimals given a mixed list!",
       openModal: () => openModalGame6(true),
       closeModal: () => openModalGame6(false),
       startGame: () => setToGame6(true),
@@ -343,7 +343,7 @@ const SinglePlayerGames = () => {
                         top: "50%",
                         left: "50%",
                         transform: "translate(-50%, -50%)",
-                        height: 200,
+                        height: 270,
                         width: 400,
                         border: "2px solid #000",
                         borderRadius: 4,
@@ -357,8 +357,8 @@ const SinglePlayerGames = () => {
                   >
                     <Typography
                       id="modal-modal-title"
-                      variant="h6"
-                      component="h2"
+                      variant="h5"
+                      sx={{ fontWeight: "bold" }}
                     >
                       {item.name}
                     </Typography>
@@ -366,12 +366,13 @@ const SinglePlayerGames = () => {
                       id="modal-modal-title"
                       variant="h6"
                       component="h2"
+                      sx={{ mt: 2 }}
                     >
                       Game Information:
                     </Typography>
                     <Typography
                       id="modal-modal-description"
-                      sx={{ mt: 2, mb: 2 }}
+                      sx={{ mb: 6, textAlign: "center" }}
                     >
                       {item.modalDesc}
                     </Typography>
@@ -454,7 +455,7 @@ const SinglePlayerGames = () => {
                         top: "50%",
                         left: "50%",
                         transform: "translate(-50%, -50%)",
-                        height: 200,
+                        height: 270,
                         width: 400,
                         border: "2px solid #000",
                         borderRadius: 4,
@@ -468,21 +469,21 @@ const SinglePlayerGames = () => {
                   >
                     <Typography
                       id="modal-modal-title"
-                      variant="h6"
-                      component="h2"
+                      variant="h5"
+                      sx={{ fontWeight: "bold" }}
                     >
                       {item.name}
                     </Typography>
                     <Typography
                       id="modal-modal-title"
                       variant="h6"
-                      component="h2"
+                      sx={{ mt: 2 }}
                     >
                       Game Information:
                     </Typography>
                     <Typography
                       id="modal-modal-description"
-                      sx={{ mt: 2, mb: 2 }}
+                      sx={{ mb: 6, textAlign: "center" }}
                     >
                       {item.modalDesc}
                     </Typography>
