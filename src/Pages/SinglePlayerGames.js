@@ -1,5 +1,5 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/SinglePlayerGames.css";
+import "../CSSFiles/SinglePlayerGames.css";
 import ChatBot from "./ChatBot";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
@@ -7,10 +7,10 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
+import logo from "../images/LearnCuliaIcon.png";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
+import icon from "../images/learnculiaiconlogo.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useGlobalState } from "../GlobalState";
 import Divider from "@mui/material/Divider";
@@ -18,12 +18,12 @@ import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import Game1Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game1PicSPG.jpg";
-import Game2Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game2PicSPG.png";
-import Game3Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game3PicSPG.jpg";
-import Game4Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game4PicSPG.jpg";
-import Game5Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game5PicSPG.jpg";
-import Game6Img from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/game6PicSPG.jpg";
+import Game1Img from "../images/game1PicSPG.jpg";
+import Game2Img from "../images/game2PicSPG.png";
+import Game3Img from "../images/game3PicSPG.jpg";
+import Game4Img from "../images/game4PicSPG.jpg";
+import Game5Img from "../images/game5PicSPG.jpg";
+import Game6Img from "../images/game6PicSPG.jpg";
 
 const theme = createTheme({
   palette: {

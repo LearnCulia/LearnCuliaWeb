@@ -1,5 +1,5 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/Game5.css";
+import "../../CSSFiles/Game5.css";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -14,7 +14,7 @@ import MenuList from "@mui/material/MenuList";
 import Modal from "@mui/material/Modal";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
+import { useGlobalState } from "../../GlobalState.js";
 
 const theme = createTheme({
   palette: {

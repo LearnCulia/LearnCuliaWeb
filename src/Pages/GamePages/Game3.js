@@ -1,11 +1,11 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/Game3.css";
+import "../../CSSFiles/Game3.css";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
+import { useGlobalState } from "../../GlobalState.js";
 
 const theme = createTheme({
   palette: {
@@ -49,14 +49,6 @@ const Game3 = () => {
   if (toGamePage3) {
     return <Navigate to="/gamepage3" />;
   }
-
-  const navItems = [
-    "Home",
-    "Info",
-    "Single Player Games",
-    "Contact",
-    "Profile",
-  ];
 
   return (
     <ThemeProvider theme={theme}>

@@ -1,5 +1,5 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/ChatBot.css";
+import "../CSSFiles/ChatBot.css";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 
 const ChatBot = () => {

@@ -1,11 +1,11 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/Game6.css";
+import "../../CSSFiles/Game6.css";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
+import { useGlobalState } from "../../GlobalState.js";
 
 const theme = createTheme({
   palette: {

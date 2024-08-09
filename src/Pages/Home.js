@@ -1,5 +1,5 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/App.css";
+import "../App.css";
 import ChatBot from "./ChatBot";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
@@ -7,14 +7,14 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
-import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
-import homei2 from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/homei2.jpeg";
-import homei3 from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/homei2.jpg";
-import contactPic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/contactPic.png";
+import logo from "../images/LearnCuliaIcon.png";
+import icon from "../images/learnculialogo.jpg";
+import homei2 from "../images/homei2.jpeg";
+import homei3 from "../images/homei2.jpg";
+import contactPic from "../images/contactPic.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useGlobalState } from "../GlobalState";
-import home1 from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/stem-t4l--PnSpCHYKsw-unsplash.jpg";
+import home1 from "../images/home1.jpg";
 import Divider from "@mui/material/Divider";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Fab from "@mui/material/Fab";
@@ -38,31 +38,6 @@ const theme = createTheme({
     },
   },
 });
-
-// function ChatbotBubble(props) {
-//   const { children } = props;
-//   const [clicked, setClicked] = React.useState(false);
-
-//   if (clicked) {
-//     return (
-//       <iframe
-//         src="https://www.chatbase.co/chatbot-iframe/Drmst_AXfeMAJszhQxAU1"
-//         style={{ height: "20%", width: "30%", zIndex: 1 }}
-//         frameborder="1"
-//       ></iframe>
-//     );
-//   }
-
-//   return (
-//     <Box
-//       onClick={() => setClicked(true)}
-//       role="presentation"
-//       sx={{ position: "fixed", bottom: 16, left: 16, width: 50, height: 50  }}
-//     >
-//       {children}
-//     </Box>
-//   );
-// }
 
 function ScrollTop(props) {
   const { children, window } = props;

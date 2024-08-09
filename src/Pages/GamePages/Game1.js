@@ -1,23 +1,23 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/Game1.css";
+import "../../CSSFiles/Game1.css";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Carousel from "react-material-ui-carousel";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
+import { useGlobalState } from "../../GlobalState.js";
 
-import FingerOne from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerOneSlide.png";
-import FingerTwo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerTwoSlide.png";
-import FingerThree from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerThreeSlide.png";
-import FingerFour from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerFourSlide.png";
-import FingerFive from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerFiveSlide.png";
-import FingerSix from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerSixSlide.png";
-import FingerSeven from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerSevenSlide.png";
-import FingerEight from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerEightSlide.png";
-import FingerNine from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerNineSlide.png";
-import FingerTen from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/FingerTenSlide.png";
+import FingerOne from "../../images/FingerOneSlide.png";
+import FingerTwo from "../../images/FingerTwoSlide.png";
+import FingerThree from "../../images/FingerThreeSlide.png";
+import FingerFour from "../../images/FingerFourSlide.png";
+import FingerFive from "../../images/FingerFiveSlide.png";
+import FingerSix from "../../images/FingerSixSlide.png";
+import FingerSeven from "../../images/FingerSevenSlide.png";
+import FingerEight from "../../images/FingerEightSlide.png";
+import FingerNine from "../../images/FingerNineSlide.png";
+import FingerTen from "../../images/FingerTenSlide.png";
 
 const theme = createTheme({
   palette: {
@@ -66,14 +66,6 @@ const Game1 = () => {
   if (toGamePage1) {
     return <Navigate to="/gamepage1" />;
   }
-
-  const navItems = [
-    "Home",
-    "Info",
-    "Single Player Games",
-    "Contact",
-    "Profile",
-  ];
 
   const slideItems = [
     <img src={FingerOne} alt="FingerOne" />,

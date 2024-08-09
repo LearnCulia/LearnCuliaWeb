@@ -1,5 +1,5 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/App.css";
+import "./App.css";
 import Login from "./Pages/Login";
 import CreateAccount from "./Pages/CreateAccount";
 import ForgotPassword from "./Pages/ForgotPassword";
@@ -28,7 +28,7 @@ import GamePageChallenge3 from "./Pages/GamePages/GamePageChallenge3";
 import GamePageChallenge4 from "./Pages/GamePages/GamePageChallenge4";
 import GamePageChallenge5 from "./Pages/GamePages/GamePageChallenge5";
 import GamePageChallenge6 from "./Pages/GamePages/GamePageChallenge6";
-import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
   return (

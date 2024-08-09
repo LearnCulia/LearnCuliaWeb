@@ -1,5 +1,5 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/CreateAccount.css";
+import "../CSSFiles/CreateAccount.css";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -15,10 +15,10 @@ import Checkbox from "@mui/material/Checkbox";
 import {
   auth,
   db,
-} from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/firebase.js";
-import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
+} from "../firebase.js";
+import { useGlobalState } from "../GlobalState.js";
 
-import RegisterPic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/registerPic.png";
+import RegisterPic from "../images/registerPic.png";
 
 const TextFieldTheme = createTheme({
   components: {

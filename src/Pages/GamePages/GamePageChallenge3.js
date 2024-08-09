@@ -1,5 +1,5 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/Game3.css";
+import "../../CSSFiles/Game3.css";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -8,11 +8,11 @@ import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
+import { useGlobalState } from "../../GlobalState.js";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
 
-import MultiplicationTable from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/MultiplicationTable.jpg";
+import MultiplicationTable from "../../images/MultiplicationTable.jpg";
 
 const theme = createTheme({
   palette: {

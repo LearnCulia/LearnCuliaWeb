@@ -1,27 +1,27 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/Game1.css";
+import "../../CSSFiles/Game1.css";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useGlobalState } from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/GlobalState.js";
+import { useGlobalState } from "../../GlobalState.js";
 
-import FingerOne from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/fingerOne.png";
-import FingerTwo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/fingerTwo.png";
-import FingerThree from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/fingerThree.png";
-import FingerFour from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/fingerFour.png";
-import FingerFive from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/fingerFive.png";
-import FingerSix from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/fingerSix.png";
-import FingerSeven from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/fingerSeven.png";
-import FingerEight from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/fingerEight.png";
-import FingerNine from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/fingerNine.png";
-import FingerTen from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/fingerTen.png";
+import FingerOne from "../../images/fingerOne.png";
+import FingerTwo from "../../images/fingerTwo.png";
+import FingerThree from "../../images/fingerThree.png";
+import FingerFour from "../../images/fingerFour.png";
+import FingerFive from "../../images/fingerFive.png";
+import FingerSix from "../../images/fingerSix.png";
+import FingerSeven from "../../images/fingerSeven.png";
+import FingerEight from "../../images/fingerEight.png";
+import FingerNine from "../../images/fingerNine.png";
+import FingerTen from "../../images/fingerTen.png";
 
-import AppleIcon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/appleicon.png";
-import OrangeIcon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/orangeicon.png";
-import BananaIcon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/bananaicon.png";
+import AppleIcon from "../../images/appleicon.png";
+import OrangeIcon from "../../images/orangeicon.png";
+import BananaIcon from "../../images/bananaicon.png";
 
 const theme = createTheme({
   palette: {

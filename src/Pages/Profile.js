@@ -1,5 +1,5 @@
 import React from "react";
-import "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/CSSFiles/Profile.css";
+import "../CSSFiles/Profile.css";
 import ChatBot from "./ChatBot";
 import Button from "@mui/material/Button";
 import ToggleButton from "@mui/material/ToggleButton";
@@ -15,7 +15,7 @@ import Snackbar from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import logo from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/LearnCuliaIcon.png";
+import logo from "../images/LearnCuliaIcon.png";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { styled } from "@mui/material/styles";
@@ -23,22 +23,22 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   auth,
   db,
-} from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/firebase.js";
+} from "../firebase.js";
 import Divider from "@mui/material/Divider";
 import { useGlobalState } from "../GlobalState";
 
-import icon from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/learnculiaiconlogo.jpg";
-import ProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/profilePic.png";
+import icon from "../images/learnculiaiconlogo.jpg";
+import ProfilePic from "../images/profilePic.png";
 
-import maleProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/maleProfPic.png";
-import malePHProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/malePHProfPic.png";
-import maleGlassesProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/maleGlassesProfilePic.png";
-import maleGPHProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/maleGPHProfilePic.png";
+import maleProfilePic from "../images/maleProfPic.png";
+import malePHProfilePic from "../images/malePHProfPic.png";
+import maleGlassesProfilePic from "../images/maleGlassesProfilePic.png";
+import maleGPHProfilePic from "../images/maleGPHProfilePic.png";
 
-import femaleProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/femaleProfilePic.png";
-import femalePHProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/femalePHProfilePic.png";
-import femaleGlassesProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/femaleGlassesProfilePic.png";
-import femaleGPHProfilePic from "/Users/sathvikm/LearnCuliaProject/DyscalculiaWeb/learnculia-web/src/images/femaleGPHProfilePic.png";
+import femaleProfilePic from "../images/femaleProfilePic.png";
+import femalePHProfilePic from "../images/femalePHProfilePic.png";
+import femaleGlassesProfilePic from "../images/femaleGlassesProfilePic.png";
+import femaleGPHProfilePic from "../images/femaleGPHProfilePic.png";
 
 const theme = createTheme({
   palette: {
