@@ -12,10 +12,8 @@ import IconButton from "@mui/material/IconButton";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Checkbox from "@mui/material/Checkbox";
-import {
-  auth,
-  db,
-} from "../firebase.js";
+import Link from "@mui/material/Link";
+import { auth, db } from "../firebase.js";
 import { useGlobalState } from "../GlobalState.js";
 
 import RegisterPic from "../images/registerPic.png";
@@ -165,15 +163,14 @@ const theme = createTheme({
 
 const CreateAccount = () => {
   const [showPassword, setShowPassword] = React.useState(false);
-  const [guestAgree, setGuestAgree] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [termsCO, setTermsCO] = React.useState(false);
+  const [openTermsCO, setOpenTermsCo] = React.useState(false);
   const [registered, isRegistered] = useGlobalState("registered");
   const [userId, setUserId] = useGlobalState("userId");
 
   const [toHome, setToHome] = React.useState(false);
-  const [toCreateAccount, setToCreateAccount] = React.useState(false);
   const [toLogin, setToLogin] = React.useState(false);
   const [mode, setMode] = useGlobalState("darkMode");
 
@@ -185,6 +182,10 @@ const CreateAccount = () => {
 
   if (toLogin) {
     return <Navigate to="/" />;
+  }
+
+  if (!openTermsCO) {
+    setOpenTermsCo(!openTermsCO);
   }
 
   const fillAnswerEmail = (e) => {
@@ -379,21 +380,30 @@ const CreateAccount = () => {
                     : {}
                 }
               />
-              <Typography
-                sx={[
-                  { mt: 1.1 },
-                  mode === "dark"
-                    ? {
-                        color: "#ffffff",
-                      }
-                    : {
-                        color: "#000000",
-                      },
-                ]}
-              >
-                By registering, you confirm that you accept our Terms &
-                Conditions
-              </Typography>
+              <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
+                {" "}
+                <Typography
+                  sx={[
+                    { mt: 1.1 },
+                    mode === "dark"
+                      ? {
+                          color: "#ffffff",
+                        }
+                      : {
+                          color: "#000000",
+                        },
+                  ]}
+                >
+                  By registering, you confirm that you accept our
+                </Typography>
+                <Link
+                  href="https://app.websitepolicies.com/policies/view/3l7zc390"
+                  color="seaGreen.dark"
+                  sx={{ fontSize: "1.8vh", textAlign: "center", mt: 1.2, ml: 0.5 }}
+                >
+                  Terms & Conditions
+                </Link>
+              </div>
             </div>
             <Button
               disabled={!email || !password || !termsCO}

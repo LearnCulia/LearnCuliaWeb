@@ -45,11 +45,8 @@ const GamePageChallenge5 = () => {
   const [num1, setNum1] = React.useState(1);
   const [num2, setNum2] = React.useState(1);
   const [compSign, setCompSign] = React.useState("");
-  const [answer, setAnswer] = React.useState("");
   const [ready, setReady] = React.useState(true);
-  const [problemSign, setProblemSign] = React.useState("");
   const [count, setCount] = React.useState(0);
-  const [helpCount, setHelpCount] = React.useState(1);
   const [answerCorrect, isAnswerCorrect] = React.useState(false);
   const [finishModal, setFinishModal] = React.useState(false);
   const [tickMarkModal, setTickMarkModal] = React.useState(false);

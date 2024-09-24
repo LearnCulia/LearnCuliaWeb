@@ -96,9 +96,7 @@ const GamePage6 = () => {
   const [numbers, setNumbers] = React.useState("");
   const [answer, setAnswer] = React.useState("");
   const [ready, setReady] = React.useState(true);
-  const [problemSign, setProblemSign] = React.useState("");
   const [count, setCount] = React.useState(0);
-  const [helpCount, setHelpCount] = React.useState(1);
   const [answerCorrect, isAnswerCorrect] = React.useState(false);
   const [challengeModal, setChallengeModal] = React.useState(false);
   const [buttonClicked, isButtonClicked] = React.useState(false);
