@@ -1,5 +1,5 @@
 import React from "react";
-import "../CSSFiles/Info.css";
+import "../CSSFiles/MobileApp.css";
 import ChatBot from "./ChatBot";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Navigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import logo from "../images/LearnCuliaIcon.png";
 import icon from "../images/learnculiaiconlogo.jpg";
 import IconButton from "@mui/material/IconButton";
@@ -18,12 +19,14 @@ import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
 import { useGlobalState } from "../GlobalState";
 
+import MobileAppSS from "../images/MobileApp.jpg";
+
 const theme = createTheme({
   palette: {
     seaGreen: {
       main: "#6bffc6",
       light: "#6bffc6",
-      dark: "#008552",
+      dark: "#0fd98b",
       contrastText: "#0d3023",
     },
     black: {
@@ -33,16 +36,20 @@ const theme = createTheme({
   },
 });
 
-const Info = () => {
+const MobileApp = () => {
   const [toHome, setToHome] = React.useState(false);
+  const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
-  const [toMobileApp, setToMobileApp] = React.useState(false);
   const [mode, setMode] = useGlobalState("darkMode");
 
   if (toHome) {
     return <Navigate to="/home" />;
+  }
+
+  if (toInfo) {
+    return <Navigate to="/info" />;
   }
 
   if (toSPG) {
@@ -57,10 +64,6 @@ const Info = () => {
     return <Navigate to="/profile" />;
   }
 
-  if (toMobileApp) {
-    return <Navigate to="/mobile-app" />;
-  }
-
   const navItems = [
     "Home",
     "Info",
@@ -73,7 +76,7 @@ const Info = () => {
   return (
     <ThemeProvider theme={theme}>
       <div
-        className="info-page"
+        className="mobileapp-page"
         style={
           mode === "dark"
             ? { backgroundColor: "#242430", color: "#ffffff" }
@@ -102,14 +105,14 @@ const Info = () => {
                   onClick={() => {
                     if (item === "Home") {
                       setToHome(true);
+                    } else if (item === "Info") {
+                      setToInfo(true);
                     } else if (item === "Single Player Games") {
                       setToSPG(true);
                     } else if (item === "Contact") {
                       setToContact(true);
                     } else if (item === "Profile") {
                       setToProfile(true);
-                    } else if (item === "Mobile App") {
-                      setToMobileApp(true);
                     }
                   }}
                 >
@@ -130,96 +133,63 @@ const Info = () => {
             </Box>
           </Toolbar>
         </AppBar>
-        <h1 style={{ marginTop: 140 }}>Learn All About LearnCulia!</h1>
-        <Card
-          sx={[
-            {
-              mt: 5,
-              height: "140vh",
-              width: 900,
-              textAlign: "center",
-            },
-            mode === "dark"
-              ? {
-                  backgroundColor: "#242430",
-                  color: "#ffffff",
-                  border: "2px solid white",
-                }
-              : {
-                  backgroundColor: "#ffffff",
-                  color: "#000000",
-                  border: "2px solid black",
-                },
-          ]}
+        <Typography
+          style={{
+            marginTop: "15vh",
+            marginBottom: "10vh",
+            fontSize: "2vw",
+            fontWeight: "bold",
+          }}
         >
-          <CardContent>
-            <Typography sx={{ fontSize: 25, mt: 2, fontWeight: "bold" }} color="black">
-              About LearnCulia
+          The LearnCulia Mobile Application!
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            width: "85%",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={MobileAppSS}
+            style={{
+              marginTop: "5vh",
+              borderRadius: 16,
+              width: "70vh",
+              height: "70vh",
+            }}
+          />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              width: "30vw",
+              marginLeft: "10vw",
+            }}
+          >
+            <Typography
+              sx={{
+                fontSize: "2.5vh",
+                fontWeight: "bold",
+                marginBottom: "5vh",
+                textAlign: "center",
+              }}
+            >
+              Download our mobile application today to have the games right in
+              your hands (iOS Only):
             </Typography>
-            <Typography sx={{ fontSize: "1vw", mt: 1 }} component="div">
-              Welcome to LearnCulia™ – an exciting app designed to empower young
-              kids who struggle with dyscalculia on their journey to conquer
-              math challenges with confidence and joy. Through a collection of
-              interactive games, tutorials, and challenge puzzles, LearnCulia™
-              turns learning into an exciting adventure. Unlike traditional
-              learning environments, this app provides small tutorial videos
-              before each game to not just learn how to play the game, but also
-              learn the mathematical concept. To enjoy this app even more, you
-              can create an account to have your own custom profile picture!
-            </Typography>
-
-            <Typography sx={{ fontSize: 25, mt: 6, fontWeight: "bold" }} color="black">
-              Purpose
-            </Typography>
-            <Typography sx={{ fontSize: "1vw", mt: 1 }} component="div">
-              I want to make sure that every single student, who struggles to
-              achieve success because of dyscalculia, will earn an opportunity
-              in LearnCulia™ to sharpen mathematical skills for their benefit. I
-              want to make sure that everyone can work on what they want to work
-              on, with helpful and short tutorial videos to stay successful. I
-              also strive to make this app even better, so if you have any
-              advice or ideas, please contact me!
-            </Typography>
-
-            <Typography sx={{ fontSize: 25, mt: 6, fontWeight: "bold" }} color="black">
-              Single Player Games
-            </Typography>
-            <Typography sx={{ fontSize: "1vw", mt: 1 }} component="div">
-              Currently, there are six fun and exciting challenge games with
-              different levels of difficulty. There is no need to go through all
-              the games in order, or complete every single game. If you find
-              yourself struggling with a mathematical concept, simply click the
-              respective game, and start the challenge! Every single player game
-              has an information/tutorial page and two different game pages: the
-              normal level and the challenge. You first start on the information
-              page where you can watch the necessary tutorial videos for the
-              game. After you correctly answer 10 problems, you may move on to
-              the challenge problems. If you correctly answer 10 challenge
-              problems, you have completed the game. If you feel stuck anywhere,
-              there will be comforting messages and extra guidance to keep up
-              that positive attitude! You may also complete the game however
-              many times you would like. In the future, there will be
-              multiplayer games, and way more single player games based on
-              difficulty and age level!
-            </Typography>
-
-            <Typography sx={{ fontSize: 25, mt: 6, fontWeight: "bold" }} color="black">
-              About the Developer
-            </Typography>
-            <Typography sx={{ fontSize: "1vw", mt: 1 }} component="div">
-              Hey there! I am a high school student residing in California. App
-              and web development is one of my passions, and I love to spend my
-              free time working on some small app projects for fun. However, my
-              biggest passion is my community. I wanted to build LearnCulia
-              because there aren’t many great tools out there that really
-              support and encourage young students who struggle with dyscalculia
-              to solve math problems with the development of necessary skills.
-              In this app, I want to make sure that everyone gets an opportunity
-              to access a fun environment to hone their skills. You are welcome
-              to contact me below if you have any questions!
-            </Typography>
-          </CardContent>
-        </Card>
+            <Link
+              href="https://apps.apple.com/us/app/learnculia/id6467522608"
+              color="seaGreen.dark"
+              sx={{ fontSize: "2.5vh", textAlign: "center" }}
+            >
+              View and Download on App Store.
+            </Link>
+          </Box>
+        </Box>
         <Divider
           variant="fullWidth"
           flexItem
@@ -259,6 +229,14 @@ const Info = () => {
               sx={[
                 mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
               ]}
+              onClick={() => setToInfo(true)}
+            >
+              Info
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
               onClick={() => setToSPG(true)}
             >
               Single Player Games
@@ -279,14 +257,6 @@ const Info = () => {
             >
               Profile
             </Button>
-            <Button
-              sx={[
-                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
-              ]}
-              onClick={() => setToMobileApp(true)}
-            >
-              Mobile App
-            </Button>
           </Box>
           <p>© 2024 LearnCulia. All rights reserved.</p>
         </Box>
@@ -296,4 +266,4 @@ const Info = () => {
   );
 };
 
-export default Info;
+export default MobileApp;

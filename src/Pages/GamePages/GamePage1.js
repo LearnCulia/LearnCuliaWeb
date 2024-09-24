@@ -201,7 +201,7 @@ const GamePage1 = () => {
         >
           Quit Game
         </Button>
-        <h1>Let's apply the skills we learned for the following problems!</h1>
+        <h1 style={{ marginTop: 200 }}>Let's apply the skills we learned for the following problems!</h1>
         {ready ? (
           <div style={{ justifyContent: "center", alignItems: "center" }}>
             <Button
@@ -239,7 +239,7 @@ const GamePage1 = () => {
                   color="black"
                   size="large"
                   sx={[
-                    { mr: 5, fontSize: 22 },
+                    { mr: 5, mb: 5, fontSize: 22 },
                     mode === "dark"
                       ? { backgroundColor: "#00ff9d", color: "#000000" }
                       : { backgroundColor: "#000000", color: "#00ff9d" },

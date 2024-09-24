@@ -71,11 +71,11 @@ function ScrollTop(props) {
 
 export default function Home(props) {
   const [toLogin, setToLogin] = React.useState(false);
-  const [toHome, setToHome] = React.useState(false);
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
+  const [toMobileApp, setToMobileApp] = React.useState(false);
 
   const [mode, setMode] = useGlobalState("darkMode");
   const [registered, isRegistered] = useGlobalState("registered");
@@ -86,14 +86,11 @@ export default function Home(props) {
     "Single Player Games",
     "Contact",
     "Profile",
+    "Mobile App"
   ];
 
   if (toLogin) {
     return <Navigate to="/" />;
-  }
-
-  if (toHome) {
-    return <Navigate to="/home" />;
   }
 
   if (toInfo) {
@@ -110,6 +107,10 @@ export default function Home(props) {
 
   if (toProfile) {
     return <Navigate to="/profile" />;
+  }
+  
+  if (toMobileApp) {
+    return <Navigate to="/mobile-app" />;
   }
 
   return (
@@ -135,9 +136,7 @@ export default function Home(props) {
                   key={item}
                   sx={{ color: "#000" }}
                   onClick={() => {
-                    if (item === "Home") {
-                      setToHome(true);
-                    } else if (item === "Info") {
+                    if (item === "Info") {
                       setToInfo(true);
                     } else if (item === "Single Player Games") {
                       setToSPG(true);
@@ -145,6 +144,8 @@ export default function Home(props) {
                       setToContact(true);
                     } else if (item === "Profile") {
                       setToProfile(true);
+                    } else if (item === "Mobile App") {
+                      setToMobileApp(true);
                     }
                   }}
                 >
@@ -232,10 +233,11 @@ export default function Home(props) {
           <Box className="box3">
             <h1
               style={{
-                fontSize: 50,
+                fontSize: "3vw",
                 marginTop: 10,
                 display: "flex",
                 flexDirection: "row",
+                textAlign: "center"
               }}
             >
               About LearnCulia
@@ -243,7 +245,7 @@ export default function Home(props) {
             <Typography
               style={{
                 marginLeft: -30,
-                fontSize: 20,
+                fontSize: "1vw",
                 textAlign: "center",
                 marginTop: 20,
                 marginBottom: 20,
@@ -265,6 +267,7 @@ export default function Home(props) {
               sx={[
                 {
                   mt: 5,
+                  fontSize: "0.8vw",
                   "&.MuiButtonBase-root:hover": {
                     bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
                   },
@@ -290,9 +293,9 @@ export default function Home(props) {
           <Box className="box4">
             <h1
               style={{
-                fontSize: 50,
+                fontSize: "3vw",
                 marginTop: -30,
-                textAlign: "center",
+                textAlign: "center"
               }}
             >
               Single Player Games
@@ -300,7 +303,7 @@ export default function Home(props) {
             <Typography
               style={{
                 marginLeft: -30,
-                fontSize: 20,
+                fontSize: "1vw",
                 textAlign: "center",
                 marginTop: 20,
               }}
@@ -320,7 +323,7 @@ export default function Home(props) {
               variant="contained"
               color="black"
               size="large"
-              style={{ marginTop: 50 }}
+              style={{ marginTop: 50, fontSize: "0.8vw" }}
               onClick={() => setToSPG(true)}
             >
               Single Player Games
@@ -338,7 +341,7 @@ export default function Home(props) {
         >
           <h1
             style={{
-              fontSize: 50,
+              fontSize: "2.5vw",
               textAlign: "center",
               marginLeft: 130
             }}
@@ -346,7 +349,7 @@ export default function Home(props) {
             Contact
           </h1>
           <Box className="box5">
-            <Typography style={{ marginLeft: 30, textAlign: "center", fontSize: 20 }}>
+            <Typography style={{ marginLeft: 30, textAlign: "center", fontSize: "1vw" }}>
               Any issues, concerns, or suggestions? Please contact me from the
               button below or in the navigation bar above!
             </Typography>
@@ -356,6 +359,7 @@ export default function Home(props) {
               sx={[
                 {
                   marginTop: 5,
+                  fontSize: "0.8vw",
                   "&.MuiButtonBase-root:hover": {
                     bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
                   },
@@ -420,6 +424,14 @@ export default function Home(props) {
               onClick={() => setToProfile(true)}
             >
               Profile
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToMobileApp(true)}
+            >
+              Mobile App
             </Button>
           </Box>
           <p>© 2024 LearnCulia. All rights reserved.</p>

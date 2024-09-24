@@ -43,9 +43,9 @@ const theme = createTheme({
 const SinglePlayerGames = () => {
   const [toHome, setToHome] = React.useState(false);
   const [toInfo, setToInfo] = React.useState(false);
-  const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
+  const [toMobileApp, setToMobileApp] = React.useState(false);
   const [mode, setMode] = useGlobalState("darkMode");
 
   const [modalGame1, openModalGame1] = React.useState(false);
@@ -70,16 +70,16 @@ const SinglePlayerGames = () => {
     return <Navigate to="/info" />;
   }
 
-  if (toSPG) {
-    return <Navigate to="/single-player-games" />;
-  }
-
   if (toContact) {
     return <Navigate to="/contact" />;
   }
 
   if (toProfile) {
     return <Navigate to="/profile" />;
+  }
+
+  if (toMobileApp) {
+    return <Navigate to="/mobile-app" />;
   }
 
   if (toGame1) {
@@ -112,8 +112,8 @@ const SinglePlayerGames = () => {
       description: "Start with the basics!",
       image: Game1Img,
       style: {
-        width: 350,
-        height: 230,
+        width: 320,
+        height: 200,
         marginTop: 30,
         borderRadius: 10,
         marginBottom: 90,
@@ -129,8 +129,8 @@ const SinglePlayerGames = () => {
       description: "Elementary math!",
       image: Game2Img,
       style: {
-        width: 350,
-        height: 230,
+        width: 320,
+        height: 200,
         marginTop: 30,
         borderRadius: 10,
         marginBottom: 90,
@@ -146,8 +146,8 @@ const SinglePlayerGames = () => {
       description: "Multiplication with the Multiplication table!",
       image: Game3Img,
       style: {
-        width: 350,
-        height: 230,
+        width: 320,
+        height: 200,
         marginTop: 30,
         borderRadius: 10,
         marginBottom: 90,
@@ -162,12 +162,12 @@ const SinglePlayerGames = () => {
 
   const gamesRow2 = [
     {
-      name: "Reversing Math Equations",
+      name: "Reversing Equations",
       description: "Reverse addition and subtraction equations!",
       image: Game4Img,
       style: {
-        width: 370,
-        height: 230,
+        width: 340,
+        height: 200,
         marginTop: 30,
         borderRadius: 10,
         marginBottom: 90,
@@ -183,8 +183,8 @@ const SinglePlayerGames = () => {
       description: "Compare two numbers with comparison symbols!",
       image: Game5Img,
       style: {
-        width: 370,
-        height: 230,
+        width: 340,
+        height: 200,
         marginTop: 30,
         borderRadius: 10,
         marginBottom: 90,
@@ -200,8 +200,8 @@ const SinglePlayerGames = () => {
       description: "Arrange large numbers and decimals!",
       image: Game6Img,
       style: {
-        width: 370,
-        height: 230,
+        width: 340,
+        height: 200,
         marginTop: 30,
         borderRadius: 10,
         marginBottom: 90,
@@ -220,6 +220,7 @@ const SinglePlayerGames = () => {
     "Single Player Games",
     "Contact",
     "Profile",
+    "Mobile App"
   ];
 
   return (
@@ -248,12 +249,12 @@ const SinglePlayerGames = () => {
                     setToHome(true);
                   } else if (item === "Info") {
                     setToInfo(true);
-                  } else if (item === "Single Player Games") {
-                    setToSPG(true);
                   } else if (item === "Contact") {
                     setToContact(true);
                   } else if (item === "Profile") {
                     setToProfile(true);
+                  } else if (item === "Mobile App") {
+                    setToMobileApp(true);
                   }
                 }}
               >
@@ -291,7 +292,7 @@ const SinglePlayerGames = () => {
                   marginRight: 15,
                   marginBottom: 15,
                   height: 500,
-                  width: 500,
+                  width: 380,
                   borderRadius: 8,
                 },
                 mode === "dark"
@@ -403,7 +404,7 @@ const SinglePlayerGames = () => {
                   marginRight: 15,
                   marginBottom: 15,
                   height: 500,
-                  width: 500,
+                  width: 380,
                   borderRadius: 8,
                 },
                 mode === "dark"
@@ -550,6 +551,14 @@ const SinglePlayerGames = () => {
           >
             Profile
           </Button>
+          <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToMobileApp(true)}
+            >
+              Mobile App
+            </Button>
         </Box>
         <p>© 2024 LearnCulia. All rights reserved.</p>
       </Box>

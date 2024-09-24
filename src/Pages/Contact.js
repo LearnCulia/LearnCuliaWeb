@@ -99,8 +99,9 @@ const Contact = () => {
   const [toHome, setToHome] = React.useState(false);
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
-  const [toContact, setToContact] = React.useState(false);
   const [toProfile, setToProfile] = React.useState(false);
+  const [toMobileApp, setToMobileApp] = React.useState(false);
+
   const [sentModal, setSentModal] = React.useState(false);
   const [mode, setMode] = useGlobalState("darkMode");
 
@@ -132,12 +133,12 @@ const Contact = () => {
     return <Navigate to="/single-player-games" />;
   }
 
-  if (toContact) {
-    return <Navigate to="/contact" />;
-  }
-
   if (toProfile) {
     return <Navigate to="/profile" />;
+  }
+
+  if (toMobileApp) {
+    return <Navigate to="/mobile-app" />;
   }
 
   const navItems = [
@@ -146,6 +147,7 @@ const Contact = () => {
     "Single Player Games",
     "Contact",
     "Profile",
+    "Mobile App",
   ];
 
   const sendMessage = async () => {
@@ -190,10 +192,10 @@ const Contact = () => {
                     setToInfo(true);
                   } else if (item === "Single Player Games") {
                     setToSPG(true);
-                  } else if (item === "Contact") {
-                    setToContact(true);
                   } else if (item === "Profile") {
                     setToProfile(true);
+                  } else if (item === "Mobile App") {
+                    setToMobileApp(true);
                   }
                 }}
               >
@@ -261,12 +263,12 @@ const Contact = () => {
           </Box>
         </Modal>
         <div className="contact-col1">
-          <h1 style={{ marginTop: 20, fontSize: 60 }}>Contact</h1>
-          <Typography sx={{ mt: 5 }} variant="h6">
+          <h1 style={{ marginTop: 20, fontSize: "3vw" }}>Contact</h1>
+          <Typography sx={{ mt: 5, fontSize: "1vw" }}>
             Any issues or suggestions? Please contact me to get the best out of
             this website and your education!
           </Typography>
-          <Typography sx={{ mt: 1 }} variant="h6">
+          <Typography sx={{ mt: 1, fontSize: "1vw" }}>
             Or contact
           </Typography>
           <Link
@@ -276,7 +278,7 @@ const Contact = () => {
           >
             learnculiaofficial@gmail.com.
           </Link>
-          <Typography sx={{ mt: 7 }} variant="h6">
+          <Typography sx={{ mt: 7, fontSize: "1vw" }}>
             We will try to respond to you within 5 business days. If we do not
             respond back to your message, please email us through the link
             above. Thanks!
@@ -287,7 +289,7 @@ const Contact = () => {
             component="form"
             sx={[
               {
-                "& .MuiTextField-root": { m: 2, width: "50vh" },
+                "& .MuiTextField-root": { mt: "2vh", mb: "1vh", width: "50vh" },
               },
               mode === "dark"
                 ? { backgroundColor: "#00ff9d" }
@@ -297,12 +299,11 @@ const Contact = () => {
             autoComplete="off"
             className="contact-form"
           >
-            <h1 style={{ color: "black" }}>Enter your Information Here</h1>
+            <Typography style={{ color: "black", fontWeight: "bold", fontSize: "1.5vw", mt: "1vh" }}>Enter your Information Here</Typography>
             <TextField
               required
               id="outlined-required"
               label="Name"
-              className="input"
               value={name}
               onChange={fillAnswerName}
             />
@@ -310,7 +311,6 @@ const Contact = () => {
               required
               id="outlined-required"
               label="Email"
-              className="input"
               value={email}
               onChange={fillAnswerEmail}
             />
@@ -381,6 +381,12 @@ const Contact = () => {
             onClick={() => setToProfile(true)}
           >
             Profile
+          </Button>
+          <Button
+            sx={[mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" }]}
+            onClick={() => setToMobileApp(true)}
+          >
+            Mobile App
           </Button>
         </Box>
         <p>© 2024 LearnCulia. All rights reserved.</p>

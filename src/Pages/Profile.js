@@ -20,10 +20,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { styled } from "@mui/material/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {
-  auth,
-  db,
-} from "../firebase.js";
+import { auth, db } from "../firebase.js";
 import Divider from "@mui/material/Divider";
 import { useGlobalState } from "../GlobalState";
 
@@ -61,7 +58,8 @@ const Profile = () => {
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
-  const [toProfile, setToProfile] = React.useState(false);
+  const [toMobileApp, setToMobileApp] = React.useState(false);
+
   const [alignment, setAlignment] = React.useState("male");
   const [openSave, setOpenSave] = React.useState(false);
 
@@ -116,8 +114,8 @@ const Profile = () => {
     return <Navigate to="/contact" />;
   }
 
-  if (toProfile) {
-    return <Navigate to="/profile" />;
+  if (toMobileApp) {
+    return <Navigate to="/mobile-app" />;
   }
 
   const navItems = [
@@ -126,6 +124,7 @@ const Profile = () => {
     "Single Player Games",
     "Contact",
     "Profile",
+    "Mobile App",
   ];
 
   const handleChange = (event, newAlignment) => {
@@ -236,8 +235,8 @@ const Profile = () => {
                         setToSPG(true);
                       } else if (item === "Contact") {
                         setToContact(true);
-                      } else if (item === "Profile") {
-                        setToProfile(true);
+                      } else if (item === "Mobile App") {
+                        setToMobileApp(true);
                       }
                     }}
                   >
@@ -678,9 +677,17 @@ const Profile = () => {
               sx={[
                 mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
               ]}
-              onClick={() => setToProfile(true)}
+              onClick={() => setToContact(true)}
             >
-              Profile
+              Contact
+            </Button>
+            <Button
+              sx={[
+                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
+              ]}
+              onClick={() => setToMobileApp(true)}
+            >
+              Mobile App
             </Button>
           </Box>
           <p>© 2024 LearnCulia. All rights reserved.</p>
