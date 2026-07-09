@@ -248,35 +248,71 @@ const SinglePlayerGames = () => {
                 </Button>
                 <Modal open={item.modal} onClose={item.closeModal}>
                   <Box
-                    sx={[
-                      {
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-evenly",
-                        alignItems: "center",
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: { xs: "90%", sm: 400 },
-                        border: "2px solid #000",
-                        borderRadius: 4,
-                        boxShadow: 24,
-                        p: 4,
-                        gap: 2,
-                      },
-                      mode === "dark"
-                        ? { backgroundColor: "#00ff9d" }
-                        : { backgroundColor: "#c3fae5" },
-                    ]}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      width: { xs: "95%", sm: 620 },
+                      borderRadius: 5,
+                      boxShadow: "0 8px 40px rgba(0,0,0,0.18)",
+                      overflow: "hidden",
+                    }}
                   >
-                    <Typography variant="h5" sx={{ fontWeight: "bold" }}>{item.name}</Typography>
-                    <Typography variant="h6">Game Information:</Typography>
-                    <Typography sx={{ textAlign: "center" }}>{item.modalDesc}</Typography>
-                    <Button variant="contained" color="black" size="large" onClick={item.startGame}>
-                      Start Game
-                    </Button>
-                    <Button onClick={item.closeModal}>Close</Button>
+                    <Box sx={{
+                      width: "100%",
+                      backgroundColor: "#6bffc6",
+                      py: 2.5,
+                      px: 3,
+                      textAlign: "center",
+                    }}>
+                      <Typography variant="h5" sx={{ fontWeight: "bold", color: "#000" }}>
+                        {item.name}
+                      </Typography>
+                    </Box>
+                    {/* Body */}
+                    <Box sx={{
+                      width: "100%",
+                      backgroundColor: mode === "dark" ? "#1e1e2a" : "#ffffff",
+                      px: 4,
+                      py: 2,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      gap: 1.5,
+                    }}>
+                      <Typography variant="overline" sx={{ fontWeight: "bold", letterSpacing: 1.5, color: mode === "dark" ? "#6bffc6" : "#008552" }}>
+                        About this game
+                      </Typography>
+                      <Typography sx={{ textAlign: "center", lineHeight: 1.7, color: mode === "dark" ? "#eee" : "#222", fontSize: "0.95rem" }}>
+                        {item.modalDesc}
+                      </Typography>
+                      <Button
+                        variant="contained"
+                        size="large"
+                        onClick={item.startGame}
+                        sx={{
+                          mt: 1,
+                          backgroundColor: "#000",
+                          color: "#6bffc6",
+                          fontWeight: "bold",
+                          borderRadius: 3,
+                          px: 5,
+                          "&:hover": { backgroundColor: "#222" },
+                        }}
+                      >
+                        Start Game
+                      </Button>
+                      <Button
+                        onClick={item.closeModal}
+                        sx={{ color: mode === "dark" ? "#aaa" : "#555", fontSize: "0.8rem" }}
+                      >
+                        Close
+                      </Button>
+                    </Box>
                   </Box>
                 </Modal>
               </CardContent>
