@@ -2,23 +2,9 @@ import React from "react";
 import "../CSSFiles/Info.css";
 import ChatBot from "./ChatBot";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Navigate } from "react-router-dom";
 import Footer from "./Footer";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
-import logo from "../images/LearnCuliaIcon.png";
-import IconButton from "@mui/material/IconButton";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+import NavBar from "./NavBar";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { useGlobalState } from "../GlobalState";
@@ -39,44 +25,7 @@ const theme = createTheme({
 });
 
 const Info = () => {
-  const [toHome, setToHome] = React.useState(false);
-  const [toSPG, setToSPG] = React.useState(false);
-  const [toContact, setToContact] = React.useState(false);
-  const [toMobileApp, setToMobileApp] = React.useState(false);
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [mode, setMode] = useGlobalState("darkMode");
-
-  if (toHome) {
-    return <Navigate to="/" />;
-  }
-
-  if (toSPG) {
-    return <Navigate to="/single-player-games" />;
-  }
-
-  if (toContact) {
-    return <Navigate to="/contact" />;
-  }
-
-  if (toMobileApp) {
-    return <Navigate to="/mobile-app" />;
-  }
-
-  const navItems = [
-    "Home",
-    "Info",
-    "Single Player Games",
-    "Contact",
-    "Mobile App",
-  ];
-
-  const handleNavClick = (item) => {
-    setDrawerOpen(false);
-    if (item === "Home") setToHome(true);
-    else if (item === "Single Player Games") setToSPG(true);
-    else if (item === "Contact") setToContact(true);
-    else if (item === "Mobile App") setToMobileApp(true);
-  };
+  const [mode] = useGlobalState("darkMode");
 
   return (
     <ThemeProvider theme={theme}>
@@ -88,47 +37,7 @@ const Info = () => {
             : { backgroundColor: "#ffffff", color: "#000000" }
         }
       >
-        <AppBar component="nav" color="seaGreen">
-          <Toolbar>
-            <img src={logo} className="navLogo" alt="LearnCuliaLogo" />
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: "bold" }}>
-              LearnCulia
-            </Typography>
-            {/* Desktop nav */}
-            <Box sx={{ display: { xs: "none", sm: "flex" }, alignItems: "center" }}>
-              {navItems.map((item) => (
-                <Button key={item} sx={{ color: "#000" }} onClick={() => handleNavClick(item)}>
-                  {item}
-                </Button>
-              ))}
-              <IconButton sx={{ ml: 1 }} onClick={() => setMode((p) => p === "light" ? "dark" : "light")} color="black">
-                {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
-              </IconButton>
-            </Box>
-            {/* Mobile hamburger */}
-            <Box sx={{ display: { xs: "flex", sm: "none" }, alignItems: "center" }}>
-              <IconButton onClick={() => setMode((p) => p === "light" ? "dark" : "light")} color="black">
-                {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
-              </IconButton>
-              <IconButton color="black" onClick={() => setDrawerOpen(true)}>
-                <MenuIcon />
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </AppBar>
-        <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-          <Box sx={{ width: 220, pt: 2 }}>
-            <List>
-              {navItems.map((item) => (
-                <ListItem key={item} disablePadding>
-                  <ListItemButton onClick={() => handleNavClick(item)}>
-                    <ListItemText primary={item} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </Box>
-        </Drawer>
+        <NavBar />
         <h1 style={{ marginTop: 140 }}>Learn All About LearnCulia!</h1>
         <Card
           sx={[

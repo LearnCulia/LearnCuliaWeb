@@ -4,17 +4,9 @@ import ChatBot from "./ChatBot";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import Footer from "./Footer";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
-import logo from "../images/LearnCuliaIcon.png";
+import NavBar from "./NavBar";
 import homei2 from "../images/homei2.jpeg";
 import homei3 from "../images/homei2.jpg";
 import contactPic from "../images/contactPic.png";
@@ -25,9 +17,6 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Fade from "@mui/material/Fade";
-import IconButton from "@mui/material/IconButton";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 const theme = createTheme({
   palette: {
@@ -79,25 +68,7 @@ export default function Home(props) {
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toMobileApp, setToMobileApp] = React.useState(false);
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
-
-  const [mode, setMode] = useGlobalState("darkMode");
-
-  const navItems = [
-    "Home",
-    "Info",
-    "Single Player Games",
-    "Contact",
-    "Mobile App",
-  ];
-
-  const handleNavClick = (item) => {
-    setDrawerOpen(false);
-    if (item === "Info") setToInfo(true);
-    else if (item === "Single Player Games") setToSPG(true);
-    else if (item === "Contact") setToContact(true);
-    else if (item === "Mobile App") setToMobileApp(true);
-  };
+  const [mode] = useGlobalState("darkMode");
 
   if (toInfo) {
     return <Navigate to="/info" />;
@@ -118,79 +89,8 @@ export default function Home(props) {
   return (
     <ThemeProvider theme={theme}>
       <div className="home">
-        <AppBar component="nav" color="seaGreen">
-          <Toolbar>
-            <img src={logo} className="navLogo" alt="LearnCuliaLogo" />
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1, fontWeight: "bold" }}
-            >
-              LearnCulia
-            </Typography>
-            {/* Desktop nav */}
-            <Box sx={{ display: { xs: "none", sm: "flex" }, alignItems: "center" }}>
-              {navItems.map((item) => (
-                <Button
-                  key={item}
-                  sx={{ color: "#000" }}
-                  onClick={() => handleNavClick(item)}
-                >
-                  {item}
-                </Button>
-              ))}
-              <IconButton
-                sx={{ ml: 1 }}
-                onClick={() =>
-                  setMode((prevMode) =>
-                    prevMode === "light" ? "dark" : "light"
-                  )
-                }
-                color="black"
-              >
-                {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
-              </IconButton>
-            </Box>
-            {/* Mobile hamburger */}
-            <Box sx={{ display: { xs: "flex", sm: "none" }, alignItems: "center" }}>
-              <IconButton
-                sx={{ ml: 1 }}
-                onClick={() =>
-                  setMode((prevMode) =>
-                    prevMode === "light" ? "dark" : "light"
-                  )
-                }
-                color="black"
-              >
-                {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
-              </IconButton>
-              <IconButton
-                color="black"
-                onClick={() => setDrawerOpen(true)}
-              >
-                <MenuIcon />
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          anchor="right"
-          open={drawerOpen}
-          onClose={() => setDrawerOpen(false)}
-        >
-          <Box sx={{ width: 220, pt: 2 }}>
-            <List>
-              {navItems.map((item) => (
-                <ListItem key={item} disablePadding>
-                  <ListItemButton onClick={() => handleNavClick(item)}>
-                    <ListItemText primary={item} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </Box>
-        </Drawer>
-        <Toolbar id="back-to-top-anchor" />
+        <NavBar />
+        <div id="back-to-top-anchor" style={{ minHeight: 64 }} />
         <Box
           className="home2"
           style={{

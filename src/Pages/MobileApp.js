@@ -2,18 +2,11 @@ import React from "react";
 import "../CSSFiles/MobileApp.css";
 import ChatBot from "./ChatBot";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Navigate } from "react-router-dom";
 import Footer from "./Footer";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
-import logo from "../images/LearnCuliaIcon.png";
-import IconButton from "@mui/material/IconButton";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+import NavBar from "./NavBar";
 import { useGlobalState } from "../GlobalState";
 
 import MobileAppSS from "../images/MobileApp.jpg";
@@ -34,41 +27,7 @@ const theme = createTheme({
 });
 
 const MobileApp = () => {
-  const [toHome, setToHome] = React.useState(false);
-  const [toInfo, setToInfo] = React.useState(false);
-  const [toSPG, setToSPG] = React.useState(false);
-  const [toContact, setToContact] = React.useState(false);
-  const [toProfile, setToProfile] = React.useState(false);
-  const [mode, setMode] = useGlobalState("darkMode");
-
-  if (toHome) {
-    return <Navigate to="/home" />;
-  }
-
-  if (toInfo) {
-    return <Navigate to="/info" />;
-  }
-
-  if (toSPG) {
-    return <Navigate to="/single-player-games" />;
-  }
-
-  if (toContact) {
-    return <Navigate to="/contact" />;
-  }
-
-  if (toProfile) {
-    return <Navigate to="/profile" />;
-  }
-
-  const navItems = [
-    "Home",
-    "Info",
-    "Single Player Games",
-    "Contact",
-    "Profile",
-    "Mobile App",
-  ];
+  const [mode] = useGlobalState("darkMode");
 
   return (
     <ThemeProvider theme={theme}>
@@ -80,56 +39,7 @@ const MobileApp = () => {
             : { backgroundColor: "#ffffff", color: "#000000" }
         }
       >
-        <AppBar component="nav" color="seaGreen">
-          <Toolbar>
-            <img src={logo} className="navLogo" alt="LearnCuliaLogo" />
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                flexGrow: 1,
-                fontWeight: "bold",
-                display: { xs: "none", sm: "block" },
-              }}
-            >
-              LearnCulia
-            </Typography>
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              {navItems.map((item) => (
-                <Button
-                  key={item}
-                  sx={{ color: "#000" }}
-                  onClick={() => {
-                    if (item === "Home") {
-                      setToHome(true);
-                    } else if (item === "Info") {
-                      setToInfo(true);
-                    } else if (item === "Single Player Games") {
-                      setToSPG(true);
-                    } else if (item === "Contact") {
-                      setToContact(true);
-                    } else if (item === "Profile") {
-                      setToProfile(true);
-                    }
-                  }}
-                >
-                  {item}
-                </Button>
-              ))}
-              <IconButton
-                sx={{ ml: 1 }}
-                onClick={() =>
-                  setMode((prevMode) =>
-                    prevMode === "light" ? "dark" : "light"
-                  )
-                }
-                color="black"
-              >
-                {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </AppBar>
+        <NavBar />
         <Typography
           style={{
             marginTop: "15vh",

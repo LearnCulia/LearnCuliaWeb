@@ -4,19 +4,14 @@ import ChatBot from "./ChatBot";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 import Footer from "./Footer";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import logo from "../images/LearnCuliaIcon.png";
+import NavBar from "./NavBar";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useGlobalState } from "../GlobalState";
 import Modal from "@mui/material/Modal";
-import IconButton from "@mui/material/IconButton";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
 import Game1Img from "../images/game1PicSPG.jpg";
 import Game2Img from "../images/game2PicSPG.png";
 import Game3Img from "../images/game3PicSPG.jpg";
@@ -40,12 +35,7 @@ const theme = createTheme({
 });
 
 const SinglePlayerGames = () => {
-  const [toHome, setToHome] = React.useState(false);
-  const [toInfo, setToInfo] = React.useState(false);
-  const [toContact, setToContact] = React.useState(false);
-  const [toProfile, setToProfile] = React.useState(false);
-  const [toMobileApp, setToMobileApp] = React.useState(false);
-  const [mode, setMode] = useGlobalState("darkMode");
+  const [mode] = useGlobalState("darkMode");
 
   const [modalGame1, openModalGame1] = React.useState(false);
   const [modalGame2, openModalGame2] = React.useState(false);
@@ -60,26 +50,6 @@ const SinglePlayerGames = () => {
   const [toGame4, setToGame4] = React.useState(false);
   const [toGame5, setToGame5] = React.useState(false);
   const [toGame6, setToGame6] = React.useState(false);
-
-  if (toHome) {
-    return <Navigate to="/home" />;
-  }
-
-  if (toInfo) {
-    return <Navigate to="/info" />;
-  }
-
-  if (toContact) {
-    return <Navigate to="/contact" />;
-  }
-
-  if (toProfile) {
-    return <Navigate to="/profile" />;
-  }
-
-  if (toMobileApp) {
-    return <Navigate to="/mobile-app" />;
-  }
 
   if (toGame1) {
     return <Navigate to="/game1" />;
@@ -179,7 +149,7 @@ const SinglePlayerGames = () => {
     },
     {
       name: "Comparisons",
-      description: "Compare two numbers with comparison symbols!",
+      description: "Comparisons with numbers!",
       image: Game5Img,
       style: {
         width: 340,
@@ -213,65 +183,9 @@ const SinglePlayerGames = () => {
     },
   ];
 
-  const navItems = [
-    "Home",
-    "Info",
-    "Single Player Games",
-    "Contact",
-    "Profile",
-    "Mobile App"
-  ];
-
   return (
     <ThemeProvider theme={theme}>
-      <AppBar component="nav" color="seaGreen">
-        <Toolbar>
-          <img src={logo} className="navLogo" alt="LearnCuliaLogo" />
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              fontWeight: "bold",
-              display: { xs: "none", sm: "block" },
-            }}
-          >
-            LearnCulia
-          </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                sx={{ color: "#000" }}
-                onClick={() => {
-                  if (item === "Home") {
-                    setToHome(true);
-                  } else if (item === "Info") {
-                    setToInfo(true);
-                  } else if (item === "Contact") {
-                    setToContact(true);
-                  } else if (item === "Profile") {
-                    setToProfile(true);
-                  } else if (item === "Mobile App") {
-                    setToMobileApp(true);
-                  }
-                }}
-              >
-                {item}
-              </Button>
-            ))}
-            <IconButton
-              sx={{ ml: 1 }}
-              onClick={() =>
-                setMode((prevMode) => (prevMode === "light" ? "dark" : "light"))
-              }
-              color="black"
-            >
-              {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
+      <NavBar />
       <div
         className="spg-page"
         style={
@@ -282,17 +196,26 @@ const SinglePlayerGames = () => {
       >
         <h1 style={{ marginTop: 140 }}>Single Player Games</h1>
         <Typography>What do you want to work on today?</Typography>
-        <Box className="spgRow1">
-          {gamesRow1.map((item) => (
+        <Box sx={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: 4,
+          px: 4,
+          py: 6,
+          width: "100%",
+          boxSizing: "border-box",
+        }}>
+          {[...gamesRow1, ...gamesRow2].map((item) => (
             <Card
+              key={item.name}
               sx={[
                 {
-                  marginTop: 10,
-                  marginRight: 15,
-                  marginBottom: 15,
-                  height: 500,
-                  width: 380,
+                  width: 340,
                   borderRadius: 8,
+                  display: "flex",
+                  flexDirection: "column",
                 },
                 mode === "dark"
                   ? { backgroundColor: "#00ff9d" }
@@ -303,35 +226,27 @@ const SinglePlayerGames = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "center",
                   alignItems: "center",
-                  alignContent: "center",
                   textAlign: "center",
-                  position: "relative",
+                  gap: 1,
+                  pb: 3,
                 }}
               >
-                <Typography
-                  sx={{ fontSize: 30, fontWeight: "bold", marginTop: 1 }}
-                  color="black"
-                >
+                <Typography sx={{ fontSize: 22, fontWeight: "bold", mt: 1 }} color="black">
                   {item.name}
                 </Typography>
-                <Typography sx={{ fontSize: 15 }} color="black">
+                <Typography sx={{ fontSize: 14 }} color="black">
                   {item.description}
                 </Typography>
-                <img src={item.image} alt="Game Image" style={item.style} />
-                <Button
-                  sx={{ position: "absolute", bottom: 0 }}
-                  onClick={item.openModal}
-                >
+                <img
+                  src={item.image}
+                  alt="Game"
+                  style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 10, marginTop: 8 }}
+                />
+                <Button sx={{ mt: 1 }} onClick={item.openModal}>
                   Click to Learn More
                 </Button>
-                <Modal
-                  open={item.modal}
-                  onClose={item.closeModal}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
+                <Modal open={item.modal} onClose={item.closeModal}>
                   <Box
                     sx={[
                       {
@@ -343,157 +258,22 @@ const SinglePlayerGames = () => {
                         top: "50%",
                         left: "50%",
                         transform: "translate(-50%, -50%)",
-                        height: 270,
-                        width: 400,
+                        width: { xs: "90%", sm: 400 },
                         border: "2px solid #000",
                         borderRadius: 4,
                         boxShadow: 24,
                         p: 4,
+                        gap: 2,
                       },
                       mode === "dark"
                         ? { backgroundColor: "#00ff9d" }
                         : { backgroundColor: "#c3fae5" },
                     ]}
                   >
-                    <Typography
-                      id="modal-modal-title"
-                      variant="h5"
-                      sx={{ fontWeight: "bold" }}
-                    >
-                      {item.name}
-                    </Typography>
-                    <Typography
-                      id="modal-modal-title"
-                      variant="h6"
-                      component="h2"
-                      sx={{ mt: 2 }}
-                    >
-                      Game Information:
-                    </Typography>
-                    <Typography
-                      id="modal-modal-description"
-                      sx={{ mb: 6, textAlign: "center" }}
-                    >
-                      {item.modalDesc}
-                    </Typography>
-                    <Button
-                      variant="contained"
-                      color="black"
-                      size="large"
-                      sx={{ mb: 2 }}
-                      onClick={item.startGame}
-                    >
-                      Start Game
-                    </Button>
-                    <Button onClick={item.closeModal}>Close</Button>
-                  </Box>
-                </Modal>
-              </CardContent>
-            </Card>
-          ))}
-        </Box>
-        <Box
-          className="spgRow2"
-        >
-          {gamesRow2.map((item) => (
-            <Card
-              sx={[
-                {
-                  marginTop: 20,
-                  marginRight: 15,
-                  marginBottom: 15,
-                  height: 500,
-                  width: 380,
-                  borderRadius: 8,
-                },
-                mode === "dark"
-                  ? { backgroundColor: "#00ff9d" }
-                  : { backgroundColor: "#c3fae5" },
-              ]}
-            >
-              <CardContent
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  alignContent: "center",
-                  textAlign: "center",
-                  position: "relative",
-                }}
-              >
-                <Typography
-                  sx={{ fontSize: 30, fontWeight: "bold", marginTop: 1 }}
-                  color="black"
-                >
-                  {item.name}
-                </Typography>
-                <Typography sx={{ fontSize: 15 }} color="black">
-                  {item.description}
-                </Typography>
-                <img src={item.image} alt="Game Image" style={item.style} />
-                <Button
-                  sx={{ position: "absolute", bottom: 0 }}
-                  onClick={item.openModal}
-                >
-                  Click to Learn More
-                </Button>
-                <Modal
-                  open={item.modal}
-                  onClose={item.closeModal}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box
-                    sx={[
-                      {
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-evenly",
-                        alignItems: "center",
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        height: 270,
-                        width: 400,
-                        border: "2px solid #000",
-                        borderRadius: 4,
-                        boxShadow: 24,
-                        p: 4,
-                      },
-                      mode === "dark"
-                        ? { backgroundColor: "#00ff9d" }
-                        : { backgroundColor: "#c3fae5" },
-                    ]}
-                  >
-                    <Typography
-                      id="modal-modal-title"
-                      variant="h5"
-                      sx={{ fontWeight: "bold" }}
-                    >
-                      {item.name}
-                    </Typography>
-                    <Typography
-                      id="modal-modal-title"
-                      variant="h6"
-                      sx={{ mt: 2 }}
-                    >
-                      Game Information:
-                    </Typography>
-                    <Typography
-                      id="modal-modal-description"
-                      sx={{ mb: 6, textAlign: "center" }}
-                    >
-                      {item.modalDesc}
-                    </Typography>
-                    <Button
-                      variant="contained"
-                      color="black"
-                      size="large"
-                      sx={{ mb: 2 }}
-                      onClick={item.startGame}
-                    >
+                    <Typography variant="h5" sx={{ fontWeight: "bold" }}>{item.name}</Typography>
+                    <Typography variant="h6">Game Information:</Typography>
+                    <Typography sx={{ textAlign: "center" }}>{item.modalDesc}</Typography>
+                    <Button variant="contained" color="black" size="large" onClick={item.startGame}>
                       Start Game
                     </Button>
                     <Button onClick={item.closeModal}>Close</Button>

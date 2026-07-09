@@ -2,20 +2,14 @@ import React from "react";
 import "../CSSFiles/Contact.css";
 import ChatBot from "./ChatBot";
 import Button from "@mui/material/Button";
-import { Navigate } from "react-router-dom";
 import Footer from "./Footer";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
-import logo from "../images/LearnCuliaIcon.png";
 import Modal from "@mui/material/Modal";
-import IconButton from "@mui/material/IconButton";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+import NavBar from "./NavBar";
 import { useGlobalState } from "../GlobalState";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { db } from "../firebase.js";
@@ -95,14 +89,8 @@ const theme = createTheme({
 });
 
 const Contact = () => {
-  const [toHome, setToHome] = React.useState(false);
-  const [toInfo, setToInfo] = React.useState(false);
-  const [toSPG, setToSPG] = React.useState(false);
-  const [toProfile, setToProfile] = React.useState(false);
-  const [toMobileApp, setToMobileApp] = React.useState(false);
-
   const [sentModal, setSentModal] = React.useState(false);
-  const [mode, setMode] = useGlobalState("darkMode");
+  const [mode] = useGlobalState("darkMode");
 
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -120,35 +108,6 @@ const Contact = () => {
     setMessage(e.target.value);
   };
 
-  if (toHome) {
-    return <Navigate to="/home" />;
-  }
-
-  if (toInfo) {
-    return <Navigate to="/info" />;
-  }
-
-  if (toSPG) {
-    return <Navigate to="/single-player-games" />;
-  }
-
-  if (toProfile) {
-    return <Navigate to="/profile" />;
-  }
-
-  if (toMobileApp) {
-    return <Navigate to="/mobile-app" />;
-  }
-
-  const navItems = [
-    "Home",
-    "Info",
-    "Single Player Games",
-    "Contact",
-    "Profile",
-    "Mobile App",
-  ];
-
   const sendMessage = async () => {
     await db
       .collection("contactresponses")
@@ -165,54 +124,7 @@ const Contact = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar component="nav" color="seaGreen">
-        <Toolbar>
-          <img src={logo} className="navLogo" alt="LearnCuliaLogo" />
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              fontWeight: "bold",
-              display: { xs: "none", sm: "block" },
-            }}
-          >
-            LearnCulia
-          </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                sx={{ color: "#000" }}
-                onClick={() => {
-                  if (item === "Home") {
-                    setToHome(true);
-                  } else if (item === "Info") {
-                    setToInfo(true);
-                  } else if (item === "Single Player Games") {
-                    setToSPG(true);
-                  } else if (item === "Profile") {
-                    setToProfile(true);
-                  } else if (item === "Mobile App") {
-                    setToMobileApp(true);
-                  }
-                }}
-              >
-                {item}
-              </Button>
-            ))}
-            <IconButton
-              sx={{ ml: 1 }}
-              onClick={() =>
-                setMode((prevMode) => (prevMode === "light" ? "dark" : "light"))
-              }
-              color="black"
-            >
-              {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
+      <NavBar />
       <div
         className="contact-page"
         style={
