@@ -196,8 +196,9 @@ export default function Home(props) {
           style={{
             backgroundImage: `url(${home1})`,
             backgroundSize: "cover",
+            backgroundPosition: "center",
             height: "100vh",
-            width: "102.5%",
+            width: "100%",
             color: "black",
           }}
         >
@@ -218,9 +219,7 @@ export default function Home(props) {
             <h1
               style={{
                 fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
-                marginTop: 10,
-                display: "flex",
-                flexDirection: "row",
+                marginTop: 0,
                 textAlign: "center"
               }}
             >
@@ -228,7 +227,6 @@ export default function Home(props) {
             </h1>
             <Typography
               style={{
-                marginLeft: -30,
                 fontSize: "clamp(0.85rem, 1vw, 1.1rem)",
                 textAlign: "center",
                 marginTop: 20,
@@ -278,7 +276,7 @@ export default function Home(props) {
             <h1
               style={{
                 fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
-                marginTop: -30,
+                marginTop: 0,
                 textAlign: "center"
               }}
             >
@@ -286,7 +284,6 @@ export default function Home(props) {
             </h1>
             <Typography
               style={{
-                marginLeft: -30,
                 fontSize: "clamp(0.85rem, 1vw, 1.1rem)",
                 textAlign: "center",
                 marginTop: 20,
@@ -323,16 +320,17 @@ export default function Home(props) {
               : { backgroundColor: "#ffffff", color: "#000000" }
           }
         >
-          <h1
-            style={{
-              fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)",
-              textAlign: "center",
-            }}
-          >
-            Contact
-          </h1>
           <Box className="box5">
-            <Typography style={{ marginLeft: 30, textAlign: "center", fontSize: "clamp(0.85rem, 1vw, 1.1rem)" }}>
+            <h1
+              style={{
+                fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)",
+                textAlign: "center",
+                margin: "0 0 16px 0",
+              }}
+            >
+              Contact
+            </h1>
+            <Typography style={{ textAlign: "center", fontSize: "clamp(0.85rem, 1vw, 1.1rem)" }}>
               Any issues, concerns, or suggestions? Please contact me from the
               button below or in the navigation bar above!
             </Typography>
@@ -341,7 +339,7 @@ export default function Home(props) {
               size="large"
               sx={[
                 {
-                  marginTop: 5,
+                  mt: 5,
                   fontSize: "clamp(0.75rem, 0.8vw, 1rem)",
                   "&.MuiButtonBase-root:hover": {
                     bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
