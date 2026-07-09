@@ -3,19 +3,24 @@ import "../App.css";
 import ChatBot from "./ChatBot";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
+import Footer from "./Footer";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../images/LearnCuliaIcon.png";
-import icon from "../images/learnculialogo.jpg";
 import homei2 from "../images/homei2.jpeg";
 import homei3 from "../images/homei2.jpg";
 import contactPic from "../images/contactPic.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useGlobalState } from "../GlobalState";
 import home1 from "../images/home1.jpg";
-import Divider from "@mui/material/Divider";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -74,6 +79,7 @@ export default function Home(props) {
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toMobileApp, setToMobileApp] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
 
   const [mode, setMode] = useGlobalState("darkMode");
 
@@ -84,6 +90,14 @@ export default function Home(props) {
     "Contact",
     "Mobile App",
   ];
+
+  const handleNavClick = (item) => {
+    setDrawerOpen(false);
+    if (item === "Info") setToInfo(true);
+    else if (item === "Single Player Games") setToSPG(true);
+    else if (item === "Contact") setToContact(true);
+    else if (item === "Mobile App") setToMobileApp(true);
+  };
 
   if (toInfo) {
     return <Navigate to="/info" />;
@@ -110,30 +124,17 @@ export default function Home(props) {
             <Typography
               variant="h6"
               component="div"
-              sx={{
-                flexGrow: 1,
-                fontWeight: "bold",
-                display: { xs: "none", sm: "block" },
-              }}
+              sx={{ flexGrow: 1, fontWeight: "bold" }}
             >
               LearnCulia
             </Typography>
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            {/* Desktop nav */}
+            <Box sx={{ display: { xs: "none", sm: "flex" }, alignItems: "center" }}>
               {navItems.map((item) => (
                 <Button
                   key={item}
                   sx={{ color: "#000" }}
-                  onClick={() => {
-                    if (item === "Info") {
-                      setToInfo(true);
-                    } else if (item === "Single Player Games") {
-                      setToSPG(true);
-                    } else if (item === "Contact") {
-                      setToContact(true);
-                    } else if (item === "Mobile App") {
-                      setToMobileApp(true);
-                    }
-                  }}
+                  onClick={() => handleNavClick(item)}
                 >
                   {item}
                 </Button>
@@ -150,8 +151,45 @@ export default function Home(props) {
                 {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
             </Box>
+            {/* Mobile hamburger */}
+            <Box sx={{ display: { xs: "flex", sm: "none" }, alignItems: "center" }}>
+              <IconButton
+                sx={{ ml: 1 }}
+                onClick={() =>
+                  setMode((prevMode) =>
+                    prevMode === "light" ? "dark" : "light"
+                  )
+                }
+                color="black"
+              >
+                {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+              </IconButton>
+              <IconButton
+                color="black"
+                onClick={() => setDrawerOpen(true)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Box>
           </Toolbar>
         </AppBar>
+        <Drawer
+          anchor="right"
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+        >
+          <Box sx={{ width: 220, pt: 2 }}>
+            <List>
+              {navItems.map((item) => (
+                <ListItem key={item} disablePadding>
+                  <ListItemButton onClick={() => handleNavClick(item)}>
+                    <ListItemText primary={item} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+        </Drawer>
         <Toolbar id="back-to-top-anchor" />
         <Box
           className="home2"
@@ -163,7 +201,7 @@ export default function Home(props) {
             color: "black",
           }}
         >
-          <h1 style={{ fontSize: 50 }}>
+          <h1 style={{ fontSize: "clamp(1.5rem, 4vw, 3.5rem)", textAlign: "center", padding: "0 1rem" }}>
             Let LearnCulia guide you to conquer your math hurdles!
           </h1>
         </Box>
@@ -179,7 +217,7 @@ export default function Home(props) {
           <Box className="box3">
             <h1
               style={{
-                fontSize: "3vw",
+                fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
                 marginTop: 10,
                 display: "flex",
                 flexDirection: "row",
@@ -191,7 +229,7 @@ export default function Home(props) {
             <Typography
               style={{
                 marginLeft: -30,
-                fontSize: "1vw",
+                fontSize: "clamp(0.85rem, 1vw, 1.1rem)",
                 textAlign: "center",
                 marginTop: 20,
                 marginBottom: 20,
@@ -213,7 +251,7 @@ export default function Home(props) {
               sx={[
                 {
                   mt: 5,
-                  fontSize: "0.8vw",
+                  fontSize: "clamp(0.75rem, 0.8vw, 1rem)",
                   "&.MuiButtonBase-root:hover": {
                     bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
                   },
@@ -239,7 +277,7 @@ export default function Home(props) {
           <Box className="box4">
             <h1
               style={{
-                fontSize: "3vw",
+                fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
                 marginTop: -30,
                 textAlign: "center"
               }}
@@ -249,7 +287,7 @@ export default function Home(props) {
             <Typography
               style={{
                 marginLeft: -30,
-                fontSize: "1vw",
+                fontSize: "clamp(0.85rem, 1vw, 1.1rem)",
                 textAlign: "center",
                 marginTop: 20,
               }}
@@ -269,7 +307,7 @@ export default function Home(props) {
               variant="contained"
               color="black"
               size="large"
-              style={{ marginTop: 50, fontSize: "0.8vw" }}
+              style={{ marginTop: 50, fontSize: "clamp(0.75rem, 0.8vw, 1rem)" }}
               onClick={() => setToSPG(true)}
             >
               Single Player Games
@@ -287,15 +325,14 @@ export default function Home(props) {
         >
           <h1
             style={{
-              fontSize: "2.5vw",
+              fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)",
               textAlign: "center",
-              marginLeft: 130
             }}
           >
             Contact
           </h1>
           <Box className="box5">
-            <Typography style={{ marginLeft: 30, textAlign: "center", fontSize: "1vw" }}>
+            <Typography style={{ marginLeft: 30, textAlign: "center", fontSize: "clamp(0.85rem, 1vw, 1.1rem)" }}>
               Any issues, concerns, or suggestions? Please contact me from the
               button below or in the navigation bar above!
             </Typography>
@@ -305,7 +342,7 @@ export default function Home(props) {
               sx={[
                 {
                   marginTop: 5,
-                  fontSize: "0.8vw",
+                  fontSize: "clamp(0.75rem, 0.8vw, 1rem)",
                   "&.MuiButtonBase-root:hover": {
                     bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
                   },
@@ -321,59 +358,7 @@ export default function Home(props) {
           </Box>
           <img src={contactPic} alt="Contact Pic" className="contactPic"/>
         </Box>
-        <Divider variant="fullWidth" flexItem />
-        <Box
-          className="home6"
-          style={
-            mode === "dark"
-              ? { backgroundColor: "#242430", color: "#ffffff" }
-              : { backgroundColor: "#ffffff", color: "#000000" }
-          }
-        >
-          <Box style={{ display: "flex", flexDirection: "row" }}>
-            <img
-              src={icon}
-              className="footerLogo"
-              alt="Footer LearnCulia Icon"
-            />
-            <h1>LearnCulia</h1>
-          </Box>
-          <Box style={{ display: "flex", flexDirection: "row" }}>
-            <Button
-              sx={[
-                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
-              ]}
-              onClick={() => setToInfo(true)}
-            >
-              Info
-            </Button>
-            <Button
-              sx={[
-                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
-              ]}
-              onClick={() => setToSPG(true)}
-            >
-              Single Player Games
-            </Button>
-            <Button
-              sx={[
-                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
-              ]}
-              onClick={() => setToContact(true)}
-            >
-              Contact
-            </Button>
-            <Button
-              sx={[
-                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
-              ]}
-              onClick={() => setToMobileApp(true)}
-            >
-              Mobile App
-            </Button>
-          </Box>
-          <p>© 2024 LearnCulia. All rights reserved.</p>
-        </Box>
+        <Footer mode={mode} />
         <ScrollTop {...props}>
           <Fab
             size="small"

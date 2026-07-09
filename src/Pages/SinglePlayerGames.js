@@ -3,6 +3,7 @@ import "../CSSFiles/SinglePlayerGames.css";
 import ChatBot from "./ChatBot";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
+import Footer from "./Footer";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
@@ -10,10 +11,8 @@ import Typography from "@mui/material/Typography";
 import logo from "../images/LearnCuliaIcon.png";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import icon from "../images/learnculiaiconlogo.jpg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useGlobalState } from "../GlobalState";
-import Divider from "@mui/material/Divider";
 import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
 import LightModeIcon from "@mui/icons-material/LightMode";
@@ -505,63 +504,7 @@ const SinglePlayerGames = () => {
           ))}
         </Box>
       </div>
-      <Divider
-        variant="fullWidth"
-        flexItem
-        sx={[
-          mode === "dark"
-            ? { borderColor: "#ffffff" }
-            : { borderColor: "#E0E0E0" },
-        ]}
-      />
-      <Box
-        className="footerSPG"
-        style={
-          mode === "dark"
-            ? { backgroundColor: "#242430", color: "#ffffff" }
-            : { backgroundColor: "#ffffff", color: "#000000" }
-        }
-      >
-        <Box sx={{ display: "flex", flexDirection: "row" }}>
-          <img src={icon} className="footerLogo" alt="Footer LearnCulia Icon" />
-          <h1>LearnCulia</h1>
-        </Box>
-        <Box style={{ display: "flex", flexDirection: "row" }}>
-          <Button
-            sx={[mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" }]}
-            onClick={() => setToHome(true)}
-          >
-            Home
-          </Button>
-          <Button
-            sx={[mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" }]}
-            onClick={() => setToInfo(true)}
-          >
-            Info
-          </Button>
-          <Button
-            sx={[mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" }]}
-            onClick={() => setToContact(true)}
-          >
-            Contact
-          </Button>
-          <Button
-            sx={[mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" }]}
-            onClick={() => setToProfile(true)}
-          >
-            Profile
-          </Button>
-          <Button
-              sx={[
-                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
-              ]}
-              onClick={() => setToMobileApp(true)}
-            >
-              Mobile App
-            </Button>
-        </Box>
-        <p>© 2024 LearnCulia. All rights reserved.</p>
-      </Box>
+      <Footer mode={mode} />
       <ChatBot />
     </ThemeProvider>
   );
