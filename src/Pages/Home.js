@@ -70,28 +70,20 @@ function ScrollTop(props) {
 }
 
 export default function Home(props) {
-  const [toLogin, setToLogin] = React.useState(false);
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
-  const [toProfile, setToProfile] = React.useState(false);
   const [toMobileApp, setToMobileApp] = React.useState(false);
 
   const [mode, setMode] = useGlobalState("darkMode");
-  const [registered, isRegistered] = useGlobalState("registered");
 
   const navItems = [
     "Home",
     "Info",
     "Single Player Games",
     "Contact",
-    "Profile",
-    "Mobile App"
+    "Mobile App",
   ];
-
-  if (toLogin) {
-    return <Navigate to="/" />;
-  }
 
   if (toInfo) {
     return <Navigate to="/info" />;
@@ -105,10 +97,6 @@ export default function Home(props) {
     return <Navigate to="/contact" />;
   }
 
-  if (toProfile) {
-    return <Navigate to="/profile" />;
-  }
-  
   if (toMobileApp) {
     return <Navigate to="/mobile-app" />;
   }
@@ -142,8 +130,6 @@ export default function Home(props) {
                       setToSPG(true);
                     } else if (item === "Contact") {
                       setToContact(true);
-                    } else if (item === "Profile") {
-                      setToProfile(true);
                     } else if (item === "Mobile App") {
                       setToMobileApp(true);
                     }
@@ -181,46 +167,6 @@ export default function Home(props) {
             Let LearnCulia guide you to conquer your math hurdles!
           </h1>
         </Box>
-        {registered ? (
-          <Box></Box>
-        ) : (
-          <Box className="home-no-reg">
-            <div className="first"></div>
-            <div className="second"></div>
-            <div className="third"></div>
-            <h1
-              style={{
-                fontSize: 50,
-                display: "flex",
-                flexDirection: "row",
-                zIndex: 1000,
-              }}
-            >
-              You're Not Logged In!
-            </h1>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                zIndex: 1000,
-              }}
-            >
-              <Typography style={{}}>
-                If you want to have custom profile pictures and more blah blah
-                blah, click the button below to login!
-              </Typography>
-              <Button
-                variant="contained"
-                color="black"
-                size="large"
-                style={{ marginTop: 50 }}
-                onClick={() => setToLogin(true)}
-              >
-                Login Today!
-              </Button>
-            </div>
-          </Box>
-        )}
         <Box
           className="home3"
           style={
@@ -416,14 +362,6 @@ export default function Home(props) {
               onClick={() => setToContact(true)}
             >
               Contact
-            </Button>
-            <Button
-              sx={[
-                mode === "dark" ? { color: "#2491FF" } : { color: "#1A70C6" },
-              ]}
-              onClick={() => setToProfile(true)}
-            >
-              Profile
             </Button>
             <Button
               sx={[

@@ -1,13 +1,10 @@
 import React from "react";
 import "./App.css";
-import Login from "./Pages/Login";
-import CreateAccount from "./Pages/CreateAccount";
 import ForgotPassword from "./Pages/ForgotPassword";
 import Home from "./Pages/Home";
 import Info from "./Pages/Info";
 import SinglePlayerGames from "./Pages/SinglePlayerGames";
 import Contact from "./Pages/Contact";
-import Profile from "./Pages/Profile";
 import MobileApp from "./Pages/MobileApp";
 import Game1 from "./Pages/GamePages/Game1";
 import Game2 from "./Pages/GamePages/Game2";
@@ -35,14 +32,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/create-account" element={<CreateAccount />} />
+        <Route path="/" element={<Home />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/home" element={<Home />} />
         <Route path="/info" element={<Info />} />
         <Route path="/single-player-games" element={<SinglePlayerGames />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/mobile-app" element={<MobileApp />} />
         <Route path="/game1" element={<Game1 />} />
         <Route path="/game2" element={<Game2 />} />
