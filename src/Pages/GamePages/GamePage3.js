@@ -10,89 +10,63 @@ import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useGlobalState } from "../../GlobalState.js";
 
-import MultiplicationTable from "../../images/MultiplicationTable.jpg";
+import MultiplicationTable from "./MultiplicationTable.js";
 
 const theme = createTheme({
   palette: {
-    seaGreen: {
-      main: "#6bffc6",
-      light: "#6bffc6",
-      dark: "#008552",
-      contrastText: "#0d3023",
-    },
-    black: {
-      main: "#000000",
-      contrastText: "#00ff9d",
-    },
-    red: {
-      main: "#ff1212",
-      contrastText: "#0fff93",
-    },
-    white: {
-      main: "#ffffff",
-      contrastText: "#000000",
-    },
+    seaGreen: { main: "#6bffc6", light: "#6bffc6", dark: "#008552", contrastText: "#0d3023" },
+    black: { main: "#000000", contrastText: "#00ff9d" },
+    red: { main: "#ff1212", contrastText: "#0fff93" },
+    white: { main: "#ffffff", contrastText: "#000000" },
   },
+});
+
+const WhiteTheme = createTheme({
   components: {
     MuiTextField: {
       styleOverrides: {
         root: {
-          "--TextField-brandBorderColor": "#000000",
-          "--TextField-brandBorderHoverColor": "#000000",
-          "--TextField-brandBorderFocusedColor": "#000000",
-          "& label.Mui-focused": {
-            color: "var(--TextField-brandBorderFocusedColor)",
-          },
+          "--TextField-brandBorderColor": "#ffffff",
+          "--TextField-brandBorderHoverColor": "#ffffff",
+          "--TextField-brandBorderFocusedColor": "#ffffff",
+          "& label.Mui-focused": { color: "var(--TextField-brandBorderFocusedColor)" },
         },
       },
     },
     MuiOutlinedInput: {
       styleOverrides: {
-        notchedOutline: {
-          borderColor: "var(--TextField-brandBorderColor)",
-        },
+        notchedOutline: { borderColor: "var(--TextField-brandBorderColor)", color: "#ffffff" },
         root: {
-          [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor: "var(--TextField-brandBorderHoverColor)",
-          },
-          [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor: "var(--TextField-brandBorderFocusedColor)",
-          },
-        },
-      },
-    },
-    MuiFilledInput: {
-      styleOverrides: {
-        root: {
-          "&::before, &::after": {
-            borderBottom: "2px solid var(--TextField-brandBorderColor)",
-          },
-          "&:hover:not(.Mui-disabled, .Mui-error):before": {
-            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
-          },
-          "&.Mui-focused:after": {
-            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
-          },
-        },
-      },
-    },
-    MuiInput: {
-      styleOverrides: {
-        root: {
-          "&::before": {
-            borderBottom: "2px solid var(--TextField-brandBorderColor)",
-          },
-          "&:hover:not(.Mui-disabled, .Mui-error):before": {
-            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
-          },
-          "&.Mui-focused:after": {
-            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
-          },
+          [`&:hover .${outlinedInputClasses.notchedOutline}`]: { borderColor: "var(--TextField-brandBorderHoverColor)" },
+          [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: { borderColor: "var(--TextField-brandBorderFocusedColor)" },
         },
       },
     },
   },
 });
+
+const modalHeaderBox = {
+  width: "100%",
+  backgroundColor: "#6bffc6",
+  py: 2.5,
+  px: 3,
+  textAlign: "center",
+};
+
+const modalBox = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: { xs: "90%", sm: 500 },
+  maxHeight: "90vh",
+  borderRadius: 4,
+  boxShadow: 24,
+  overflow: "hidden",
+};
 
 const GamePage3 = () => {
   const [num1, setNum1] = React.useState(1);
@@ -104,130 +78,53 @@ const GamePage3 = () => {
   const [challengeModal, setChallengeModal] = React.useState(false);
   const [tableModal, setTableModal] = React.useState(false);
   const [buttonClicked, isButtonClicked] = React.useState(false);
-  const [mode, setMode] = useGlobalState("darkMode");
+  const [mode] = useGlobalState("darkMode");
 
   const [toSPG, setToSPG] = React.useState(false);
   const [toGamePageChallenge3, setToGamePageChallenge3] = React.useState(false);
+  const [quitModal, setQuitModal] = React.useState(false);
 
-  const WhiteTheme = createTheme({
-    components: {
-      MuiTextField: {
-        styleOverrides: {
-          root: {
-            "--TextField-brandBorderColor": "#ffffff",
-            "--TextField-brandBorderHoverColor": "#ffffff",
-            "--TextField-brandBorderFocusedColor": "#ffffff",
-            "& label.Mui-focused": {
-              color: "var(--TextField-brandBorderFocusedColor)",
-            },
-          },
-        },
-      },
-      MuiOutlinedInput: {
-        styleOverrides: {
-          notchedOutline: {
-            borderColor: "var(--TextField-brandBorderColor)",
-            color: "#ffffff",
-          },
-          root: {
-            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: "var(--TextField-brandBorderHoverColor)",
-              color: "#ffffff",
-            },
-            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: "var(--TextField-brandBorderFocusedColor)",
-              color: "#ffffff",
-            },
-          },
-        },
-      },
-      MuiFilledInput: {
-        styleOverrides: {
-          root: {
-            "&::before, &::after": {
-              borderBottom: "2px solid var(--TextField-brandBorderColor)",
-            },
-            "&:hover:not(.Mui-disabled, .Mui-error):before": {
-              borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
-            },
-            "&.Mui-focused:after": {
-              borderBottom:
-                "2px solid var(--TextField-brandBorderFocusedColor)",
-            },
-          },
-        },
-      },
-      MuiInput: {
-        styleOverrides: {
-          root: {
-            "&::before": {
-              borderBottom: "2px solid var(--TextField-brandBorderColor)",
-            },
-            "&:hover:not(.Mui-disabled, .Mui-error):before": {
-              borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
-            },
-            "&.Mui-focused:after": {
-              borderBottom:
-                "2px solid var(--TextField-brandBorderFocusedColor)",
-            },
-          },
-        },
-      },
-    },
-  });
+  if (toSPG) return <Navigate to="/single-player-games" />;
+  if (toGamePageChallenge3) return <Navigate to="/gamepagechallenge3" />;
 
-  if (toSPG) {
-    return <Navigate to="/single-player-games" />;
-  }
+  const darkBtnSx = mode === "dark"
+    ? { backgroundColor: "#00ff9d", color: "#000000" }
+    : { backgroundColor: "#000000", color: "#00ff9d" };
 
-  if (toGamePageChallenge3) {
-    return <Navigate to="/gamepagechallenge3" />;
-  }
-
-  const fillAnswer = (e) => {
-    setAnswer(e.target.value);
-  };
+  const fillAnswer = (e) => setAnswer(e.target.value);
 
   const generateNumbersMult = () => {
-    const randomNum = Math.floor(Math.random() * 12) + 0;
-    const randomNum2 = Math.floor(Math.random() * 12) + 0;
-
-    setNum1(randomNum);
-    setNum2(randomNum2);
+    let n1, n2;
+    do {
+      n1 = Math.floor(Math.random() * 13);
+      n2 = Math.floor(Math.random() * 13);
+    } while ((n1 === num1 && n2 === num2) || (n1 === num2 && n2 === num1));
+    setNum1(n1);
+    setNum2(n2);
   };
 
-  const startGame = () => {
-    generateNumbersMult();
-    setReady(false);
-  };
+  const startGame = () => { generateNumbersMult(); setReady(false); };
 
   const verify = () => {
     isButtonClicked(true);
-    let realAnswer = num1 * num2;
-    if (count < 10) {
-      if (Number(answer) == realAnswer) {
+    const realAnswer = num1 * num2;
+    if (Number(answer) == realAnswer) {
+      const newCount = count + 1;
+      setCount(newCount);
+      isAnswerCorrect(true);
+      setAnswer("");
+      if (newCount >= 10) {
+        setChallengeModal(true);
+      } else {
         generateNumbersMult();
-        isAnswerCorrect(true);
-        setAnswer("");
-        setCount(count + 1);
-      } else if (Number(answer) != realAnswer) {
-        isAnswerCorrect(false);
       }
-    } else if (count == 10) {
-      setChallengeModal(true);
+    } else {
+      isAnswerCorrect(false);
     }
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={[
-          { height: 50 },
-          mode === "dark"
-            ? { backgroundColor: "#242430", color: "#ffffff" }
-            : { backgroundColor: "#ffffff", color: "#000000" },
-        ]}
-      />
       <div
         className="game3-gamepage"
         style={
@@ -236,239 +133,121 @@ const GamePage3 = () => {
             : { backgroundColor: "#ffffff", color: "#000000" }
         }
       >
-        <Button
-          variant="contained"
-          color="black"
-          size="large"
-          sx={[
-            { position: "absolute", top: 110, left: 50 },
-            mode === "dark"
-              ? { backgroundColor: "#00ff9d", color: "#000000" }
-              : { backgroundColor: "#000000", color: "#00ff9d" },
-          ]}
-          onClick={() => setToSPG(true)}
-        >
-          Quit Game
-        </Button>
-        <h1>Let's apply the skills we learned for the following problems!</h1>
+        <div className="game3-top-btns">
+          <Button variant="contained" size="large" sx={darkBtnSx} onClick={() => setQuitModal(true)}>
+            Quit Game
+          </Button>
+          {!ready && (
+            <Button variant="contained" size="large" sx={darkBtnSx} onClick={() => setTableModal(true)}>
+              Multiplication Table
+            </Button>
+          )}
+        </div>
+
+        <h1 style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.8rem)", textAlign: "center", marginTop: 0 }}>
+          Let's apply the skills we learned for the following problems!
+        </h1>
+
         {ready ? (
-          <div style={{ justifyContent: "center", alignItems: "center" }}>
-            <Button
-              variant="contained"
-              color="black"
-              size="large"
-              onClick={startGame}
-              sx={
-                mode === "dark"
-                  ? { backgroundColor: "#00ff9d", color: "#000000" }
-                  : { backgroundColor: "#000000", color: "#00ff9d" }
-              }
-            >
-              Press to Play
-            </Button>
-          </div>
+          <Button variant="contained" size="large" sx={darkBtnSx} onClick={startGame}>
+            Press to Play
+          </Button>
         ) : (
-          <div
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Button
-              variant="contained"
-              color="black"
-              size="large"
-              sx={[
-                { position: "absolute", top: 110, right: 50 },
-                mode === "dark"
-                  ? { backgroundColor: "#00ff9d", color: "#000000" }
-                  : { backgroundColor: "#000000", color: "#00ff9d" },
-              ]}
-              onClick={() => setTableModal(true)}
-            >
-              Open Multiplication Table
-            </Button>
-            <Modal
-              open={tableModal}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box
-                sx={[
-                  {
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-evenly",
-                    textAlign: "center",
-                    alignItems: "center",
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    height: 600,
-                    width: 600,
-                    border: "2px solid #000",
-                    borderRadius: 4,
-                    boxShadow: 24,
-                    p: 4,
-                  },
-                  mode === "dark"
-                    ? { backgroundColor: "#00ff9d" }
-                    : { backgroundColor: "#c3fae5" },
-                ]}
-              >
-                <h1>Here is the Multiplication Table:</h1>
-                <img
-                  src={MultiplicationTable}
-                  alt="Multiplication Table"
-                  style={{ width: 450, height: 450 }}
-                />
-                <Button
-                  variant="contained"
-                  color="black"
-                  size="large"
-                  sx={{ mb: 2, mt: 3 }}
-                  onClick={() => setTableModal(false)}
-                >
-                  Close
-                </Button>
-              </Box>
-            </Modal>
-            <Typography>Type in the correct answer below!</Typography>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-                textAlign: "center",
-                marginTop: 50,
-              }}
-            >
-              <Typography sx={{ fontSize: 100 }}>
-                {num1} x {num2} = ?
-              </Typography>
-              {mode === "dark" ? (
-                <ThemeProvider theme={WhiteTheme}>
-                  <TextField
-                    label="Enter Answer"
-                    className="input"
-                    id="outlined-number"
-                    type="number"
-                    value={answer}
-                    onChange={fillAnswer}
-                    sx={{
-                      width: 350,
-                      mt: 5,
-                      input: {
-                        color: "#ffffff",
-                      },
-                    }}
-                    InputLabelProps={{
-                      style: {
-                        color: "#adadad",
-                      },
-                    }}
-                  />
-                </ThemeProvider>
-              ) : (
+          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
+            <Typography sx={{ textAlign: "center" }}>Type in the correct answer below!</Typography>
+            <Typography sx={{ fontSize: "clamp(48px, 10vw, 100px)", lineHeight: 1.2, mt: 2 }}>
+              {num1} x {num2} = ?
+            </Typography>
+
+            {mode === "dark" ? (
+              <ThemeProvider theme={WhiteTheme}>
                 <TextField
                   label="Enter Answer"
-                  className="input"
-                  id="outlined-number"
                   type="number"
                   value={answer}
                   onChange={fillAnswer}
-                  sx={{ width: 350, mt: 5 }}
+                  sx={{ width: { xs: "100%", sm: 350 }, mt: 2, input: { color: "#ffffff" } }}
+                  InputLabelProps={{ style: { color: "#adadad" } }}
                 />
-              )}
-              <Button
-                variant="contained"
-                color="black"
-                size="large"
-                sx={[
-                  {
-                    mt: 10,
-                    "&.Mui-disabled": {
-                      backgroundColor: "#d4d4d4",
-                      color: "#737373",
-                    },
-                    "&.MuiButtonBase-root:hover": {
-                      bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
-                    },
-                  },
-                  mode === "dark"
-                    ? { backgroundColor: "#00ff9d", color: "#000000" }
-                    : { backgroundColor: "#000000", color: "#00ff9d" },
-                ]}
-                disabled={!answer}
-                onClick={verify}
-              >
-                Check Answer
-              </Button>
-              {buttonClicked ? (
-                answerCorrect ? (
-                  <Typography sx={{ mt: 5, mb: 5 }}>👏 Good Job! 👏</Typography>
-                ) : (
-                  <Typography sx={{ mt: 5, mb: 5 }}>
-                    No pressure! Try it one more time!
-                  </Typography>
-                )
-              ) : (
-                <Typography> </Typography>
-              )}
-            </div>
-          </div>
+              </ThemeProvider>
+            ) : (
+              <TextField
+                label="Enter Answer"
+                type="number"
+                value={answer}
+                onChange={fillAnswer}
+                sx={{ width: { xs: "100%", sm: 350 }, mt: 2 }}
+              />
+            )}
+
+            <Button
+              variant="contained"
+              size="large"
+              sx={[
+                { mt: 3, "&.Mui-disabled": { backgroundColor: "#d4d4d4", color: "#737373" }, "&.MuiButtonBase-root:hover": { bgcolor: mode === "dark" ? "#00ff9d" : "#000000" } },
+                darkBtnSx,
+              ]}
+              disabled={!answer}
+              onClick={verify}
+            >
+              Check Answer
+            </Button>
+            {buttonClicked && (
+              <Typography sx={{ mt: 3, mb: 3 }}>
+                {answerCorrect ? "👏 Good Job! 👏" : "No pressure! Try it one more time!"}
+              </Typography>
+            )}
+          </Box>
         )}
       </div>
-      <Modal
-        open={challengeModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          sx={[
-            {
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-evenly",
-              textAlign: "center",
-              alignItems: "center",
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              height: 350,
-              width: 450,
-              border: "2px solid #000",
-              borderRadius: 4,
-              boxShadow: 24,
-              p: 4,
-            },
-            mode === "dark"
-              ? { backgroundColor: "#00ff9d" }
-              : { backgroundColor: "#c3fae5" },
-          ]}
-        >
-          <h1>Well Done!</h1>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            In the next set of questions, let's see if you can solve them
-            without the multiplication table!
-          </Typography>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            You Got This!
-          </Typography>
-          <Button
-            variant="contained"
-            color="black"
-            size="large"
-            sx={{ mt: 3 }}
-            onClick={() => setToGamePageChallenge3(true)}
-          >
-            Continue
-          </Button>
+
+      <Modal open={tableModal} onClose={() => setTableModal(false)}>
+        <Box sx={{ ...modalBox, width: "min(660px, 92vw)" }}>
+          <Box sx={modalHeaderBox}>
+            <Typography variant="h6" sx={{ fontWeight: "bold", color: "#000" }}>Multiplication Table</Typography>
+          </Box>
+          <Box sx={{ width: "100%", backgroundColor: mode === "dark" ? "#1e1e2a" : "#ffffff", px: 3, py: 3, display: "flex", flexDirection: "column", alignItems: "center", gap: 2, overflowY: "auto" }}>
+            <MultiplicationTable />
+            <Button variant="contained" size="large" sx={darkBtnSx} onClick={() => setTableModal(false)}>
+              Close
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
+
+      {/* Quit modal */}
+      <Modal open={quitModal} onClose={() => setQuitModal(false)}>
+        <Box sx={modalBox}>
+          <Box sx={modalHeaderBox}>
+            <Typography variant="h6" sx={{ fontWeight: "bold", color: "#000" }}>Quit Game?</Typography>
+          </Box>
+          <Box sx={{ width: "100%", backgroundColor: mode === "dark" ? "#1e1e2a" : "#ffffff", px: 4, py: 3, display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+            <Typography sx={{ color: mode === "dark" ? "#eee" : "#222", textAlign: "center" }}>
+              Are you sure you want to quit? Your progress will be lost.
+            </Typography>
+            <Box sx={{ display: "flex", gap: 2 }}>
+              <Button variant="contained" onClick={() => setToSPG(true)} sx={{ backgroundColor: "#000", color: "#6bffc6", "&:hover": { backgroundColor: "#222" } }}>Yes, Quit</Button>
+              <Button variant="outlined" onClick={() => setQuitModal(false)} sx={{ borderColor: "#000", color: mode === "dark" ? "#eee" : "#000" }}>Keep Playing</Button>
+            </Box>
+          </Box>
+        </Box>
+      </Modal>
+
+      {/* Challenge unlocked modal */}
+      <Modal open={challengeModal}>
+        <Box sx={modalBox}>
+          <Box sx={modalHeaderBox}>
+            <Typography variant="h5" sx={{ fontWeight: "bold", color: "#000" }}>Well Done!</Typography>
+          </Box>
+          <Box sx={{ width: "100%", backgroundColor: mode === "dark" ? "#1e1e2a" : "#ffffff", px: 4, py: 3, display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5, textAlign: "center" }}>
+            <Typography variant="h6" sx={{ color: mode === "dark" ? "#eee" : "#222" }}>
+              In the next set of questions, let's see if you can solve them without the multiplication table!
+            </Typography>
+            <Typography sx={{ color: mode === "dark" ? "#aaa" : "#555" }}>You Got This!</Typography>
+            <Button variant="contained" size="large" sx={[{ mt: 1 }, { backgroundColor: "#000", color: "#6bffc6", "&:hover": { backgroundColor: "#222" } }]} onClick={() => setToGamePageChallenge3(true)}>
+              Continue
+            </Button>
+          </Box>
         </Box>
       </Modal>
     </ThemeProvider>
