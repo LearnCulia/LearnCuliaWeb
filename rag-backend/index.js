@@ -14,5 +14,5 @@ app.use("/chat", chatRouter);
 
 app.get("/health", (_, res) => res.json({ status: "ok" }));
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => console.log(`rag-backend running on port ${PORT}`));
