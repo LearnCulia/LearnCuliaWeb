@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../CSSFiles/ForgotPassword.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Navigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Modal from "@mui/material/Modal";
-import { auth } from "../firebase.js";
+import CircularProgress from "@mui/material/CircularProgress";
+import { db } from "../firebase.js";
 import { useGlobalState } from "../GlobalState.js";
+import { useLocation } from "react-router-dom";
 
 const TextFieldTheme = createTheme({
   components: {
@@ -21,131 +19,16 @@ const TextFieldTheme = createTheme({
           "--TextField-brandBorderColor": "#ffffff",
           "--TextField-brandBorderHoverColor": "#ffffff",
           "--TextField-brandBorderFocusedColor": "#ffffff",
-          "& label.Mui-focused": {
-            color: "var(--TextField-brandBorderFocusedColor)",
-          },
+          "& label.Mui-focused": { color: "var(--TextField-brandBorderFocusedColor)" },
         },
       },
     },
     MuiOutlinedInput: {
       styleOverrides: {
-        notchedOutline: {
-          borderColor: "var(--TextField-brandBorderColor)",
-          color: "#ffffff",
-        },
+        notchedOutline: { borderColor: "var(--TextField-brandBorderColor)" },
         root: {
-          [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor: "var(--TextField-brandBorderHoverColor)",
-            color: "#ffffff",
-          },
-          [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor: "var(--TextField-brandBorderFocusedColor)",
-            color: "#ffffff",
-          },
-        },
-      },
-    },
-    MuiFilledInput: {
-      styleOverrides: {
-        root: {
-          "&::before, &::after": {
-            borderBottom: "2px solid var(--TextField-brandBorderColor)",
-          },
-          "&:hover:not(.Mui-disabled, .Mui-error):before": {
-            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
-          },
-          "&.Mui-focused:after": {
-            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
-          },
-        },
-      },
-    },
-    MuiInput: {
-      styleOverrides: {
-        root: {
-          "&::before": {
-            borderBottom: "2px solid var(--TextField-brandBorderColor)",
-          },
-          "&:hover:not(.Mui-disabled, .Mui-error):before": {
-            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
-          },
-          "&.Mui-focused:after": {
-            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
-          },
-        },
-      },
-    },
-  },
-});
-
-const theme = createTheme({
-  palette: {
-    seaGreen: {
-      main: "#00ff9d",
-      light: "#6bffc6",
-      dark: "#008552",
-      contrastText: "#0d3023",
-    },
-    black: {
-      main: "#000000",
-      contrastText: "#00ff9d",
-    },
-  },
-  components: {
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          "--TextField-brandBorderColor": "#000000",
-          "--TextField-brandBorderHoverColor": "#000000",
-          "--TextField-brandBorderFocusedColor": "#000000",
-          "& label.Mui-focused": {
-            color: "var(--TextField-brandBorderFocusedColor)",
-          },
-        },
-      },
-    },
-    MuiOutlinedInput: {
-      styleOverrides: {
-        notchedOutline: {
-          borderColor: "var(--TextField-brandBorderColor)",
-        },
-        root: {
-          [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor: "var(--TextField-brandBorderHoverColor)",
-          },
-          [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor: "var(--TextField-brandBorderFocusedColor)",
-          },
-        },
-      },
-    },
-    MuiFilledInput: {
-      styleOverrides: {
-        root: {
-          "&::before, &::after": {
-            borderBottom: "2px solid var(--TextField-brandBorderColor)",
-          },
-          "&:hover:not(.Mui-disabled, .Mui-error):before": {
-            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
-          },
-          "&.Mui-focused:after": {
-            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
-          },
-        },
-      },
-    },
-    MuiInput: {
-      styleOverrides: {
-        root: {
-          "&::before": {
-            borderBottom: "2px solid var(--TextField-brandBorderColor)",
-          },
-          "&:hover:not(.Mui-disabled, .Mui-error):before": {
-            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
-          },
-          "&.Mui-focused:after": {
-            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
-          },
+          [`&:hover .${outlinedInputClasses.notchedOutline}`]: { borderColor: "var(--TextField-brandBorderHoverColor)" },
+          [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: { borderColor: "var(--TextField-brandBorderFocusedColor)" },
         },
       },
     },
@@ -153,197 +36,178 @@ const theme = createTheme({
 });
 
 const ForgotPassword = () => {
-  const [email, setEmail] = React.useState("");
-  const [toLogin, setToLogin] = React.useState(false);
-  const [sentModal, setSentModal] = React.useState(false);
   const [mode] = useGlobalState("darkMode");
+  const location = useLocation();
+  const code = new URLSearchParams(location.search).get("code");
 
-  if (toLogin) {
-    return <Navigate to="/" />;
-  }
+  const [status, setStatus] = useState("verifying");
+  const [tokenDoc, setTokenDoc] = useState(null);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const fillAnswerEmail = (e) => {
-    setEmail(e.target.value);
-  };
+  const dark = mode === "dark";
 
-  const forgotPass = async () => {
-    try {
-      await auth.sendPasswordResetEmail(email).then(() => setSentModal(true));
-    } catch (e) {
-      switch (e.code) {
-        case "auth/invalid-email":
-          alert(`Email address ${email} is invalid.`);
-          break;
-        default:
-          alert(
-            "Email not found or registered. Please go back to the login page to create a new account."
-          );
-          break;
+  useEffect(() => {
+    if (!code) {
+      setStatus("invalid");
+      return;
+    }
+
+    const verify = async () => {
+      try {
+        const snapshot = await db
+          .collection("passwordResetTokens")
+          .where("code", "==", code)
+          .limit(1)
+          .get();
+
+        if (snapshot.empty) {
+          setStatus("invalid");
+          return;
+        }
+
+        const docSnap = snapshot.docs[0];
+        const data = docSnap.data();
+        const expiresAt = data.expiresAt.toDate();
+
+        if (new Date() > expiresAt) {
+          setStatus("invalid");
+          return;
+        }
+
+        setTokenDoc({ id: docSnap.id, ...data });
+        setStatus("ready");
+      } catch (err) {
+        setStatus("invalid");
       }
+    };
+
+    verify();
+  }, [code]);
+
+  const handleSubmit = async () => {
+    setErrorMsg("");
+    if (newPassword.length < 6) {
+      setErrorMsg("Password must be at least 6 characters.");
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setErrorMsg("Passwords do not match.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch("https://us-central1-dyscalculiaapp-104c4.cloudfunctions.net/resetPassword", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code, newPassword }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Failed to reset password.");
+      }
+
+      setStatus("success");
+    } catch (err) {
+      setErrorMsg(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
+  const btnSx = {
+    backgroundColor: dark ? "#00ff9d" : "#000",
+    color: dark ? "#000" : "#00ff9d",
+    "&:hover": { backgroundColor: dark ? "#00e68a" : "#222" },
+    mt: 3,
+    px: 4,
+  };
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={createTheme()}>
       <div
         className="forgotpassword-page"
-        style={
-          mode === "dark"
-            ? { backgroundColor: "#242430", color: "#ffffff" }
-            : { backgroundColor: "#ffffff", color: "#000000" }
-        }
+        style={{ backgroundColor: dark ? "#242430" : "#ffffff", color: dark ? "#fff" : "#000" }}
       >
-        <Modal
-          open={sentModal}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-evenly",
-              textAlign: "center",
-              alignItems: "center",
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              height: 350,
-              width: 450,
-              backgroundColor: "#c3fae5",
-              border: "2px solid #000",
-              borderRadius: 4,
-              boxShadow: 24,
-              p: 4,
-            }}
-          >
-            <h1>Email Sent!</h1>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              If you don't see the email, be sure to check in spam.
+        {(status === "invalid" || status === "verifying") && (
+          <Box sx={{ textAlign: "center", maxWidth: 480, px: 3 }}>
+            {status === "verifying" ? (
+              <CircularProgress sx={{ color: "#6bffc6" }} />
+            ) : (
+              <>
+                <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
+                  This page doesn't exist!
+                </Typography>
+                <Typography sx={{ color: dark ? "#aaa" : "#555", lineHeight: 1.8 }}>
+                  If you tried to reset your password from the LearnCulia mobile app, please follow the instructions in the email. The link may have expired — request a new one from the app.
+                </Typography>
+              </>
+            )}
+          </Box>
+        )}
+
+        {status === "ready" && (
+          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: 420, px: 3 }}>
+            <Typography variant="h5" sx={{ fontWeight: "bold", mb: 1 }}>
+              Reset Your Password
             </Typography>
+            <Typography sx={{ color: dark ? "#aaa" : "#666", mb: 4, textAlign: "center", fontSize: "0.95rem" }}>
+              Resetting password for <strong>{tokenDoc?.email}</strong>
+            </Typography>
+
+            <ThemeProvider theme={dark ? TextFieldTheme : createTheme()}>
+              <TextField
+                label="New Password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                sx={{ mb: 2, input: { color: dark ? "#fff" : "#000" } }}
+                InputLabelProps={{ style: { color: dark ? "#aaa" : undefined } }}
+              />
+              <TextField
+                label="Confirm Password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                sx={{ input: { color: dark ? "#fff" : "#000" } }}
+                InputLabelProps={{ style: { color: dark ? "#aaa" : undefined } }}
+              />
+            </ThemeProvider>
+
+            {errorMsg && (
+              <Typography sx={{ color: "red", mt: 1.5, fontSize: "0.9rem" }}>{errorMsg}</Typography>
+            )}
+
             <Button
               variant="contained"
-              color="black"
               size="large"
-              sx={{ mt: 3 }}
-              onClick={() => setToLogin(true)}
+              onClick={handleSubmit}
+              disabled={!newPassword || !confirmPassword || loading}
+              sx={[btnSx, { "&.Mui-disabled": { backgroundColor: "#d4d4d4", color: "#737373" } }]}
             >
-              Back to Login
+              {loading ? <CircularProgress size={22} sx={{ color: "#fff" }} /> : "Reset Password"}
             </Button>
           </Box>
-        </Modal>
-        <h1 style={{ marginTop: "2vh" }}>Forgot Your Password?</h1>
-        <Card
-          className="FP-card"
-          elevation={6}
-          sx={[
-            { mt: 7 },
-            mode === "dark"
-              ? {
-                  border: "2px solid white",
-                  backgroundColor: "#242430",
-                  zIndex: 1,
-                  boxShadow: "2px 2px 20px 20px white",
-                }
-              : {},
-          ]}
-        >
-          <CardContent className="FP-cardcontent">
-            <Typography
-              sx={[
-                { fontSize: 20, mt: 5 },
-                mode === "dark"
-                  ? {
-                      color: "#ffffff",
-                    }
-                  : {
-                      color: "#000000",
-                    },
-              ]}
-            >
-              Type in your email address so we can send you a confirmation
-              email.
+        )}
+
+        {status === "success" && (
+          <Box sx={{ textAlign: "center", maxWidth: 420, px: 3 }}>
+            <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
+              Password Reset!
             </Typography>
-            {mode === "dark" ? (
-              <ThemeProvider theme={TextFieldTheme}>
-                <TextField
-                  required
-                  label="Email"
-                  variant="outlined"
-                  value={email}
-                  onChange={fillAnswerEmail}
-                  sx={{
-                    mt: 5,
-                    mb: 5,
-                    width: 350,
-                    input: {
-                      color: "#ffffff",
-                    },
-                  }}
-                  InputLabelProps={{
-                    style: {
-                      color: "#adadad",
-                    },
-                  }}
-                />
-              </ThemeProvider>
-            ) : (
-              <TextField
-                required
-                label="Email"
-                variant="filled"
-                value={email}
-                onChange={fillAnswerEmail}
-                sx={{ mt: 5, mb: 5, width: 350 }}
-              />
-            )}
-            <Button
-              disabled={!email}
-              variant="contained"
-              color="black"
-              size="large"
-              sx={[
-                {
-                  mt: 2,
-                  mb: 5,
-                  "&.Mui-disabled": {
-                    backgroundColor: "#d4d4d4",
-                    color: "#737373",
-                  },
-                  "&.MuiButtonBase-root:hover": {
-                    bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
-                  },
-                },
-                mode === "dark"
-                  ? { backgroundColor: "#00ff9d", color: "#000000" }
-                  : { backgroundColor: "#000000", color: "#00ff9d" },
-              ]}
-              onClick={forgotPass}
-            >
-              Send
-            </Button>
-            <Button
-              variant="contained"
-              color="black"
-              size="large"
-              sx={[
-                {
-                  mb: 3,
-                  "&.MuiButtonBase-root:hover": {
-                    bgcolor: mode === "dark" ? "#00ff9d" : "#000000",
-                  },
-                },
-                mode === "dark"
-                  ? { backgroundColor: "#00ff9d", color: "#000000" }
-                  : { backgroundColor: "#000000", color: "#00ff9d" },
-              ]}
-              onClick={() => setToLogin(true)}
-            >
-              Back to Login
-            </Button>
-          </CardContent>
-        </Card>
+            <Typography sx={{ color: dark ? "#aaa" : "#555", lineHeight: 1.8 }}>
+              Your password has been updated. You can now log in to the LearnCulia mobile app with your new password.
+            </Typography>
+          </Box>
+        )}
       </div>
     </ThemeProvider>
   );
