@@ -36,6 +36,7 @@
       "--no-sandbox",
       "--disable-setuid-sandbox"
     ],
+    "puppeteerExecutablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     "inlineCss": true
   },
   "eslintConfig": {
