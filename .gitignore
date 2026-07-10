@@ -26,3 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .agents/
+
+# Service account keys
+dyscalculiaapp-104c4-6ad75c7e6e05.json

@@ -7,6 +7,10 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import CircularProgress from "@mui/material/CircularProgress";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { db } from "../firebase.js";
 import { useGlobalState } from "../GlobalState.js";
 import { useLocation } from "react-router-dom";
@@ -46,6 +50,8 @@ const ForgotPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const dark = mode === "dark";
 
@@ -80,6 +86,7 @@ const ForgotPassword = () => {
         setTokenDoc({ id: docSnap.id, ...data });
         setStatus("ready");
       } catch (err) {
+        console.error("verify error:", err);
         setStatus("invalid");
       }
     };
@@ -100,7 +107,7 @@ const ForgotPassword = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("https://us-central1-dyscalculiaapp-104c4.cloudfunctions.net/resetPassword", {
+      const res = await fetch("https://resetpassword-ak5z2xph6q-uc.a.run.app", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code, newPassword }),
@@ -162,23 +169,41 @@ const ForgotPassword = () => {
             <ThemeProvider theme={dark ? TextFieldTheme : createTheme()}>
               <TextField
                 label="New Password"
-                type="password"
+                type={showNew ? "text" : "password"}
                 variant="outlined"
                 fullWidth
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 sx={{ mb: 2, input: { color: dark ? "#fff" : "#000" } }}
                 InputLabelProps={{ style: { color: dark ? "#aaa" : undefined } }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowNew((s) => !s)} edge="end" sx={{ color: dark ? "#aaa" : "#555" }}>
+                        {showNew ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
               <TextField
                 label="Confirm Password"
-                type="password"
+                type={showConfirm ? "text" : "password"}
                 variant="outlined"
                 fullWidth
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 sx={{ input: { color: dark ? "#fff" : "#000" } }}
                 InputLabelProps={{ style: { color: dark ? "#aaa" : undefined } }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowConfirm((s) => !s)} edge="end" sx={{ color: dark ? "#aaa" : "#555" }}>
+                        {showConfirm ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </ThemeProvider>
 

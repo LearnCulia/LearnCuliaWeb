@@ -6,7 +6,15 @@ admin.initializeApp();
 setGlobalOptions({maxInstances: 10});
 
 exports.resetPassword = onRequest(async (req, res) => {
-  res.set("Access-Control-Allow-Origin", "https://learnculia.com");
+  const origin = req.headers.origin;
+  const allowed = [
+    "https://learnculia.com",
+    "https://www.learnculia.com",
+    "http://localhost:3000",
+  ];
+  if (allowed.includes(origin)) {
+    res.set("Access-Control-Allow-Origin", origin);
+  }
   res.set("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.set("Access-Control-Allow-Headers", "Content-Type");
   if (req.method === "OPTIONS") return res.status(204).send("");
