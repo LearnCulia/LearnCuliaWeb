@@ -297,7 +297,7 @@ const GamePage2 = () => {
             </Typography>
             <Box sx={{ display: "flex", gap: 2 }}>
               <Button variant="contained" onClick={() => setToSPG(true)} sx={{ backgroundColor: "#000", color: "#6bffc6", "&:hover": { backgroundColor: "#222" } }}>Yes, Quit</Button>
-              <Button variant="outlined" onClick={() => setQuitModal(false)} sx={{ borderColor: "#000", color: mode === "dark" ? "#eee" : "#000" }}>Keep Playing</Button>
+              <Button variant="outlined" onClick={() => setQuitModal(false)} sx={{ borderColor: mode === "dark" ? "#eee" : "#000", color: mode === "dark" ? "#eee" : "#000" }}>Keep Playing</Button>
             </Box>
           </Box>
         </Box>

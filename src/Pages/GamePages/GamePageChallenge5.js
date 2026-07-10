@@ -80,6 +80,8 @@ const GamePageChallenge5 = () => {
     ? { backgroundColor: "#00ff9d", color: "#000000" }
     : { backgroundColor: "#000000", color: "#00ff9d" };
 
+  const blueColor = mode === "dark" ? "#5b9cf6" : "blue";
+
   const handleMenuItemClick = (event, index) => { setSelectedIndex(index); setOpen(false); };
   const handleToggle = () => setOpen((prev) => !prev);
   const handleClose = (event) => {
@@ -170,7 +172,7 @@ const GamePageChallenge5 = () => {
             <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 2, mt: 2, flexWrap: "wrap" }}>
               <Typography sx={{ fontSize: "clamp(60px, 12vw, 100px)", lineHeight: 1 }} style={{ color: "red" }}>{num1}</Typography>
               <Typography sx={{ fontSize: "clamp(60px, 12vw, 100px)", lineHeight: 1 }}>{compSign}</Typography>
-              <Typography sx={{ fontSize: "clamp(60px, 12vw, 100px)", lineHeight: 1 }} style={{ color: "blue" }}>{num2}</Typography>
+              <Typography sx={{ fontSize: "clamp(60px, 12vw, 100px)", lineHeight: 1 }} style={{ color: blueColor }}>{num2}</Typography>
             </Box>
 
             <Box sx={{ mt: 2, display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -267,12 +269,12 @@ const GamePageChallenge5 = () => {
             </Box>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, p: 2, borderRadius: 2, backgroundColor: mode === "dark" ? "#2a2a38" : "#f5f5f5" }}>
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <Typography sx={{ flex: 1, fontWeight: "bold" }} style={{ color: "blue" }}>Blue Number ({num2}): {marks2}</Typography>
+                <Typography sx={{ flex: 1, fontWeight: "bold" }} style={{ color: blueColor }}>Blue Number ({num2}): {marks2}</Typography>
                 <Button variant="contained" size="small" sx={[{ height: 36, minWidth: 36, fontSize: 20 }, darkBtnSx]} onClick={() => setMarks2((p) => p + 1)}>+</Button>
                 <Button variant="contained" size="small" sx={[{ height: 36, minWidth: 36, fontSize: 20 }, darkBtnSx]} onClick={() => setMarks2((p) => Math.max(0, p - 1))}>–</Button>
                 <Button variant="contained" size="small" sx={[{ height: 36, fontSize: 12 }, darkBtnSx]} onClick={() => setMarks2(0)}>Clear</Button>
               </Box>
-              <TallyMarks count={marks2} color="blue" />
+              <TallyMarks count={marks2} color={blueColor} />
             </Box>
             <Button variant="contained" size="large" sx={[{ alignSelf: "center" }, darkBtnSx]} onClick={() => setTickMarkModal(false)}>
               Close
@@ -292,7 +294,7 @@ const GamePageChallenge5 = () => {
             </Typography>
             <Box sx={{ display: "flex", gap: 2 }}>
               <Button variant="contained" onClick={() => setToSPG(true)} sx={{ backgroundColor: "#000", color: "#6bffc6", "&:hover": { backgroundColor: "#222" } }}>Yes, Quit</Button>
-              <Button variant="outlined" onClick={() => setQuitModal(false)} sx={{ borderColor: "#000", color: mode === "dark" ? "#eee" : "#000" }}>Keep Playing</Button>
+              <Button variant="outlined" onClick={() => setQuitModal(false)} sx={{ borderColor: mode === "dark" ? "#eee" : "#000", color: mode === "dark" ? "#eee" : "#000" }}>Keep Playing</Button>
             </Box>
           </Box>
         </Box>

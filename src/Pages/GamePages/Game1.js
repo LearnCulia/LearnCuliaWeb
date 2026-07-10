@@ -159,7 +159,7 @@ const Game1 = () => {
               <Button
                 variant="outlined"
                 onClick={() => setQuitModal(false)}
-                sx={{ borderColor: "#000", color: mode === "dark" ? "#eee" : "#000" }}
+                sx={{ borderColor: mode === "dark" ? "#eee" : "#000", color: mode === "dark" ? "#eee" : "#000" }}
               >
                 Keep Playing
               </Button>

@@ -217,9 +217,7 @@ const SinglePlayerGames = () => {
                   display: "flex",
                   flexDirection: "column",
                 },
-                mode === "dark"
-                  ? { backgroundColor: "#00ff9d" }
-                  : { backgroundColor: "#c3fae5" },
+                { backgroundColor: "#6bffc6" },
               ]}
             >
               <CardContent
@@ -301,6 +299,7 @@ const SinglePlayerGames = () => {
                           fontWeight: "bold",
                           borderRadius: 3,
                           px: 5,
+                          border: mode === "dark" ? "1px solid #fff" : "none",
                           "&:hover": { backgroundColor: "#222" },
                         }}
                       >
