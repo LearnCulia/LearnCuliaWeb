@@ -13,16 +13,8 @@ import MobileAppSS from "../images/MobileApp.jpg";
 
 const theme = createTheme({
   palette: {
-    seaGreen: {
-      main: "#6bffc6",
-      light: "#6bffc6",
-      dark: "#0fd98b",
-      contrastText: "#0d3023",
-    },
-    black: {
-      main: "#000000",
-      contrastText: "#00ff9d",
-    },
+    seaGreen: { main: "#6bffc6", light: "#6bffc6", dark: "#0fd98b", contrastText: "#0d3023" },
+    black: { main: "#000000", contrastText: "#00ff9d" },
   },
 });
 
@@ -41,11 +33,13 @@ const MobileApp = () => {
       >
         <NavBar />
         <Typography
-          style={{
-            marginTop: "15vh",
-            marginBottom: "10vh",
-            fontSize: "2vw",
+          sx={{
+            mt: "120px",
+            mb: 4,
+            fontSize: "clamp(1.2rem, 2.5vw, 2rem)",
             fontWeight: "bold",
+            textAlign: "center",
+            px: 2,
           }}
         >
           The LearnCulia Mobile Application!
@@ -55,33 +49,39 @@ const MobileApp = () => {
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap",
-            width: "85%",
-            justifyContent: "space-around",
+            width: "100%",
+            maxWidth: 1100,
+            justifyContent: "center",
             alignItems: "center",
+            gap: 24,
+            px: 4,
+            pb: 6,
           }}
         >
           <img
             src={MobileAppSS}
+            alt="LearnCulia Mobile App"
             style={{
-              marginTop: "5vh",
               borderRadius: 16,
-              width: "70vh",
-              height: "70vh",
+              width: "min(460px, 90vw)",
+              height: "min(460px, 90vw)",
+              objectFit: "cover",
             }}
           />
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
-              width: "30vw",
-              marginLeft: "10vw",
+              maxWidth: 360,
+              width: "100%",
+              alignItems: "center",
+              gap: 2,
             }}
           >
             <Typography
               sx={{
-                fontSize: "2.5vh",
+                fontSize: "clamp(0.95rem, 1.5vw, 1.15rem)",
                 fontWeight: "bold",
-                marginBottom: "5vh",
                 textAlign: "center",
               }}
             >
@@ -91,7 +91,7 @@ const MobileApp = () => {
             <Link
               href="https://apps.apple.com/us/app/learnculia/id6467522608"
               color="seaGreen.dark"
-              sx={{ fontSize: "2.5vh", textAlign: "center" }}
+              sx={{ fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)", textAlign: "center" }}
             >
               View and Download on App Store.
             </Link>
