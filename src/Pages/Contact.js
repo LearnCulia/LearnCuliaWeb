@@ -89,11 +89,11 @@ const Contact = () => {
         body: JSON.stringify({ name: name.trim(), email: email.trim(), message: message.trim() }),
       });
 
-      await fetch("https://api.brevo.com/v3/smtp/email", {
+      const brevoRes = await fetch("https://api.brevo.com/v3/smtp/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "api-key": process.env.BREVO_API_KEY,
+          "api-key": process.env.REACT_APP_BREVO_API_KEY,
         },
         body: JSON.stringify({
           to: [{ email: email.trim(), name: name.trim() }],
@@ -101,9 +101,13 @@ const Contact = () => {
           params: { name: name.trim(), email: email.trim(), message: message.trim() },
         }),
       });
+      const brevoData = await brevoRes.json();
+      console.log("Brevo status:", brevoRes.status, brevoData);
+      console.log("API key present:", !!process.env.REACT_APP_BREVO_API_KEY);
 
       setSentModal(true);
     } catch (error) {
+      console.error("sendMessage error:", error);
       alert("Failed to send message. Please try again.");
     }
   };
