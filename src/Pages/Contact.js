@@ -16,17 +16,12 @@ import { db } from "../firebase.js";
 
 const theme = createTheme({
   palette: {
-    seaGreen: {
-      main: "#6bffc6",
-      light: "#6bffc6",
-      dark: "#0fd98b",
-      contrastText: "#0d3023",
-    },
-    black: {
-      main: "#000000",
-      contrastText: "#00ff9d",
-    },
+    seaGreen: { main: "#6bffc6", light: "#6bffc6", dark: "#0fd98b", contrastText: "#0d3023" },
+    black: { main: "#000000", contrastText: "#00ff9d" },
   },
+});
+
+const WhiteTheme = createTheme({
   components: {
     MuiTextField: {
       styleOverrides: {
@@ -34,59 +29,43 @@ const theme = createTheme({
           "--TextField-brandBorderColor": "#000000",
           "--TextField-brandBorderHoverColor": "#000000",
           "--TextField-brandBorderFocusedColor": "#000000",
-          "& label.Mui-focused": {
-            color: "var(--TextField-brandBorderFocusedColor)",
-          },
+          "& label.Mui-focused": { color: "var(--TextField-brandBorderFocusedColor)" },
         },
       },
     },
     MuiOutlinedInput: {
       styleOverrides: {
-        notchedOutline: {
-          borderColor: "var(--TextField-brandBorderColor)",
-        },
+        notchedOutline: { borderColor: "var(--TextField-brandBorderColor)" },
         root: {
-          [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor: "var(--TextField-brandBorderHoverColor)",
-          },
-          [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor: "var(--TextField-brandBorderFocusedColor)",
-          },
-        },
-      },
-    },
-    MuiFilledInput: {
-      styleOverrides: {
-        root: {
-          "&::before, &::after": {
-            borderBottom: "2px solid var(--TextField-brandBorderColor)",
-          },
-          "&:hover:not(.Mui-disabled, .Mui-error):before": {
-            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
-          },
-          "&.Mui-focused:after": {
-            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
-          },
-        },
-      },
-    },
-    MuiInput: {
-      styleOverrides: {
-        root: {
-          "&::before": {
-            borderBottom: "2px solid var(--TextField-brandBorderColor)",
-          },
-          "&:hover:not(.Mui-disabled, .Mui-error):before": {
-            borderBottom: "2px solid var(--TextField-brandBorderHoverColor)",
-          },
-          "&.Mui-focused:after": {
-            borderBottom: "2px solid var(--TextField-brandBorderFocusedColor)",
-          },
+          [`&:hover .${outlinedInputClasses.notchedOutline}`]: { borderColor: "var(--TextField-brandBorderHoverColor)" },
+          [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: { borderColor: "var(--TextField-brandBorderFocusedColor)" },
         },
       },
     },
   },
 });
+
+const modalHeaderBox = {
+  width: "100%",
+  backgroundColor: "#6bffc6",
+  py: 2.5,
+  px: 3,
+  textAlign: "center",
+};
+
+const modalBox = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: { xs: "90%", sm: 500 },
+  borderRadius: 4,
+  boxShadow: 24,
+  overflow: "hidden",
+};
 
 const Contact = () => {
   const [sentModal, setSentModal] = React.useState(false);
@@ -96,31 +75,21 @@ const Contact = () => {
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
 
-  const fillAnswerName = (e) => {
-    setName(e.target.value);
-  };
-
-  const fillAnswerEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const fillAnswerMessage = (e) => {
-    setMessage(e.target.value);
-  };
+  const fillAnswerName = (e) => setName(e.target.value);
+  const fillAnswerEmail = (e) => setEmail(e.target.value);
+  const fillAnswerMessage = (e) => setMessage(e.target.value);
 
   const sendMessage = async () => {
     await db
       .collection("contactresponses")
-      .add({
-        name: name,
-        email: email,
-        message: message,
-      })
-      .then(() => {
-        setSentModal(true);
-      })
+      .add({ name, email, message })
+      .then(() => setSentModal(true))
       .catch((error) => alert(error));
   };
+
+  const darkBtnSx = mode === "dark"
+    ? { backgroundColor: "#00ff9d", color: "#000000" }
+    : { backgroundColor: "#000000", color: "#00ff9d" };
 
   return (
     <ThemeProvider theme={theme}>
@@ -133,53 +102,13 @@ const Contact = () => {
             : { backgroundColor: "#ffffff", color: "#000000" }
         }
       >
-        <Modal
-          open={sentModal}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-evenly",
-              textAlign: "center",
-              alignItems: "center",
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              height: 350,
-              width: 450,
-              backgroundColor: "#c3fae5",
-              border: "2px solid #000",
-              borderRadius: 4,
-              boxShadow: 24,
-              p: 4,
-            }}
-          >
-            <h1>Message Sent!</h1>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Thank you for contacting us!
-            </Typography>
-            <Button
-              variant="contained"
-              color="black"
-              size="large"
-              sx={{ mt: 3 }}
-              onClick={() => setSentModal(false)}
-            >
-              Close
-            </Button>
-          </Box>
-        </Modal>
         <div className="contact-col1">
-          <h1 style={{ marginTop: 20, fontSize: "3vw" }}>Contact</h1>
-          <Typography sx={{ mt: 5, fontSize: "1vw" }}>
+          <h1 style={{ marginTop: 20, fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}>Contact</h1>
+          <Typography sx={{ mt: 5, fontSize: "clamp(0.85rem, 1.2vw, 1rem)" }}>
             Any issues or suggestions? Please contact me to get the best out of
             this website and your education!
           </Typography>
-          <Typography sx={{ mt: 1, fontSize: "1vw" }}>
+          <Typography sx={{ mt: 1, fontSize: "clamp(0.85rem, 1.2vw, 1rem)" }}>
             Or contact
           </Typography>
           <Link
@@ -189,64 +118,87 @@ const Contact = () => {
           >
             learnculiaofficial@gmail.com.
           </Link>
-          <Typography sx={{ mt: 7, fontSize: "1vw" }}>
+          <Typography sx={{ mt: 7, fontSize: "clamp(0.85rem, 1.2vw, 1rem)" }}>
             We will try to respond to you within 5 business days. If we do not
             respond back to your message, please email us through the link
             above. Thanks!
           </Typography>
         </div>
+
         <div className="contact-col2">
           <Box
             component="form"
-            sx={[
-              {
-                "& .MuiTextField-root": { mt: "2vh", mb: "1vh", width: "50vh" },
-              },
-              mode === "dark"
-                ? { backgroundColor: "#00ff9d" }
-                : { backgroundColor: "#6bffc6" },
-            ]}
+            sx={{ "& .MuiTextField-root": { mt: "2vh", mb: "1vh", width: "min(360px, 75vw)" } }}
             noValidate
             autoComplete="off"
             className="contact-form"
           >
-            <Typography style={{ color: "black", fontWeight: "bold", fontSize: "1.5vw", mt: "1vh" }}>Enter your Information Here</Typography>
-            <TextField
-              required
-              id="outlined-required"
-              label="Name"
-              value={name}
-              onChange={fillAnswerName}
-            />
-            <TextField
-              required
-              id="outlined-required"
-              label="Email"
-              value={email}
-              onChange={fillAnswerEmail}
-            />
-            <TextField
-              required
-              id="outlined-multiline-static"
-              label="Your Message"
-              value={message}
-              onChange={fillAnswerMessage}
-              multiline
-              rows={8}
-            />
+            <Typography style={{ color: "black", fontWeight: "bold", fontSize: "clamp(1rem, 1.5vw, 1.3rem)" }}>
+              Enter your Information Here
+            </Typography>
+            <ThemeProvider theme={WhiteTheme}>
+              <TextField
+                required
+                label="Name"
+                value={name}
+                onChange={fillAnswerName}
+              />
+              <TextField
+                required
+                label="Email"
+                value={email}
+                onChange={fillAnswerEmail}
+              />
+              <TextField
+                required
+                label="Your Message"
+                value={message}
+                onChange={fillAnswerMessage}
+                multiline
+                rows={8}
+              />
+            </ThemeProvider>
             <Button
               disabled={!name || !email || !message}
               variant="contained"
-              color="black"
               size="large"
               onClick={sendMessage}
-              sx={{ marginTop: 3 }}
+              sx={[
+                { marginTop: 3, "&.Mui-disabled": { backgroundColor: "#d4d4d4", color: "#737373" } },
+                { backgroundColor: "#000", color: "#00ff9d", "&:hover": { backgroundColor: "#222" } },
+              ]}
             >
               Send Message
             </Button>
           </Box>
         </div>
       </div>
+
+      {/* Sent modal */}
+      <Modal open={sentModal} onClose={() => setSentModal(false)}>
+        <Box sx={modalBox}>
+          <Box sx={modalHeaderBox}>
+            <Typography variant="h5" sx={{ fontWeight: "bold", color: "#000" }}>Message Sent!</Typography>
+          </Box>
+          <Box sx={{ width: "100%", backgroundColor: mode === "dark" ? "#1e1e2a" : "#ffffff", px: 4, py: 3, display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5, textAlign: "center" }}>
+            <Typography variant="h6" sx={{ color: mode === "dark" ? "#eee" : "#222" }}>
+              Thank you for contacting us!
+            </Typography>
+            <Typography sx={{ color: mode === "dark" ? "#aaa" : "#555" }}>
+              We will get back to you within 5 business days.
+            </Typography>
+            <Button
+              variant="contained"
+              size="large"
+              sx={[{ mt: 1 }, darkBtnSx]}
+              onClick={() => setSentModal(false)}
+            >
+              Close
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
+
       <Footer mode={mode} />
       <ChatBot />
     </ThemeProvider>
