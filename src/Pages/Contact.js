@@ -71,13 +71,28 @@ const Contact = () => {
   const [sentModal, setSentModal] = React.useState(false);
   const [mode] = useGlobalState("darkMode");
 
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [message, setMessage] = React.useState("");
+  const DRAFT_KEY = "contact_draft";
 
-  const fillAnswerName = (e) => setName(e.target.value);
-  const fillAnswerEmail = (e) => setEmail(e.target.value);
-  const fillAnswerMessage = (e) => setMessage(e.target.value);
+  const [name, setName] = React.useState(() => {
+    const saved = sessionStorage.getItem(DRAFT_KEY);
+    return saved ? JSON.parse(saved).name || "" : "";
+  });
+  const [email, setEmail] = React.useState(() => {
+    const saved = sessionStorage.getItem(DRAFT_KEY);
+    return saved ? JSON.parse(saved).email || "" : "";
+  });
+  const [message, setMessage] = React.useState(() => {
+    const saved = sessionStorage.getItem(DRAFT_KEY);
+    return saved ? JSON.parse(saved).message || "" : "";
+  });
+
+  const saveDraft = (n, e, m) => {
+    sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ name: n, email: e, message: m }));
+  };
+
+  const fillAnswerName = (e) => { setName(e.target.value); saveDraft(e.target.value, email, message); };
+  const fillAnswerEmail = (e) => { setEmail(e.target.value); saveDraft(name, e.target.value, message); };
+  const fillAnswerMessage = (e) => { setMessage(e.target.value); saveDraft(name, email, e.target.value); };
 
   const sendMessage = async () => {
     try {
@@ -89,7 +104,7 @@ const Contact = () => {
         body: JSON.stringify({ name: name.trim(), email: email.trim(), message: message.trim() }),
       });
 
-      const brevoRes = await fetch("https://api.brevo.com/v3/smtp/email", {
+      await fetch("https://api.brevo.com/v3/smtp/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,10 +116,10 @@ const Contact = () => {
           params: { name: name.trim(), email: email.trim(), message: message.trim() },
         }),
       });
-      const brevoData = await brevoRes.json();
-      console.log("Brevo status:", brevoRes.status, brevoData);
-      console.log("API key present:", !!process.env.REACT_APP_BREVO_API_KEY);
-
+      setName("");
+      setEmail("");
+      setMessage("");
+      sessionStorage.removeItem(DRAFT_KEY);
       setSentModal(true);
     } catch (error) {
       console.error("sendMessage error:", error);
