@@ -1,0 +1,136 @@
+================================================================================
+LEARNCULIA WEB APPLICATION — SYSTEM DOCUMENTATION AND KNOWLEDGE BASE
+================================================================================
+
+--- DOCUMENT SCOPE ---
+This document serves as the master knowledge base for the LearnCulia web application at https://learnculia.com. It is structured for vector ingestion, semantic indexing, and chunk-level context retention within a Retrieval-Augmented Generation (RAG) system. It covers all pages, features, games, tools, and platform-specific behaviors of the web version only.
+
+--- 1. APPLICATION OVERVIEW AND TARGET AUDIENCE ---
+* Application Title: LearnCulia (Web)
+* Website URL: https://learnculia.com
+* Core Definition: LearnCulia is an educational, math-focused learning platform engineered specifically to assist individuals — particularly young students — with dyscalculia in building and improving mathematical reasoning, number comprehension, and arithmetic fluency.
+* Mission: The platform translates traditional cognitive and therapeutic arithmetic remediation techniques into highly engaging, gamified environments with short tutorial videos before each game to teach both gameplay and the underlying math concept.
+* Web Platform Audience: The web version is designed for desktop and laptop users. Games are not accessible on mobile phones or small tablets — those users are directed to download the LearnCulia iOS mobile app instead.
+
+--- 2. PLATFORM AVAILABILITY AND DEVICE SUPPORT ---
+* Desktop/Laptop: Full access to all pages and all 6 games.
+* Mobile Phones: Games are NOT available. When a user visits the Single Player Games page on a phone-sized screen, they see a message directing them to the LearnCulia mobile app. Landscape mode on phones is also not supported — the screen rotates back to portrait automatically.
+* Small Tablets (portrait): Same restriction as mobile phones — games are not accessible.
+* iOS Mobile App: Available on the Apple App Store at https://apps.apple.com/us/app/learnculia/id6467522608. The mobile app includes additional features not available on the web, including user accounts, profiles, custom avatars, and a badge/achievement system.
+
+--- 3. WEBSITE PAGES ---
+The LearnCulia website has the following pages accessible via the navigation bar and footer:
+
+* Home (/): The landing page. Introduces LearnCulia, highlights its purpose for students with dyscalculia, and links to the games and info pages.
+* Info (/info): Provides background on LearnCulia — what it is, its purpose, and how it supports students with dyscalculia through interactive games and tutorial videos.
+* Single Player Games (/single-player-games): The main games hub. Lists all 6 available games with descriptions and a modal preview for each. Desktop only — mobile users see a redirect message.
+* Contact (/contact): A contact form where users can submit their name, email, and a message. Used for feedback, bug reports, or suggestions. Also provides a direct email: learnculiaofficial@gmail.com
+* Mobile App (/mobile-app): Showcases the LearnCulia iOS mobile app with a screenshot and a link to download it from the App Store.
+* Forgot Password (/forgot-password): Allows users to reset their password if they have an account.
+* Terms & Conditions (/terms): Legal terms for using the platform.
+* Privacy Policy (/privacy-policy): Details how user data is handled.
+
+--- 4. NAVIGATION ---
+* The NavBar is present on all pages and contains links to: Home, Info, Single Player Games, Contact, and Mobile App.
+* The NavBar also includes a dark/light mode toggle button.
+* The Footer contains two columns: Pages (Home, Info, Games, Contact, Mobile App) and Legal (Terms & Conditions, Privacy Policy), along with the LearnCulia logo and copyright.
+
+--- 5. UI THEMES AND APPEARANCE ---
+* Light Mode / Dark Mode: A toggle in the NavBar switches between light and dark themes. The preference applies across all pages instantly.
+* Light Mode: White backgrounds, black text, black buttons with green accents.
+* Dark Mode: Dark navy backgrounds (#242430), white text, green (#00ff9d) buttons and accents. Modal bodies use a dark background (#1e1e2a) with a green (#6bffc6) header bar.
+* Color Accent Customization: Coming soon — users will be able to personalize the primary color accent of the interface.
+* Design Philosophy: Minimal, flat, distraction-free aesthetic with high-contrast legibility — designed to minimize cognitive load for neurodivergent individuals.
+
+--- 6. AI CHATBOT ASSISTANT ---
+* The LearnCulia website features a built-in AI chatbot accessible from every page via a chat bubble icon in the bottom-right corner.
+* Technical Stack: The chatbot uses a RAG (Retrieval-Augmented Generation) pipeline backed by a vector knowledge base (Supabase pgvector) to answer questions accurately about LearnCulia features, dyscalculia, game tips, and more.
+* Conversational Scope: The chatbot answers questions about dyscalculia definitions and symptoms, provides tips and strategies for all 6 games (Normal and Challenge modes), explains website features and navigation, and offers encouragement to reduce math-related anxiety.
+* How to access: Click the chat bubble icon at the bottom-right of any page.
+
+--- 7. GAMES — OVERVIEW ---
+LearnCulia offers 6 educational mini-games, each with two modes: Normal Mode and Challenge Mode. Each game begins with a short tutorial video to teach the math concept before gameplay starts. Games are accessible only on desktop/laptop browsers.
+
+When entering a game from the Single Player Games page, users first see a game intro/info page with the tutorial video. After watching, they click to start the Normal Mode. Completing 10 questions in Normal Mode unlocks the Challenge Mode.
+
+All games feature:
+- A "Quit Game" button to exit back to the Single Player Games page (with a confirmation modal)
+- A "Press to Play" button to begin after watching the tutorial
+- A "Check Answer" button (disabled until an answer is selected or entered)
+- Feedback after each answer: "Good Job!" for correct, "No pressure! Try it one more time!" for incorrect
+- A finish/challenge modal after completing 10 questions
+
+--- 8. GAME 1: COUNTING ---
+* Educational Target: Subitizing, quantity recognition, and basic counting-sequence mechanics.
+* Tutorial Video: Teaches how to count using fingers as a visual aid.
+* Normal Mode: A fruit is shown and a number is displayed. The user must count that many fruits and select the correct answer from a dropdown. 10 questions to complete.
+* Challenge Mode: A number is shown and the user must select which fruit image matches that exact count from a dropdown of fruit images. 10 questions to complete.
+* Tips: Use your fingers to count along. Each fruit shown corresponds to a single unit. Take it slow — there's no time limit.
+
+--- 9. GAME 2: ADDITION & SUBTRACTION ---
+* Educational Target: Operational arithmetic fluency using a visual tick mark tool.
+* Tutorial Video: Teaches how to use tick marks (vertical lines) to count and add or subtract.
+* Normal Mode: A simple addition or subtraction equation is shown (e.g. 3 + 5 = ?). The user types the answer. A "Tick Mark Notes" button opens a panel where the user can add and remove vertical tick marks for each number to count visually. 10 questions.
+* Challenge Mode: Same concept but with larger two-digit numbers. The tick mark tool is still available. 10 questions.
+* Tick Mark Tool: Click "+" to add a tick mark, "–" to remove one. Each mark is a simple vertical line — count them to find the total.
+* Tips: Use the tick mark tool to draw out both numbers, then count all the marks together for addition, or remove marks for subtraction.
+
+--- 10. GAME 3: MULTIPLICATION ---
+* Educational Target: Multiplication fact retrieval using the times table.
+* Tutorial Video: Teaches how to use a multiplication table to find products.
+* Normal Mode: A multiplication equation is shown (e.g. 3 × 7 = ?). The user types the answer. A "Multiplication Table" button opens a full interactive times table (1–12) in a modal for reference. 10 questions.
+* Challenge Mode: Same multiplication questions, but the multiplication table button is hidden. A help table appears automatically after 3 consecutive wrong answers. 10 questions.
+* Multiplication Table: A 12×12 color-coded grid. Header row and column are green (#6bffc6), diagonal cells (squares like 3×3, 5×5) are yellow, and cells alternate between light shades. Scroll horizontally/vertically on smaller screens.
+* Tips: In Normal Mode, always open the table and find the row of the first number, then scan across to the column of the second number. The cell where they meet is the answer. In Challenge Mode, try to memorize common facts before closing the table.
+* Consecutive number prevention: The game never gives you the same pair of numbers twice in a row.
+
+--- 11. GAME 4: REVERSING EQUATIONS ---
+* Educational Target: Mathematical flexibility and understanding that equations can be read in both directions.
+* Tutorial Video: Teaches the concept that "a + b = ?" is the same as "? = a + b".
+* Normal Mode: An equation is shown as "? = a ± b" (e.g. ? = 3 + 5). The user types the reversed form as "a±b=?" (e.g. 3+5=?). The label hint shows the expected format. 10 questions.
+* Challenge Mode: An equation is shown as "? = a ± b" flipped — the user types it back in the original forward form. 10 questions.
+* Tips: The numbers and operation don't change — only the position of the "?" moves. Read the equation aloud from left to right, then rewrite it starting from the other side.
+* Format: Type answers without spaces (e.g. "3+5=?" not "3 + 5 = ?"). Both addition (+) and subtraction (–) appear.
+
+--- 12. GAME 5: COMPARISONS ---
+* Educational Target: Understanding magnitude and inequality operators (>, <, =, ≥, ≤).
+* Tutorial Video: Teaches how to compare two numbers using comparison symbols.
+* Normal Mode: Two numbers are shown in red and blue (e.g. red 7, blue 3). The user selects the correct comparison operator from a dropdown: >, <, or =. A "Tick Mark Notes" button opens a panel with red and blue tick marks for each number. 10 questions.
+* Challenge Mode: A comparison statement is shown with >, <, ≥, ≤, or = (e.g. 5 ≥ 3). The user selects "True" or "False" from a dropdown. 10 questions.
+* Tick Mark Tool (Game 5): Same as Game 2 but color-coded — red marks for the red number, blue marks for the blue number. Compare the two groups visually.
+* Tips (Normal Mode): Draw out tick marks for both numbers. Whichever group has more marks is the larger number. The arrow of > and < always points to the smaller number.
+* Tips (Challenge Mode): ≥ means "greater than OR equal to", ≤ means "less than OR equal to". Test if the left side satisfies either condition.
+
+--- 13. GAME 6: ARRANGING NUMBERS ---
+* Educational Target: Linear sequencing and ordering numbers from smallest to largest.
+* Tutorial Video: Teaches how to organize and arrange numbers in order.
+* Normal Mode: 5 random whole numbers (0–99) are shown. The user types them in order from smallest to largest, separated by commas. Spaces around commas are optional — both "1,2,3" and "1, 2, 3" are accepted. 10 questions.
+* Challenge Mode: Same as Normal Mode but with 5 decimal numbers (e.g. 0.75, 1.33, 0.22). 10 questions.
+* Tips: Start by finding the smallest number, then the next smallest, and so on. For decimals, look at the digits before the decimal point first — if they're the same, compare the digits after.
+* Format: Separate numbers with commas. Spaces are optional.
+
+--- 14. MOBILE APP EXCLUSIVE FEATURES ---
+The following features are only available in the LearnCulia iOS mobile app, NOT on the web:
+* User accounts (sign up / log in)
+* Custom profile with avatar (choose gender expression, skin tone, glasses, hats, shirt color)
+* Badge and achievement system (earned by completing games and challenge modes)
+* Profile screen showing avatar and earned badges
+* All 6 games playable on a mobile phone
+* Color accent customization (Green, Red, Blue)
+* Automated welcome email on registration
+* Password reset via email
+
+To access these features, download the LearnCulia app: https://apps.apple.com/us/app/learnculia/id6467522608
+
+--- 15. CONTACT AND SUPPORT ---
+* Contact Page: https://learnculia.com/contact
+* Contact Form: Enter your name, email, and message. Used for bug reports, feedback, or suggestions.
+* Direct Email: learnculiaofficial@gmail.com
+* Response Time: LearnCulia aims to respond within 5 business days.
+
+--- 16. LEGAL ---
+* Terms & Conditions: Available at https://learnculia.com/terms
+* Privacy Policy: Available at https://learnculia.com/privacy-policy
+* LearnCulia does not store passwords. Account data (username and email) is kept securely. Deleted accounts cannot be recovered.
+
+================================================================================
