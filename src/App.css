@@ -1,55 +1,19 @@
-.login-page {
-  display: flex;
-  flex-direction: row;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.login-col1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #6bffc6;
-  z-index: 1;
-  overflow-x: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
+.navLogo {
+  width: 5vh;
+  height: 5vh;
+  border-radius: 1vh;
+  margin-right: 2vh;
 }
 
-.login-col2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  overflow-x: hidden;
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-}
-
-.login-card {
-  width: 80%;
-  height: 75%;
-}
-
-.login-cardcontent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.info-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.logoicon {
+  width: 20vh;
+  height: 20vh;
+  border-radius: 2vh;
 }
 
 .home {
@@ -57,6 +21,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.home .MuiButton-root {
+  margin-top: 0;
 }
 
 .home2 {
@@ -71,30 +39,8 @@
   background-position: center;
 }
 
-.home3 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 5rem 6rem;
-  box-sizing: border-box;
-}
-
-.home4 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 5rem 6rem;
-  box-sizing: border-box;
-}
-
+.home3,
+.home4,
 .home5 {
   display: flex;
   flex-direction: row;
@@ -118,67 +64,9 @@
   box-sizing: border-box;
 }
 
-.title {
-  text-align: center;
-  color: black;
-  font-weight: bold;
-  font-size: 5vh;
-}
-
-.password {
-  display: flex;
-  flex-direction: row;
-}
-
-.navLogo {
-  width: 5vh;
-  height: 5vh;
-  border-radius: 1vh;
-  margin-right: 2vh;
-}
-
-.footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-top: 40vh;
-  height: 25vh;
-  width: 200vh;
-}
-
-.footerLogo {
-  width: 5vh;
-  height: 5vh;
-  border-radius: 1vh;
-  margin-top: 2vh;
-  margin-right: 2vh;
-}
-
-.logoicon {
-  width: 20vh;
-  height: 20vh;
-  border-radius: 2vh;
-}
-
-.contactPic {
-  width: 45vh;
-  height: 30vh;
-  box-shadow: inset 0 0 0 0;
-}
-
-.box3 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  min-width: 300px;
-  max-width: 560px;
-  line-height: 1.7;
-}
-
-.box4 {
+.box3,
+.box4,
+.box5 {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -190,26 +78,10 @@
 }
 
 .box5 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  min-width: 300px;
-  max-width: 560px;
-  line-height: 1.7;
   gap: 1.5rem;
 }
 
-.home3i {
-  width: 100%;
-  max-width: 480px;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  border-radius: 16px;
-  flex-shrink: 0;
-}
-
+.home3i,
 .home4i {
   width: 100%;
   max-width: 480px;
@@ -226,15 +98,6 @@
   object-fit: cover;
   border-radius: 16px;
   flex-shrink: 0;
-}
-
-.home .MuiButton-root {
-  margin-top: 0;
-}
-
-body { 
-  margin: 0;
-  padding: 0;
 }
 
 .home-no-reg {
@@ -263,61 +126,42 @@ body {
   height: 50vh;
   width: 100%;
 }
-  @keyframes first {
-    0% {opacity: 1.0;}
-    10% {opacity: 0.8;}
-    20% {opacity: 0.6;}
-    30% {opacity: 0.4;}
-    40% {opacity: 0.2;}
-    50% {opacity: 0.1;}
-    60% {opacity: 0.2;}
-    70% {opacity: 0.4;}
-    80% {opacity: 0.6;}
-    90% {opacity: 0.8;}
-    100% {opacity: 1.0;}
-  }
-  .second {
-    animation: second 10s infinite; animation-delay: 2s;
-    background: linear-gradient(#40ffbf, #0fffa3);
-    z-index: 20;
-    height: 50vh;
-    width: 100%;
-  }
-    @keyframes second {
-      0% {opacity: 0;}
-      10% {opacity: 0.2;}
-      20% {opacity: 0.4;}
-      30% {opacity: 0.6;}
-      40% {opacity: 0.8;}
-      50% {opacity: 1.0;}
-      60% {opacity: 0.8;}
-      70% {opacity: 0.6;}
-      80% {opacity: 0.4;}
-      90% {opacity: 0.2;}
-      100% {opacity: 0;}
-    }
 
-  .third {
-    animation: third 10s infinite;
-    animation-delay: 8s;
-    background: linear-gradient(#0beb7b, #00b95d);
-    z-index: 30;
-    height: 50vh;
-    width: 100%;
-  }
-    @keyframes third {
-      0% {opacity: 0;}
-      10% {opacity: 0.2;}
-      20% {opacity: 0.4;}
-      30% {opacity: 0.6;}
-      40% {opacity: 0.8;}
-      50% {opacity: 1.0;}
-      60% {opacity: 0.8;}
-      70% {opacity: 0.6;}
-      80% {opacity: 0.4;}
-      90% {opacity: 0.2;}
-      100% {opacity: 0;}
-    }
+@keyframes first {
+  0%   { opacity: 1.0; }
+  50%  { opacity: 0.1; }
+  100% { opacity: 1.0; }
+}
+
+.second {
+  animation: second 10s infinite;
+  animation-delay: 2s;
+  background: linear-gradient(#40ffbf, #0fffa3);
+  z-index: 20;
+  height: 50vh;
+  width: 100%;
+}
+
+@keyframes second {
+  0%   { opacity: 0; }
+  50%  { opacity: 1.0; }
+  100% { opacity: 0; }
+}
+
+.third {
+  animation: third 10s infinite;
+  animation-delay: 8s;
+  background: linear-gradient(#0beb7b, #00b95d);
+  z-index: 30;
+  height: 50vh;
+  width: 100%;
+}
+
+@keyframes third {
+  0%   { opacity: 0; }
+  50%  { opacity: 1.0; }
+  100% { opacity: 0; }
+}
 
 @media (max-width: 600px) {
   .home3,
@@ -340,31 +184,3 @@ body {
     max-width: 100%;
   }
 }
-
-/* .title {
-  text-align: center;
-  background-color: rgb(190, 164, 214);
-  padding: 2vw 1vw;
-  border-radius: 10px 10px 0 0;
-  font-size: 2rem;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  width: 30vw;
-  padding: 2vw 1vw;
-  background-color: rgb(250, 194, 194);
-  border-radius: 0 0 10px 10px;
-}
-
-input {
-  border: 1px solid rgb(172, 171, 171);
-  border-radius: 10px;
-  padding: 1vw 1vw;
-  outline: none;
-  margin: 5px;
-} */
