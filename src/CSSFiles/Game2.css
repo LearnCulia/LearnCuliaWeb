@@ -2,28 +2,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 80px 1.5rem 3rem;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .game2-gamepage {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  padding: 80px 1.5rem 3rem;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .game2-gamepagechallenge {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  padding: 80px 1.5rem 3rem;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .game2-bar {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-grow: 1;
+  width: clamp(160px, 30vw, 280px);
+  border: none;
+}
+
+.quit-btn-row {
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.game2-top-btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }

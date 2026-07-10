@@ -36,7 +36,7 @@ const modalBox = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: { xs: "90%", sm: 360 },
+  width: { xs: "90%", sm: 500 },
   borderRadius: 4,
   boxShadow: 24,
   overflow: "hidden",

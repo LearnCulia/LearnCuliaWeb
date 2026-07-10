@@ -172,7 +172,7 @@ const GamePage1 = () => {
 
       {/* Quit modal */}
       <Modal open={quitModal} onClose={() => setQuitModal(false)}>
-        <Box sx={{ ...modalBox, width: { xs: "90%", sm: 360 } }}>
+        <Box sx={{ ...modalBox, width: { xs: "90%", sm: 500 } }}>
           <Box sx={modalHeaderBox}>
             <Typography variant="h6" sx={{ fontWeight: "bold", color: "#000" }}>Quit Game?</Typography>
           </Box>
