@@ -9,7 +9,7 @@ import Link from "@mui/material/Link";
 import NavBar from "./NavBar";
 import { useGlobalState } from "../GlobalState";
 
-import MobileAppSS from "../images/MobileApp.jpg";
+import MobileAppSS from "../images/MobileApp.png";
 
 const theme = createTheme({
   palette: {

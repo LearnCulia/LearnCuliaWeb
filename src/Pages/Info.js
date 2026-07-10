@@ -58,15 +58,22 @@ const Info = () => {
               About LearnCulia
             </Typography>
             <Typography sx={{ fontSize: "clamp(0.85rem, 1vw, 1rem)", mt: 1, lineHeight: 1.8, color: "inherit" }} component="div">
-              Welcome to LearnCulia™ – an exciting app designed to empower young
-              kids who struggle with dyscalculia on their journey to conquer
+              Welcome to LearnCulia™ – an exciting platform designed to empower
+              young kids who struggle with dyscalculia on their journey to conquer
               math challenges with confidence and joy. Through a collection of
               interactive games, tutorials, and challenge puzzles, LearnCulia™
               turns learning into an exciting adventure. Unlike traditional
               learning environments, this app provides small tutorial videos
               before each game to not just learn how to play the game, but also
-              learn the mathematical concept. To enjoy this app even more, you
-              can create an account to have your own custom profile picture!
+              learn the mathematical concept. LearnCulia is available on both web
+              and iOS. Download the mobile app to unlock additional features like
+              a custom profile, avatar, and achievement badges!
+              <br /><br />
+              The website also features CuliaBot, a built-in AI assistant powered
+              by a knowledge base specific to LearnCulia. CuliaBot can answer
+              questions about dyscalculia, provide tips for any of the six games,
+              and help you navigate the platform. Just click the chat bubble in
+              the bottom-left corner of any page!
             </Typography>
 
             <Typography sx={{ fontSize: "clamp(1.1rem, 1.5vw, 1.4rem)", mt: 6, fontWeight: "bold", color: "inherit" }}>
@@ -99,9 +106,9 @@ const Info = () => {
               problems, you have completed the game. If you feel stuck anywhere,
               there will be comforting messages and extra guidance to keep up
               that positive attitude! You may also complete the game however
-              many times you would like. In the future, there will be
-              multiplayer games, and way more single player games based on
-              difficulty and age level!
+              many times you would like. Note that games are only accessible on
+              desktop and laptop browsers — mobile phone users can download the
+              LearnCulia iOS app to play on the go!
             </Typography>
 
             <Typography sx={{ fontSize: "clamp(1.1rem, 1.5vw, 1.4rem)", mt: 6, fontWeight: "bold", color: "inherit" }}>
@@ -117,7 +124,7 @@ const Info = () => {
               to solve math problems with the development of necessary skills.
               In this app, I want to make sure that everyone gets an opportunity
               to access a fun environment to hone their skills. You are welcome
-              to contact me below if you have any questions!
+              to contact me above if you have any questions!
             </Typography>
           </CardContent>
         </Card>
