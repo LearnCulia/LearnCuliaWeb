@@ -34,7 +34,7 @@ const theme = createTheme({
 });
 
 function ScrollTop(props) {
-  const { children, window } = props;
+  const { children } = props;
 
   const trigger = useScrollTrigger();
 
@@ -67,7 +67,7 @@ export default function Home(props) {
   const [toInfo, setToInfo] = React.useState(false);
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
-  const [toMobileApp, setToMobileApp] = React.useState(false);
+  const [toMobileApp] = React.useState(false);
   const [mode] = useGlobalState("darkMode");
 
   if (toInfo) {
@@ -114,7 +114,7 @@ export default function Home(props) {
               : { backgroundColor: "#ffffff", color: "#000000" }
           }
         >
-          <img src={homei2} className="home3i" alt="Home Image 2" />
+          <img src={homei2} className="home3i" alt="LearnCulia feature showcase" />
           <Box className="box3">
             <h1
               style={{
@@ -210,7 +210,7 @@ export default function Home(props) {
               Single Player Games
             </Button>
           </Box>
-          <img src={homei3} className="home4i" alt="Home Image 2" />
+          <img src={homei3} className="home4i" alt="LearnCulia feature showcase" />
         </Box>
         <Box
           className="home5"

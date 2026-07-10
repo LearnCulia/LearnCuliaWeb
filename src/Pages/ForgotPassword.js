@@ -156,7 +156,7 @@ const ForgotPassword = () => {
   const [email, setEmail] = React.useState("");
   const [toLogin, setToLogin] = React.useState(false);
   const [sentModal, setSentModal] = React.useState(false);
-  const [mode, setMode] = useGlobalState("darkMode");
+  const [mode] = useGlobalState("darkMode");
 
   if (toLogin) {
     return <Navigate to="/" />;

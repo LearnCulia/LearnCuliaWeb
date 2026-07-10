@@ -88,7 +88,7 @@ const GamePage1 = () => {
 
   const verify = (buttonId) => {
     isButtonClicked(true);
-    if (num == buttonId) {
+    if (num === buttonId) {
       const newCount = count + 1;
       setCount(newCount);
       isAnswerCorrect(true);

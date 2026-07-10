@@ -36,7 +36,7 @@ const GamePageMid6 = () => {
   const [toSPG, setToSPG] = React.useState(false);
   const [toContact, setToContact] = React.useState(false);
   const [toGamePageChallenge6, setToGamePageChallenge6] = React.useState(false);
-  const [mode, setMode] = useGlobalState("darkMode");
+  const [mode] = useGlobalState("darkMode");
 
   if (toHome) {
     return <Navigate to="/home" />;

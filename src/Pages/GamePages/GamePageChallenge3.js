@@ -112,7 +112,7 @@ const GamePageChallenge3 = () => {
   const verify = () => {
     isButtonClicked(true);
     const realAnswer = num1 * num2;
-    if (Number(answer) == realAnswer) {
+    if (Number(answer) === realAnswer) {
       const newCount = count + 1;
       setCount(newCount);
       isAnswerCorrect(true);
