@@ -26,6 +26,7 @@ import GamePageChallenge3 from "./Pages/GamePages/GamePageChallenge3";
 import GamePageChallenge4 from "./Pages/GamePages/GamePageChallenge4";
 import GamePageChallenge5 from "./Pages/GamePages/GamePageChallenge5";
 import GamePageChallenge6 from "./Pages/GamePages/GamePageChallenge6";
+import TermsAndConditions from "./Pages/TermsAndConditions";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/info" element={<Info />} />
         <Route path="/single-player-games" element={<SinglePlayerGames />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="/mobile-app" element={<MobileApp />} />
         <Route path="/game1" element={<Game1 />} />
         <Route path="/game2" element={<Game2 />} />

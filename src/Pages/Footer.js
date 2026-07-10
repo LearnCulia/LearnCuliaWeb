@@ -33,7 +33,7 @@ export default function Footer({ mode }) {
 
   const legal = [
     { label: "Terms & Conditions", path: "/terms" },
-    { label: "Privacy Policy", path: "/privacy-policy" },
+    { label: "Privacy Policy", path: "https://www.privacypolicies.com/live/8face58a-f75c-41fc-9db5-fd29e92eded6" },
   ];
 
   const colHeaderStyle = {
@@ -96,7 +96,15 @@ export default function Footer({ mode }) {
           <Box>
             <p style={{ ...colHeaderStyle, color: "#000000" }}>Legal</p>
             {legal.map((p) => (
-              <button key={p.label} style={linkStyle} onClick={() => navigate(p.path)}>
+              <button
+                key={p.label}
+                style={linkStyle}
+                onClick={() =>
+                  p.path.startsWith("http")
+                    ? window.open(p.path, "_blank", "noopener,noreferrer")
+                    : navigate(p.path)
+                }
+              >
                 {p.label}
               </button>
             ))}

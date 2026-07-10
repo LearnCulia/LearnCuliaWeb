@@ -39,7 +39,6 @@ The LearnCulia website has the following pages accessible via the navigation bar
 * Light Mode / Dark Mode: A toggle in the NavBar switches between light and dark themes. The preference applies across all pages instantly.
 * Light Mode: White backgrounds, black text, black buttons with green accents.
 * Dark Mode: Dark navy backgrounds (#242430), white text, green (#00ff9d) buttons and accents. Modal bodies use a dark background (#1e1e2a) with a green (#6bffc6) header bar.
-* Color Accent Customization: Coming soon — users will be able to personalize the primary color accent of the interface.
 * Design Philosophy: Minimal, flat, distraction-free aesthetic with high-contrast legibility — designed to minimize cognitive load for neurodivergent individuals.
 
 --- 6. AI CHATBOT ASSISTANT ---
@@ -116,7 +115,6 @@ The following features are only available in the LearnCulia iOS mobile app, NOT 
 * Badge and achievement system (earned by completing games and challenge modes)
 * Profile screen showing avatar and earned badges
 * All 6 games playable on a mobile phone
-* Color accent customization (Green, Red, Blue)
 * Automated welcome email on registration
 * Password reset via email
 
