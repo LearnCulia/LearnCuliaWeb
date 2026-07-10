@@ -59,13 +59,13 @@ export default function Footer({ mode }) {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "1.5fr 1fr 1fr" },
+            gridTemplateColumns: { xs: "1fr 1fr", sm: "1.5fr 1fr 1fr" },
             gap: { xs: 4, sm: 6 },
             mb: 4,
             alignItems: "start",
           }}
         >
-          <Box>
+          <Box sx={{ gridColumn: { xs: "1 / -1", sm: "auto" } }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1.5 }}>
               <img
                 src={icon}

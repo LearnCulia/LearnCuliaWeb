@@ -53,7 +53,7 @@ const MobileApp = () => {
             maxWidth: 1100,
             justifyContent: "center",
             alignItems: "center",
-            gap: 24,
+            gap: { xs: 4, md: 24 },
             px: 4,
             pb: 6,
           }}
