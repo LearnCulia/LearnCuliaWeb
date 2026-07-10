@@ -97,8 +97,8 @@ const GamePage2 = () => {
   const [tickMarkModal, setTickMarkModal] = React.useState(false);
   const [challengeModal, setChallengeModal] = React.useState(false);
   const [buttonClicked, isButtonClicked] = React.useState(false);
-  const [marks, setMarks] = React.useState([]);
-  const [marks2, setMarks2] = React.useState([]);
+  const [marks, setMarks] = React.useState(0);
+  const [marks2, setMarks2] = React.useState(0);
   const [mode] = useGlobalState("darkMode");
 
   const [toSPG, setToSPG] = React.useState(false);
@@ -133,7 +133,7 @@ const GamePage2 = () => {
       const newCount = count + 1;
       setCount(newCount);
       isAnswerCorrect(true);
-      setMarks([]); setMarks2([]); setAnswer("");
+      setMarks(0); setMarks2(0); setAnswer("");
       if (newCount >= 10) {
         setChallengeModal(true);
       } else {
@@ -144,8 +144,19 @@ const GamePage2 = () => {
     }
   };
 
-  const addMark = (setter) => setter((prev) => [...prev, <Typography key={prev.length} style={{ marginRight: 10, fontSize: 30, fontWeight: "500", color: "black" }}>|</Typography>]);
-  const removeMark = (setter) => setter((prev) => prev.slice(0, -1));
+  const addMark = (setter) => setter((prev) => prev + 1);
+  const removeMark = (setter) => setter((prev) => Math.max(0, prev - 1));
+
+  const TallyMarks = ({ count }) => {
+    const color = mode === "dark" ? "#6bffc6" : "#000";
+    return (
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: "6px", minHeight: 44, alignItems: "center" }}>
+        {Array.from({ length: count }).map((_, i) => (
+          <Box key={i} sx={{ width: 3, height: 40, backgroundColor: color, borderRadius: 1 }} />
+        ))}
+      </Box>
+    );
+  };
 
   const startGame = () => { generateNumbers(); setReady(false); };
 
@@ -155,31 +166,29 @@ const GamePage2 = () => {
         <Box sx={modalHeaderBox}>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "#000" }}>Tick Mark Notes</Typography>
         </Box>
-        <Box sx={{ width: "100%", backgroundColor: mode === "dark" ? "#1e1e2a" : "#ffffff", px: 3, py: 3, display: "flex", flexDirection: "column", gap: 2 }}>
+        <Box sx={{ width: "100%", backgroundColor: mode === "dark" ? "#1e1e2a" : "#ffffff", px: 3, py: 3, display: "flex", flexDirection: "column", gap: 2.5 }}>
           <Typography sx={{ textAlign: "center", color: mode === "dark" ? "#eee" : "#222" }}>
             Press + and – to add and remove tick marks!
           </Typography>
-          {/* Row 1 */}
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, p: 2, borderRadius: 2, backgroundColor: mode === "dark" ? "#2a2a38" : "#f5f5f5" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <Typography sx={{ minWidth: 140, color: mode === "dark" ? "#eee" : "#222" }}>First Number ({num1}):</Typography>
-              <Button variant="contained" size="small" sx={[{ height: 40, minWidth: 40, fontSize: 22 }, darkBtnSx]} onClick={() => addMark(setMarks)}>+</Button>
-              <Button variant="contained" size="small" sx={[{ height: 40, minWidth: 40, fontSize: 22 }, darkBtnSx]} onClick={() => removeMark(setMarks)}>–</Button>
-              <Button variant="contained" size="small" sx={[{ height: 40 }, darkBtnSx]} onClick={() => setMarks([])}>Clear</Button>
+              <Typography sx={{ flex: 1, fontWeight: "bold", color: mode === "dark" ? "#eee" : "#222" }}>First Number ({num1}): {marks}</Typography>
+              <Button variant="contained" size="small" sx={[{ height: 36, minWidth: 36, fontSize: 20 }, darkBtnSx]} onClick={() => addMark(setMarks)}>+</Button>
+              <Button variant="contained" size="small" sx={[{ height: 36, minWidth: 36, fontSize: 20 }, darkBtnSx]} onClick={() => removeMark(setMarks)}>–</Button>
+              <Button variant="contained" size="small" sx={[{ height: 36, fontSize: 12 }, darkBtnSx]} onClick={() => setMarks(0)}>Clear</Button>
             </Box>
-            <Box sx={{ display: "flex", flexWrap: "wrap", minHeight: 40 }}>{marks}</Box>
+            <TallyMarks count={marks} />
           </Box>
-          {/* Row 2 */}
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, p: 2, borderRadius: 2, backgroundColor: mode === "dark" ? "#2a2a38" : "#f5f5f5" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <Typography sx={{ minWidth: 140, color: mode === "dark" ? "#eee" : "#222" }}>Second Number ({num2}):</Typography>
-              <Button variant="contained" size="small" sx={[{ height: 40, minWidth: 40, fontSize: 22 }, darkBtnSx]} onClick={() => addMark(setMarks2)}>+</Button>
-              <Button variant="contained" size="small" sx={[{ height: 40, minWidth: 40, fontSize: 22 }, darkBtnSx]} onClick={() => removeMark(setMarks2)}>–</Button>
-              <Button variant="contained" size="small" sx={[{ height: 40 }, darkBtnSx]} onClick={() => setMarks2([])}>Clear</Button>
+              <Typography sx={{ flex: 1, fontWeight: "bold", color: mode === "dark" ? "#eee" : "#222" }}>Second Number ({num2}): {marks2}</Typography>
+              <Button variant="contained" size="small" sx={[{ height: 36, minWidth: 36, fontSize: 20 }, darkBtnSx]} onClick={() => addMark(setMarks2)}>+</Button>
+              <Button variant="contained" size="small" sx={[{ height: 36, minWidth: 36, fontSize: 20 }, darkBtnSx]} onClick={() => removeMark(setMarks2)}>–</Button>
+              <Button variant="contained" size="small" sx={[{ height: 36, fontSize: 12 }, darkBtnSx]} onClick={() => setMarks2(0)}>Clear</Button>
             </Box>
-            <Box sx={{ display: "flex", flexWrap: "wrap", minHeight: 40 }}>{marks2}</Box>
+            <TallyMarks count={marks2} />
           </Box>
-          <Button variant="contained" size="large" sx={[{ alignSelf: "center", mt: 1 }, darkBtnSx]} onClick={() => setTickMarkModal(false)}>
+          <Button variant="contained" size="large" sx={[{ alignSelf: "center" }, darkBtnSx]} onClick={() => setTickMarkModal(false)}>
             Close
           </Button>
         </Box>
