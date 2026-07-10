@@ -99,7 +99,6 @@ const ChatBot = () => {
             border: dark ? "1px solid #333" : "1px solid #ccc",
           }}
         >
-          {/* Header */}
           <div className="chatbot-header">
             <span style={{ fontWeight: "bold", fontSize: "0.95rem", color: "#000", padding: "12px 16px" }}>
               CuliaBot
@@ -109,7 +108,6 @@ const ChatBot = () => {
             </button>
           </div>
 
-          {/* Messages */}
           <div className="chatbot-messages">
             {messages.map((msg) => {
               const isUser = msg.role === "user";

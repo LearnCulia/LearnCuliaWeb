@@ -80,11 +80,32 @@ const Contact = () => {
   const fillAnswerMessage = (e) => setMessage(e.target.value);
 
   const sendMessage = async () => {
-    await db
-      .collection("contactresponses")
-      .add({ name, email, message })
-      .then(() => setSentModal(true))
-      .catch((error) => alert(error));
+    try {
+      await db.collection("contactresponses").add({ name, email, message });
+
+      await fetch("https://formspree.io/f/xeeblybv", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ name: name.trim(), email: email.trim(), message: message.trim() }),
+      });
+
+      await fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": process.env.BREVO_API_KEY,
+        },
+        body: JSON.stringify({
+          to: [{ email: email.trim(), name: name.trim() }],
+          templateId: 2,
+          params: { name: name.trim(), email: email.trim(), message: message.trim() },
+        }),
+      });
+
+      setSentModal(true);
+    } catch (error) {
+      alert("Failed to send message. Please try again.");
+    }
   };
 
   const darkBtnSx = mode === "dark"
