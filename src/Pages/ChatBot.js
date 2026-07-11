@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useGlobalState } from "../GlobalState";
 import ReactMarkdown from "react-markdown";
 
-const BACKEND_URL = "http://localhost:3002";
+const BACKEND_URL = "https://learnculia.onrender.com";
 
 const INITIAL_MESSAGE = {
   id: "0",
