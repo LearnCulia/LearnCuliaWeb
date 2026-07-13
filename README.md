@@ -40,7 +40,7 @@ LearnCulia is a mobile app built with React Native and Expo. The website serves 
 | React Native + Expo SDK 53 | Mobile framework |
 | Firebase Auth | User authentication |
 | Cloud Firestore | User data, badges, contact messages |
-| Brevo (formerly Sendinblue) | Transactional emails |
+| Brevo | Transactional emails |
 | EAS Build | Cloud builds via Expo |
 
 ### RAG Backend
