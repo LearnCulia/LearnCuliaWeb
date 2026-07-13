@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# LearnCulia Web
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The official website for **LearnCulia** — a mobile app designed to help people with dyscalculia build mathematical confidence through structured games, AI-powered tutoring, and progress tracking.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## What is Dyscalculia?
 
-### `npm start`
+Dyscalculia is a learning difference that affects a person's ability to understand numbers and perform mathematical operations. LearnCulia provides a supportive, gamified environment to help users overcome these challenges at their own pace.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## About the App
 
-### `npm test`
+LearnCulia is a mobile app built with React Native and Expo. The website serves as an informational hub about the app and its features.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Features
 
-### `npm run build`
+- **6 Math Games** — Counting, Addition & Subtraction, Multiplication, Reversing Math Equations, Comparisons, and Arranging Numbers. Each game has a normal mode and a challenge mode (unlocked after completing normal mode).
+- **CuliaBot** — An AI chatbot (RAG-powered) that answers questions about dyscalculia, explains game concepts, and gives personalized tips. Backed by Groq's llama-3.3-70b-versatile and HuggingFace embeddings stored in Supabase pgvector.
+- **Badge System** — Users earn badges as they complete games and challenges.
+- **Profile** — Tracks games completed, badges earned, and personal info with a customizable avatar.
+- **Dark Mode** — Full dark/light mode support with customizable app accent colors.
+- **Contact / Suggest** — Users can send messages directly to the developer.
+- **Authentication** — Email/password auth via Firebase with persistent login.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Website
+| Technology | Purpose |
+|---|---|
+| React | Frontend framework |
+| Firebase | Backend and authentication |
 
-### `npm run eject`
+### Mobile App
+| Technology | Purpose |
+|---|---|
+| React Native + Expo SDK 53 | Mobile framework |
+| Firebase Auth | User authentication |
+| Cloud Firestore | User data, badges, contact messages |
+| Brevo (formerly Sendinblue) | Transactional emails |
+| EAS Build | Cloud builds via Expo |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### RAG Backend
+| Technology | Purpose |
+|---|---|
+| Node.js + Express | REST API server |
+| Groq (llama-3.3-70b-versatile) | Chat completions |
+| HuggingFace Inference API | Text embeddings (`all-MiniLM-L6-v2`, 384 dims) |
+| Supabase (pgvector) | Vector similarity search |
+| Render | Backend hosting |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## License
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Private — all rights reserved.
