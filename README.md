@@ -10,20 +10,19 @@ Dyscalculia is a learning difference that affects a person's ability to understa
 
 ---
 
-## About the App
+## About the Website
 
-LearnCulia is a mobile app built with React Native and Expo. The website serves as an informational hub about the app and its features.
+The LearnCulia website provides an informational hub for young students with dyscalculia to explore LearnCulia and what it has to offer to improve daily struggles with mathematics. In addition, there is a mobile app component which you can download today!
+[LearnCulia Mobile App](https://apps.apple.com/us/app/learnculia/id6467522608)
 
 ### Features
 
 - **6 Math Games** — Counting, Addition & Subtraction, Multiplication, Reversing Math Equations, Comparisons, and Arranging Numbers. Each game has a normal mode and a challenge mode (unlocked after completing normal mode).
-- **CuliaBot** — An AI chatbot (RAG-powered) that answers questions about dyscalculia, explains game concepts, and gives personalized tips. Backed by Groq's llama-3.3-70b-versatile and HuggingFace embeddings stored in Supabase pgvector.
+- **CuliaBot** — An AI chatbot (RAG-powered) that answers questions about dyscalculia, explains game concepts, and gives personalized tips.
 - **Badge System** — Users earn badges as they complete games and challenges.
 - **Profile** — Tracks games completed, badges earned, and personal info with a customizable avatar.
-- **Dark Mode** — Full dark/light mode support with customizable app accent colors.
+- **Dark Mode** — Full dark/light mode support.
 - **Contact / Suggest** — Users can send messages directly to the developer.
-- **Authentication** — Email/password auth via Firebase with persistent login.
-
 ---
 
 ## Tech Stack
@@ -33,24 +32,6 @@ LearnCulia is a mobile app built with React Native and Expo. The website serves 
 |---|---|
 | React | Frontend framework |
 | Firebase | Backend and authentication |
-
-### Mobile App
-| Technology | Purpose |
-|---|---|
-| React Native + Expo SDK 53 | Mobile framework |
-| Firebase Auth | User authentication |
-| Cloud Firestore | User data, badges, contact messages |
-| Brevo | Transactional emails |
-| EAS Build | Cloud builds via Expo |
-
-### RAG Backend
-| Technology | Purpose |
-|---|---|
-| Node.js + Express | REST API server |
-| Groq (llama-3.3-70b-versatile) | Chat completions |
-| HuggingFace Inference API | Text embeddings (`all-MiniLM-L6-v2`, 384 dims) |
-| Supabase (pgvector) | Vector similarity search |
-| Render | Backend hosting |
 
 ---
 
